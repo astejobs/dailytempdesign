@@ -20,13 +20,15 @@ import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ShowListComponent } from './show-list/show-list.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TempStorageComponent,
     HeaderComponent,
-    ShowListComponent
+    ShowListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
