@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- <div class="mat-elevation-z8"> -->
+                <!-- <button mat-raised-button color="accent">Accent</button> -->
+            <!-- </div> -->
+            <!-- Material form login -->
+            <div class="card">
+
+                <h2 class="card-header amy-crisp-gradient white-text text-center py-4">
+                <strong>Store Temperature</strong>
+                </h2>
+            
+                <!--Card content-->
+                <div class="card-body px-lg-5 pt-0">
+            
+                <!-- Form -->
+                <form class="text-center" style="color: #757575;" action="#!" #myForm>
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <input type="date" #dateInput class="form-control">
+                                <label for="dateInput">Date</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="lead">Do you have a thermometer reading?  </p> <hr>
+                                    <!-- Default unchecked -->
+                                    <div class="custom-control custom-radio custom-control-inline" (click)="options = true">
+                                        <input type="radio" class="custom-control-input" id="yes_reading" name="reading"[checked]="options" />
+                                        <label class="custom-control-label" for="yes_reading">Yes</label>
+                                    </div>
+                                    
+                                    
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-radio custom-control-inline" (click)="options = false">
+                                        <input type="radio" class="custom-control-input" id="no_reading" name="reading" [checked]="!options" />
+                                        <label class="custom-control-label" for="no_reading">No</label>
+                                    </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="jumbotron m-4">
+                                <p class="lead">Shift: 
+                                    <span>Mor 8:00 - 11:59 &nbsp; &nbsp;&nbsp; Eve 12:00 - 18:00</span>
+                                </p><hr>
+                                <!-- Default unchecked -->
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="morning" name="shift">
+                                    <label class="custom-control-label" for="morning">Morning</label>
+                                </div>
+                                
+                                <!-- Default checked -->
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="evening" name="shift" checked>
+                                    <label class="custom-control-label" for="evening">Evening</label>
+                                </div>
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="jumbotron m-4">
+                                <p class="lead">
+                                    <span *ngIf="options">Enter Meter Reading </span>
+                                    <span *ngIf="!options">Give declaration of temperature </span>
+                                </p> <hr>
+                                
+                                <div class="form-group" *ngIf="options">
+                                    <input type="text" class="form-control" placeholder="Enter Meter Reading">
+                                </div>
+                                <div *ngIf="!options">
+                                    <!-- Default unchecked -->
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="below" name="declaration" >
+                                    <label class="custom-control-label" for="below">I declare my temperature is below 38.0 degree centigrade</label>
+                                </div>
+                                
+                                <!-- Default checked -->
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="above" name="declaration">
+                                    <label class="custom-control-label" for="above">I declare my temperature is above 38.0 degree centigrade</label>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Submit button -->
+                    <button class="btn btn-outline-secondary  btn-block my-4 waves-effect z-depth-0" type="button">SUBMIT</button>
+                
+                </form>
+                <!-- Form -->
+            
+                </div>
+            
+            </div>
+            <!-- Material form login -->
+        </div>
+    </div>
+</div>
