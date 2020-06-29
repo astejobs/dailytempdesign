@@ -20,7 +20,7 @@
 
                         <div class="col-sm-6">
                             <div class="md-form">
-                                <input type="date" #dateInput class="form-control">
+                                <input type="date" #dateInput class="form-control"  (change)="getdate(dateInput)">
                                 <label for="dateInput">Date</label>
                             </div>
                         </div>
