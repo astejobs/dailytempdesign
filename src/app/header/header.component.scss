@@ -3,3 +3,22 @@
     border-bottom-left-radius: 25%;
     border-bottom-right-radius: 25%;
 }
+.btn-menu {
+    float: right;
+}
+::ng-deep .mat-menu-panel {
+    background: linear-gradient(to bottom right, #5e0caa 0%, #4013bb 100%);
+    color: #fff;
+}
+
+button:focus {
+    outline: none;
+    border: 0;
+ }
+ mat-menu:focus {
+    outline: none;
+    border: 0;
+ }
+::ng-deep .mat-menu-content .mat-menu-item{
+    color: #fff !important;
+ }
