@@ -1,0 +1,32 @@
+.btn-download {
+    position: fixed;
+    right: 2%;
+    bottom: 13%;
+    background-color: #4d0b8a;
+    color: #fff;
+}
+
+.btn-modl {
+    position: fixed;
+    right: 2%;
+    bottom: 10%;
+    background-color: #4d0b8a;
+    color: #fff;
+}
+::ng-deep .pagination .page-item .page-link {
+    color: #4d0b8a !important;
+    font-size:x-large;
+    font-weight: bolder;
+}
+::ng-deep .pagination .page-item.disabled .page-link {
+     color: #4d0b8a !important; 
+}
+::ng-deep .pagination .page-item.disabled .page-link {
+    color: #4d0b8a !important;
+}
+::ng-deep {
+    .pagination {
+        font-size: larger;
+        /* color: #4d0b8a ; */
+    }
+}

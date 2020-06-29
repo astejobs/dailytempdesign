@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="mat-elevation-z8 col-md-6 offset-md-3">
+  
+                <!-- Default form login -->
+                <form class="text-center border border-light p--md-5 my-3">
+
+                    <p class="h4 mb-4 mt-3">Login</p>
+                    <div class="m-md-5">
+
+                        <!-- Username -->
+                        <div class="md-form">
+                            <!-- <mdb-icon fas icon="user-alt" class="prefix"></mdb-icon> -->
+                            <input mdbInput type="text" id="form2" class="form-control" #username>
+                            <label for="form2">Username</label>
+                        </div>
+                        <mat-error *ngIf="username.invalid || (username.untouched && username.dirty)">
+                            <span class="text-danger">This field is required *</span>
+                        </mat-error>
+                    
+                        <!-- Password -->
+                        <div class="md-form">
+                           <!--  <mdb-icon fas icon="unlock" class="prefix"></mdb-icon> -->
+                            <input mdbInput type="text" id="form2" class="form-control" #password>
+                            <label for="form2">Password</label>
+                        </div>
+                        
+                        <mat-error *ngIf="password.invalid || (password.untouched && password.dirty)">
+                            <span class="text-danger">This field is required *</span>
+                        </mat-error>
+                    
+                        <div class="d-flex justify-content-around">
+                        <div>
+                            <!-- Remember me -->
+                            <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+                        </div>
+                        <div>
+                            <!-- Forgot password -->
+                            <a href="">Forgot password?</a>
+                        </div>
+                        </div>
+                    
+                        <!-- Sign in button -->
+                        <button color="info"  routerLink="../getReading" class="btn btn-outline-info  btn-block my-4 waves-effect z-depth-0" type="button">Sign in</button>
+                    
+                        <!-- Register -->
+                        <!-- <p>Not a member?
+                        <a href="">Register</a>
+                        </p> -->
+                    </div>
+                 
+                </form>
+                <!-- Default form login -->
+            </div>
+        </div>
+    </div>
+</div>

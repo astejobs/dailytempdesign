@@ -1,1 +1,107 @@
-<p>show-list works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mx-auto">
+                      <div class="md-form">
+                        <input
+                          type="text"
+                          [(ngModel)]="searchText"
+                          class="form-control"
+                          id="search"
+                          mdbInput
+                        />
+                        <label for="search">Search</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+
+                      <table mdbTable #tableEl="mdbTable" class="table z-depth-1 table-striped table-responsive-md">
+                        <thead>
+                        <tr>
+                          <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
+                          </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let el of elements; let i = index">
+                          <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                              scope="row">{{el.name}}</th>
+                          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.shift}}</td>
+                          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.reading}}</td>
+                          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.date}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot class="grey lighten-5 w-100">
+                        <tr>
+                          <td colspan="4">
+                            <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+                          </td>
+                        </tr>
+                        </tfoot>
+                      </table>
+                  </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button " class="btn btn-download" style="margin-bottom: 3rem; " (click)="excel()" ng-show="tableData.length>0">
+    <i class="fa fa-download " style="font-size: 28px; " aria-hidden="true "></i>
+</button>
+<button type="button" class="btn btn-modl" data-toggle="modal" data-target="#myModal" (click)="basicModal.show()">
+    <i class=" fa fa-search " style="font-size: 28px; " aria-hidden="true "></i>
+</button>
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="row">
+                <div class="form-group col-sm-6 ">
+                    <label for="exampleFormControlSelect1 ">Group By</label>
+                    <select class="form-control " ng-model="groupBy ">
+                    <option value="">Select Temperature</option>
+                    <option value="greater ">Greater than 38</option>
+                    <option value="less ">Less than or Equal to 38</option>
+                </select>
+                </div>
+                <div class="form-group col-sm-6 ">
+                    <label for="exampleFormControlSelect1 ">Shift</label>
+                    <select class="form-control " ng-model="shift ">
+                    <option value="">Select Shift</option>
+                    <option value="Morning ">Morning</option>
+                    <option value="Evening ">Evening</option>
+                </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6 ">
+                    <label for="exampleFormControlSelect1 ">Start Date</label>
+                    <input type="date" id="startDate" required="required " class="form-control " ng-model="startDate " />
+                </div>
+                <div class="form-group col-sm-6 ">
+                    <label for="exampleFormControlSelect1 ">End Date</label>
+                    <input type="date" id="endDate" required="required " class="form-control " ng-model="endDate " />
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" (click)="fetchReading()" class="relative waves-light" mdbWavesEffect id="modalAction">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
