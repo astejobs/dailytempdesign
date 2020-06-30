@@ -24,9 +24,7 @@
 ::ng-deep .pagination .page-item.disabled .page-link {
     color: #4d0b8a !important;
 }
-::ng-deep {
-    .pagination {
+::ng-deep .pagination {
         font-size: larger;
         /* color: #4d0b8a ; */
     }
-}

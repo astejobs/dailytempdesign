@@ -51,6 +51,9 @@ export class ShowListComponent implements OnInit{
   this.mdbTable.setDataSource(prev); 
   } 
   }
+  excel() {
+    console.log('Saved')
+  }
  
   fetchReading() {
     this.ts.getReading().subscribe(data => {
