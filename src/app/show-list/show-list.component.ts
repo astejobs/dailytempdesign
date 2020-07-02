@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef, HostListener } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'angular-bootstrap-md';
 import { TemperatureServiceService } from '../services/temperature-service.service';
+import { TempService } from '../temp.service';
 
 @Component({
   selector: 'app-show-list',
@@ -20,9 +21,12 @@ export class ShowListComponent implements OnInit{
     this.searchItems();
   } 
 
-  constructor(private cdRef: ChangeDetectorRef, private ts:TemperatureServiceService) { }
+  constructor(private cdRef: ChangeDetectorRef, private ts:TemperatureServiceService,private myService:TempService) { }
 
   ngOnInit() {
+     this.myService.getReadings().subscribe(response=>{
+       
+     });
     for (let i = 1; i <= 15; i++) {
       this.elements.push({name: 'Taha Latief', shift: 'Evening ' , reading:  i, date: '2-06-2020 '});
     }
