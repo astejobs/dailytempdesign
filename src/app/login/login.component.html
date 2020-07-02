@@ -4,25 +4,31 @@
             <div class="mat-elevation-z8 col-md-6 offset-md-3">
   
                 <!-- Default form login -->
-                <form class="text-center border border-light p--md-5 my-3">
+                <form class="text-center border border-light p--md-5 my-3" #myForm="ngForm" (ngSubmit)="onLogin()">
 
                     <p class="h4 mb-4 mt-3">Login</p>
                     <div class="m-md-5">
-
+                        <p class="alert alert-danger" *ngIf="errorLbl!=null">
+                            <strong> {{errorLbl}}</strong> 
+              
+                        </p>
+                        
                         <!-- Username -->
                         <div class="md-form">
                             <!-- <mdb-icon fas icon="user-alt" class="prefix"></mdb-icon> -->
-                            <input mdbInput type="text" id="form2" class="form-control" #username>
+                            
+                            <input  type="text" id="form2" class="form-control" #username="ngModel" required  [(ngModel)]="user.username" name="username" >
                             <label for="form2">Username</label>
                         </div>
                         <mat-error *ngIf="username.invalid || (username.untouched && username.dirty)">
                             <span class="text-danger">This field is required *</span>
                         </mat-error>
+                        
                     
                         <!-- Password -->
                         <div class="md-form">
                            <!--  <mdb-icon fas icon="unlock" class="prefix"></mdb-icon> -->
-                            <input mdbInput type="text" id="form2" class="form-control" #password>
+                            <input mdbInput type="text" id="form2" class="form-control" required #password="ngModel" [(ngModel)]="user.password" name="password">
                             <label for="form2">Password</label>
                         </div>
                         
@@ -33,16 +39,16 @@
                         <div class="d-flex justify-content-around">
                         <div>
                             <!-- Remember me -->
-                            <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+                        <!--   <mdb-checkbox [default]="true">Remember me</mdb-checkbox>--> 
                         </div>
                         <div>
                             <!-- Forgot password -->
-                            <a href="">Forgot password?</a>
+                          <!-- <a href="">Forgot password?</a>--> 
                         </div>
                         </div>
                     
                         <!-- Sign in button -->
-                        <button color="info"  routerLink="../getReading" class="btn btn-outline-info  btn-block my-4 waves-effect z-depth-0" type="button">Sign in</button>
+                        <button color="info" class="btn btn-outline-info  btn-block my-4 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">Sign in</button>
                     
                         <!-- Register -->
                         <!-- <p>Not a member?

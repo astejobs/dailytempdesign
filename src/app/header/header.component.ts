@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TempService } from '../temp.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor( private route:Router) { }
 
   ngOnInit(): void {
   }
 
   goToLogin() {
-    console.log('ok');
+    this.route.navigateByUrl('');
+  }
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    this.route.navigateByUrl('');
+
   }
 }

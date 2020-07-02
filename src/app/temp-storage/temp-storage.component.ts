@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import {HttpClientModule, HttpHeaders} from  '@angular/common/http';
+import { Observable } from 'rxjs';
+import { TempService } from '../temp.service';
 import { formatDate, DatePipe } from '@angular/common';
+import { ok } from 'assert';
 
 
 @Component({
@@ -10,8 +15,10 @@ import { formatDate, DatePipe } from '@angular/common';
 export class TempStorageComponent implements OnInit {
 options:boolean = true;
 check:boolean= true;
+temperature:any={};
 tempDate:any;
-  constructor() { }
+message:string;
+  constructor( private tempService:TempService) { }
 
   ngOnInit(): void {
   }
@@ -22,4 +29,26 @@ tempDate:any;
     const formattedDate = formatDate(myDate, format, locale);
     console.log(formattedDate);
   }
+
+  onSubmitForm(){
+  this.tempService.save(this.temperature).subscribe((response:any)=>{
+   
+    if(response=='OK')
+    this.message="success";
+    else
+    this.message="fail";
+  
+  }); 
+  }
+    public clearReading(selectedOption:boolean){
+    if(selectedOption==true){
+        this.options = true   
+        this.temperature.noReading="";
+    }
+     else{
+        this.options=false;
+        this.temperature.reading=null;
+    }
+  }
 }
+ 
