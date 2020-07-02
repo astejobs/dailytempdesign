@@ -22,22 +22,21 @@ message:string;
 
   ngOnInit(): void {
   }
-  getdate(dt) {
+  getDate(dt) {
     const format = 'dd-MM-yyyy';
     const myDate = dt.value;
     const locale = 'en-US';
-    const formattedDate = formatDate(myDate, format, locale);
-    console.log(formattedDate);
+     this.tempDate = formatDate(myDate, format, locale);
+    
   }
 
   onSubmitForm(){
+    this.temperature.date=this.tempDate;
   this.tempService.save(this.temperature).subscribe((response:any)=>{
-   
-    if(response=='OK')
+    if(response.status==200)
     this.message="success";
     else
     this.message="fail";
-  
   }); 
   }
     public clearReading(selectedOption:boolean){

@@ -24,9 +24,9 @@ export class ShowListComponent implements OnInit{
   constructor(private cdRef: ChangeDetectorRef, private ts:TemperatureServiceService,private myService:TempService) { }
 
   ngOnInit() {
-     this.myService.getReadings().subscribe(response=>{
+     /* this.myService.getReadings().subscribe(response=>{
        
-     });
+     }); */
     for (let i = 1; i <= 15; i++) {
       this.elements.push({name: 'Taha Latief', shift: 'Evening ' , reading:  i, date: '2-06-2020 '});
     }

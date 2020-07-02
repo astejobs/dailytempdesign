@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor( private route:Router) { }
-
+  constructor(private route:Router,private tempService:TempService) { }
+  isLoggedIn=false;
   ngOnInit(): void {
+    this.tempService.menu.subscribe(()=>{
+      this.isLoggedIn=!this.isLoggedIn;
+    });
   }
 
   goToLogin() {
@@ -21,6 +24,6 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.route.navigateByUrl('');
-
+    this.isLoggedIn=false;
   }
 }

@@ -13,13 +13,13 @@
     </div>
 </header>
 <!--Main Navigation-->
- <!-- dropdown menu for user account -->
- <mat-menu #userMenu="matMenu">
-    <button mat-menu-item (click)="goToLogin()">
+<!-- dropdown menu for user account -->
+<mat-menu #userMenu="matMenu">
+    <button mat-menu-item (click)="goToLogin()" *ngIf="!isLoggedIn">
         <mat-icon style="color: #ebe3e3;">account_circle</mat-icon>
         <span>Login</span>
     </button>
-   <!-- <button mat-menu-item>
+    <!-- <button mat-menu-item>
         <mat-icon style="color: #ebe3e3;">settings</mat-icon>
         <span>Settings</span>
     </button>-->
@@ -27,7 +27,7 @@
         <mat-icon style="color: #ebe3e3;">notifications_off</mat-icon>
         <span>Disable alerts</span>
     </button>-->
-    <button mat-menu-item (click)="logout()">
+    <button mat-menu-item (click)="logout()" *ngIf="isLoggedIn">
         <mat-icon style="color: #ebe3e3;">logout</mat-icon>
         <span>Logout</span>
     </button>

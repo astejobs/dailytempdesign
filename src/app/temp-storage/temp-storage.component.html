@@ -2,124 +2,121 @@
     <div class="row">
         <div class="col-sm-12">
             <!-- <div class="mat-elevation-z8"> -->
-                <!-- <button mat-raised-button color="accent">Accent</button> -->
+            <!-- <button mat-raised-button color="accent">Accent</button> -->
             <!-- </div> -->
             <!-- Material form login -->
             <div class="card">
 
                 <h2 class="card-header amy-crisp-gradient white-text text-center py-4">
-                <strong>Store Temperature</strong>
+                    <strong>Store Temperature</strong>
                 </h2>
 
                 <!--Card content-->
                 <div class="card-body px-lg-5 pt-0">
                     <p class="alert alert-success" *ngIf="message==='success'">
-                        <strong> Data Saved Successfully!</strong> 
-          
+                        <strong> Data Saved Successfully!</strong>
+
                     </p>
                     <p class="alert alert-danger" *ngIf="message==='fail'">
-                        <strong> Enter fields correctly!</strong> 
-          
-                    </p>
-                <!-- Form -->
-                <form class="text-center" style="color: #757575;" #myForm="ngForm" (ngSubmit)="onSubmitForm()">
-                    <div class="row">
+                        <strong> Enter fields correctly!</strong>
 
-                        <div class="col-sm-6">
-                            <div class="md-form">
-                                <input type="date" #dateInput class="form-control" name="date" [(ngModel)]="temperature.date">
-                                <label for="dateInput">Date</label>
+                    </p>
+                    <!-- Form -->
+                    <form class="text-center" style="color: #757575;" #myForm="ngForm" (ngSubmit)="onSubmitForm()">
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="md-form">
+                                    <input type="date" #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">
+                                    <label for="dateInput">Date</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="lead">Do you have a thermometer reading? </p>
+                                <hr>
+                                <!-- Default unchecked -->
+                                <div class="custom-control custom-radio custom-control-inline" (click)="clearReading(true)">
+                                    <input type="radio" class="custom-control-input" id="yes_reading" [checked]="options" />
+                                    <label class="custom-control-label" for="yes_reading">Yes</label>
+                                </div>
+
+
+                                <!-- Default checked -->
+                                <div class="custom-control custom-radio custom-control-inline" (click)="clearReading(false)">
+                                    <input type="radio" class="custom-control-input" id="no_reading" [checked]="!options" />
+                                    <label class="custom-control-label" for="no_reading">No</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <p class="lead">Do you have a thermometer reading?  </p> <hr>
-                                    <!-- Default unchecked -->
-                                    <div class="custom-control custom-radio custom-control-inline" (click)="clearReading(true)">
-                                        <input type="radio"  class="custom-control-input" id="yes_reading"   [checked]="options"   />
-                                        <label class="custom-control-label" for="yes_reading">Yes</label>
-                                    </div>
 
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="jumbotron m-4">
+                                    <p class="lead">Shift:
+                                        <span>Mor 8:00 - 11:59 &nbsp; &nbsp;&nbsp; Eve 12:00 - 18:00</span>
+                                    </p>
+                                    <hr>
+                                    <!-- Default unchecked -->
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input" required id="morning" name="shift" #shift="ngModel" value="Morning" [(ngModel)]="temperature.shift">
+                                        <label class="custom-control-label" for="morning">Morning</label>
+
+                                    </div>
 
                                     <!-- Default checked -->
-                                    <div class="custom-control custom-radio custom-control-inline" (click)="clearReading(false)">
-                                        <input type="radio" class="custom-control-input" id="no_reading"    [checked]="!options"  />
-                                        <label class="custom-control-label" for="no_reading">No</label>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input" required id="evening" name="shift" #shift="ngModel" value="Evening" [(ngModel)]="temperature.shift">
+                                        <label class="custom-control-label" for="evening">Evening</label>
+                                        <div *ngIf="shift.invalid && (shift.dirty || shift.touched)" class="text-theme-6 mt-2">Shift is required</div>
+
                                     </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-sm-6">
-                            <div class="jumbotron m-4">
-                                <p class="lead">Shift:
-                                    <span>Mor 8:00 - 11:59 &nbsp; &nbsp;&nbsp; Eve 12:00 - 18:00</span>
-                                </p><hr>
-                                <!-- Default unchecked -->
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" required id="morning" name="shift" #shift="ngModel" value="Morning" [(ngModel)]="temperature.shift">
-                                    <label class="custom-control-label" for="morning">Morning</label>
-
+                                    <br><br>
                                 </div>
-
-                                <!-- Default checked -->
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" required id="evening" name="shift" #shift="ngModel" value="Evening"  [(ngModel)]="temperature.shift">
-                                    <label class="custom-control-label" for="evening">Evening</label>
-                                    <div *ngIf="shift.invalid && (shift.dirty || shift.touched)" class="text-theme-6 mt-2">Shift is required</div>
-
-                                </div>
-                                <br><br>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="jumbotron m-4">
-                                <p class="lead">
-                                    <span *ngIf="options">Enter Meter Reading </span>
-                                    <span *ngI
-                                    f="!options">Give declaration of temperature </span>
-                                </p> <hr>
+                            <div class="col-sm-6">
+                                <div class="jumbotron m-4">
+                                    <p class="lead">
+                                        <span *ngIf="options">Enter Meter Reading </span>
+                                        <span *ngI f="!options">Give declaration of temperature </span>
+                                    </p>
+                                    <hr>
 
-                                <div class="form-group" *ngIf="options">
-                                    <input type="text" class="form-control" required  placeholder="Enter Meter Reading"  [(ngModel)]="temperature.reading" name="reading"
-                                    #reading="ngModel">
+                                    <div class="form-group" *ngIf="options">
+                                        <input type="text" class="form-control" required placeholder="Enter Meter Reading" [(ngModel)]="temperature.reading" name="reading" #reading="ngModel">
 
-                                    <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Class Name is required</div>
+                                        <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Class Name is required</div>
 
 
 
-                                </div>
-                                <div *ngIf="!options">
-                                    <!-- Default unchecked -->
-                                <div class="custom-control custom-radio">
+                                    </div>
+                                    <div *ngIf="!options">
+                                        <!-- Default unchecked -->
+                                        <div class="custom-control custom-radio">
 
-                                    <input type="radio" class="custom-control-input" id="below" name="noReading" #no_reading="ngModel" required  value="I declare my temperature is below 38.0 degree centigrade"  [(ngModel)]="temperature.noReading" >
-                                    <label class="custom-control-label" for="below">I declare my temperature is below 38.0 degree centigrade</label>
-                                </div>
+                                            <input type="radio" class="custom-control-input" id="below" name="noReading" #no_reading="ngModel" required value="I declare my temperature is below 38.0 degree centigrade" [(ngModel)]="temperature.noReading">
+                                            <label class="custom-control-label" for="below">I declare my temperature is below 38.0 degree centigrade</label>
+                                        </div>
 
-                                <!-- Default checked -->
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="I declare my temperature is above 38.0 degree centigrade"  [(ngModel)]="temperature.noReading">
-                                    <label class="custom-control-label" for="above">I declare my temperature is above 38.0 degree centigrade</label>
+                                        <!-- Default checked -->
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="I declare my temperature is above 38.0 degree centigrade" [(ngModel)]="temperature.noReading">
+                                            <label class="custom-control-label" for="above">I declare my temperature is above 38.0 degree centigrade</label>
 
-                                    <div *ngIf="no_reading.invalid && (no_reading.dirty || no_reading.touched)" class="text-theme-6 mt-2">Field is required</div>
+                                            <div *ngIf="no_reading.invalid && (no_reading.dirty || no_reading.touched)" class="text-theme-6 mt-2">Field is required</div>
 
-                                </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Submit button -->
-                    <button class="btn btn-outline-secondary  btn-block my-4 waves-effect z-depth-0" type="submit"  [disabled]="!myForm.valid">SUBMIT</button>
+                        <!-- Submit button -->
+                        <button class="btn btn-outline-secondary  btn-block my-4 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">SUBMIT</button>
 
-                </form>
-                <!-- Form -->
-                <a routerLink="/showReading" class="m-5" mat-raised-button color="accent">Show List</a>
+                    </form>
                 </div>
-
+                <!-- Material form login -->
             </div>
-            <!-- Material form login -->
         </div>
     </div>
-</div>

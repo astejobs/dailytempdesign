@@ -14,18 +14,19 @@ export class LoginComponent implements OnInit {
   constructor( private myService: TempService,private route:Router) {
   
    }
+   
 
-  ngOnInit(): void {
-
-  
+  ngOnInit(): void {  
+        
   }
   onLogin( ){
     this.myService.loginService(this.user).subscribe((response:any)=>{
       if(response.status==200){     
-    localStorage.setItem('token',response.body['token']);
-    localStorage.setItem('role',response.body['role']);
-    this.errorLbl="";
-    this.route.navigateByUrl('temperature');
+        localStorage.setItem('token',response.body['token']);
+        localStorage.setItem('role',response.body['role']);
+        this.errorLbl="";
+        this.myService.menu.next();
+        this.route.navigateByUrl('temperature');
       }else {
         this.errorLbl="Wrong Credentials";
       }
