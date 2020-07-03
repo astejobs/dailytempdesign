@@ -18,6 +18,8 @@ check:boolean= true;
 temperature:any={};
 tempDate:any;
 message:string;
+
+maxDate= new Date();
   constructor( private tempService:TempService) { }
 
   ngOnInit(): void {
@@ -49,5 +51,8 @@ message:string;
         this.temperature.reading=null;
     }
   }
+
+
+
 }
  

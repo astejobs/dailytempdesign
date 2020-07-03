@@ -27,10 +27,11 @@
 
                             <div class="col-sm-6">
                                 <div class="md-form">
-                                    <input type="date" #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">
-                                    <label for="dateInput">Date</label>
+                                    <input type="date" [max]="maxDate | date:'yyyy-MM-dd'"  #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">
+                                    <label for="dateInput" >Date</label>
                                 </div>
                             </div>
+                        
                             <div class="col-sm-6">
                                 <p class="lead">Do you have a thermometer reading? </p>
                                 <hr>
@@ -85,7 +86,7 @@
                                     <div class="form-group" *ngIf="options">
                                         <input type="text" class="form-control" required placeholder="Enter Meter Reading" [(ngModel)]="temperature.reading" name="reading" #reading="ngModel">
 
-                                        <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Class Name is required</div>
+                                        <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Meter Reading is required</div>
 
 
 
