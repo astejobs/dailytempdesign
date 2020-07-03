@@ -31,6 +31,7 @@
                             <input mdbInput type="password" id="form2" class="form-control" required #password="ngModel" [(ngModel)]="user.password" name="password">
                             <label for="form2">Password</label>
                         </div>
+                        
 
                         <mat-error *ngIf="password.invalid && (password.untouched && password.dirty)">
                             <span class="text-danger">This field is required *</span>
