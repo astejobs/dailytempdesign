@@ -27,7 +27,7 @@
 
                             <div class="col-sm-6">
                                 <div class="md-form">
-                                    <input type="date" [max]="maxDate | date:'yyyy-MM-dd'"  #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">
+                                    <input type="date"  [max]="maxDate | date:'yyyy-MM-dd'"  #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">
                                     <label for="dateInput" >Date</label>
                                 </div>
                             </div>
