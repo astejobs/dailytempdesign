@@ -104,7 +104,7 @@
 
                                         <!-- Default checked -->
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="I declare that my temperature is below 38.0 degrees centigrade" [(ngModel)]="temperature.noReading">
+                                            <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="I declare that my temperature is above 38.0 degrees centigrade" [(ngModel)]="temperature.noReading">
                                             <label class="custom-control-label" for="above">I declare my temperature is above 38.0 degree centigrade</label>
 
                                             <div *ngIf="no_reading.invalid && (no_reading.dirty || no_reading.touched)" class="text-theme-6 mt-2">Field is required</div>
