@@ -29,7 +29,6 @@ maxDate= new Date();
     const myDate = dt.value;
     const locale = 'en-US';
      this.tempDate = formatDate(myDate, format, locale);
-    
   }
 
   onSubmitForm(){

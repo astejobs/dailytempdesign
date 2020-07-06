@@ -25,10 +25,8 @@ import { ShowListComponent } from './show-list/show-list.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     TempStorageComponent,
     HeaderComponent,
@@ -51,7 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MatInputModule,
     MatMenuModule
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

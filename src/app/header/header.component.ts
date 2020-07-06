@@ -11,10 +11,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(private route:Router,private tempService:TempService) { }
   isLoggedIn=false;
+  role:any='';
   ngOnInit(): void {
     this.tempService.menu.subscribe(()=>{
       this.isLoggedIn=!this.isLoggedIn;
     });
+    this.role=localStorage.getItem('role');
+    console.log(this.role);
   }
 
   goToLogin() {

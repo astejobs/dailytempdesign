@@ -32,9 +32,15 @@ export class TempService {
     return this.http.post(url,data,{'observe':'response'}).pipe(map((response)=>{  
     return response;
   }));
+
  }
  
  
- 
+ fetchTemperaturesOnSearch(data){
+  const url=this.baseURL+"temperatures";
+    return this.http.post(url,data,{'observe':'response'}).pipe(map((response)=>{  
+    return response;
+  }));
+}
  
 }
