@@ -89,7 +89,7 @@ export class ShowListComponent implements OnInit{
        let obj = {
         'Employee Name':element.appUser?.name,
         'Shift':element.shift,
-        'Temperature_Reading':element.reading?element.reading:element.noReading,
+        'Temperature Reading':element.reading?element.reading:element.noReading,
         'Date':element.date
        }
       excelData.push(obj);
