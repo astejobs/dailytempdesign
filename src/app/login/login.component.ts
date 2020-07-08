@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit { 
    user:any={};
    errorLbl:string;
+   isAdmin:boolean = false;
   constructor( private myService: TempService,private route:Router) {
   
    }
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
         
   }
   onLogin( ){
-    this.myService.loginService(this.user).subscribe((response:any)=>{
+    /* this.myService.loginService(this.user).subscribe((response:any)=>{
       if(response.status==200){     
         localStorage.setItem('token',response.body['token']);
         localStorage.setItem('role',response.body['role']);
@@ -34,8 +35,17 @@ export class LoginComponent implements OnInit {
        this.errorLbl="Wrong Credentials";
       console.log(err);
      }
-     );
-  }
+     ); */
 
+     this.route.navigateByUrl('temperature');
+  }
+  showLogin(selectedOption:boolean) {
+    if(selectedOption==true){
+      this.isAdmin = true   
+  }
+   else{
+      this.isAdmin=false;
+  }
+  }
 
 }

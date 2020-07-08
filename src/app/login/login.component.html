@@ -12,30 +12,63 @@
                             <strong> {{errorLbl}}</strong>
 
                         </p>
+                          <hr>
+                          
+                          <!-- Default checked -->
+                          <div class="custom-control custom-radio custom-control-inline" (click)="showLogin(false)">
+                              <input type="radio" class="custom-control-input" id="no_admin" name="role" [checked]="!isAdmin"/>
+                              <label class="custom-control-label" for="no_admin">User</label>
+                          </div>
 
-                        <!-- Username -->
-                        <div class="md-form">
-                            <!-- <mdb-icon fas icon="user-alt" class="prefix"></mdb-icon> -->
-
-                            <input mdbInput type="text" id="form2" class="form-control" #username="ngModel" required [(ngModel)]="user.username" name="username">
-                            <label for="form2">Username</label>
+                        <!-- Default unchecked -->
+                        <div class="custom-control custom-radio custom-control-inline" (click)="showLogin(true)">
+                            <input type="radio" class="custom-control-input" id="yes_admin" name="role" [checked]="isAdmin"/>
+                            <label class="custom-control-label" for="yes_admin">Admin</label>
                         </div>
-                        <mat-error *ngIf="username.invalid && (username.untouched && username.dirty)">
-                            <span class="text-danger">This field is required *</span>
-                        </mat-error>
 
 
-                        <!-- Password -->
-                        <div class="md-form">
-                            <!--  <mdb-icon fas icon="unlock" class="prefix"></mdb-icon> -->
-                            <input mdbInput type="password" id="form2" class="form-control" required #password="ngModel" [(ngModel)]="user.password" name="password">
-                            <label for="form2">Password</label>
+                        <!-- User Login -->
+                        <!-- NRIC -->
+                        <div *ngIf="!isAdmin">
+                            <div class="md-form">
+                                <!-- <mdb-icon fas icon="user-alt" class="prefix"></mdb-icon> -->
+
+                                <input mdbInput type="text" id="form2" class="form-control" #nric="ngModel" required [(ngModel)]="user.nric" name="nric">
+                                <label for="form2">NRIC</label>
+                            </div>
+                            <mat-error *ngIf="nric.invalid && (nric.untouched && nric.dirty)">
+                                <span class="text-danger">This field is required *</span>
+                            </mat-error>
                         </div>
+
+
+                        <!-- Admin Login -->
+                        <div *ngIf="isAdmin">
+                            <!-- Username -->
+                            <div class="md-form">
+                                <!-- <mdb-icon fas icon="user-alt" class="prefix"></mdb-icon> -->
+
+                                <input mdbInput type="text" id="form2" class="form-control" #username="ngModel" required [(ngModel)]="user.username" name="username">
+                                <label for="form2">Username</label>
+                            </div>
+                            <mat-error *ngIf="username.invalid && (username.untouched && username.dirty)">
+                                <span class="text-danger">This field is required *</span>
+                            </mat-error>
                         
 
-                        <mat-error *ngIf="password.invalid && (password.untouched && password.dirty)">
-                            <span class="text-danger">This field is required *</span>
-                        </mat-error>
+
+                            <!-- Password -->
+                            <div class="md-form">
+                                <!--  <mdb-icon fas icon="unlock" class="prefix"></mdb-icon> -->
+                                <input mdbInput type="password" id="form2" class="form-control" required #password="ngModel" [(ngModel)]="user.password" name="password">
+                                <label for="form2">Password</label>
+                            </div>
+                            
+
+                            <mat-error *ngIf="password.invalid && (password.untouched && password.dirty)">
+                                <span class="text-danger">This field is required *</span>
+                            </mat-error>
+                        </div>
 
                         <div class="d-flex justify-content-around">
                             <div>

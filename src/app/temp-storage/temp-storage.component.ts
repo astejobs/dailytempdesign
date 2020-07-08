@@ -19,6 +19,13 @@ temperature:any={};
 tempDate:any;
 message:string;
 
+dec1:boolean = true;
+dec2:boolean = false;
+dec3:boolean = true;
+panels:any = ['step1','step2','step3','step4','step5','step6', 'step7']
+currentPanel = 'step1';
+panelIndex=0;
+
 maxDate= new Date();
   constructor( private tempService:TempService) { }
 
@@ -50,7 +57,40 @@ maxDate= new Date();
         this.temperature.reading=null;
     }
   }
+    ToggleDec1(selectedOption:boolean){
+    if(selectedOption==true){
+        this.dec1 = true   
+    }
+     else{
+        this.dec1=false;
+    }
+  }
+    ToggleDec2(selectedOption:boolean){
+    if(selectedOption==true){
+        this.dec2 = true   
+    }
+     else{
+        this.dec2=false;
+    }
+  }
+    ToggleDec3(selectedOption:boolean){
+    if(selectedOption==true){
+        this.dec3 = true   
+    }
+     else{
+        this.dec3=false;
+    }
+  }
 
+  onNext(index){
+    this.panelIndex++;
+    this.currentPanel = this.panels[+index+1]; console.log(this.panelIndex);
+}
+
+onPrevious(index){
+    this.panelIndex--;
+    this.currentPanel=this.panels[+index-1];
+}
 
 
 }

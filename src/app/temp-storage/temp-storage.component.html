@@ -1,40 +1,73 @@
-<div class="container">
+<div class="container" style="font-family: roboto;">
     <div class="row">
         <div class="col-sm-12">
             <!-- <div class="mat-elevation-z8"> -->
             <!-- <button mat-raised-button color="accent">Accent</button> -->
             <!-- </div> -->
             <!-- Material form login -->
-            <div class="card">
+            <div class="card bg-light">
 
                 <h2 class="card-header amy-crisp-gradient white-text text-center py-4">
                     <strong>Store Temperature</strong>
                 </h2>
-
                 <!--Card content-->
                 <div class="card-body px-lg-5 pt-0">
                     <p class="alert alert-success" *ngIf="message==='success'">
                         <strong> Data Saved Successfully!</strong>
-
+                        
                     </p>
                     <p class="alert alert-danger" *ngIf="message==='fail'">
                         <strong> Enter fields correctly!</strong>
-
+                        
                     </p>
                     <!-- Form -->
                     <form class="text-center" style="color: #757575;" #myForm="ngForm" (ngSubmit)="onSubmitForm()">
-                        <div class="row">
+                        <div class="p-2 row">
+                            <div class="form-group col-sm-5">
+                                <label for="exampleFormControlSelect1">Name</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label for="exampleFormControlSelect1">Company</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label for="exampleFormControlSelect1">Project</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label for="exampleFormControlSelect1">Project</label>
+                                <!--<div class="md-form">  -->
+                                    <input type="date" [max]="maxDate | date:'yyyy-MM-dd'" required #date="ngModel" #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">
+                                    <div *ngIf="date.invalid && (date.dirty || date.touched)" class="text-theme-6 mt-2">Date is required</div>
 
-                            <div class="col-sm-6">
-                                <p class="lead"><label for="dateInput" class="">Date</label> </p>
+                                <!-- </div> -->
+                            </div>
+                        </div> <hr>
+                        <div class="row" *ngIf="currentPanel=='step1' ">
+
+                            <!--<div class="col-sm-6">
+                                 <p class="lead"><label for="dateInput" class="">Date</label> </p>
 
                                 <div class="md-form">
                                     <input type="date" [max]="maxDate | date:'yyyy-MM-dd'" required #date="ngModel" #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">
                                     <div *ngIf="date.invalid && (date.dirty || date.touched)" class="text-theme-6 mt-2">Date is required</div>
 
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
+                                </div> 
+                            </div>-->
+                            <div class="col-sm-8 offset-md-2">
                                 <p class="lead">Do you have a thermometer reading? </p>
 
                                 <hr>
@@ -53,70 +86,274 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="jumbotron" *ngIf="currentPanel=='step2' ">
+                            <div class="row" >
 
-                            <div class="col-sm-6">
-                                <div class="jumbotron m-4">
-                                    <p class="lead">Shift:
-                                        <span>Mor 8:00 - 11:59 &nbsp; &nbsp;&nbsp; Eve 12:00 - 18:00</span>
-                                    </p>
-                                    <hr>
-                                    <!-- Default unchecked -->
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" required id="morning" name="shift" #shift="ngModel" value="Morning" [(ngModel)]="temperature.shift">
-                                        <label class="custom-control-label" for="morning">Morning</label>
-
-                                    </div>
-
-                                    <!-- Default checked -->
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" required id="evening" name="shift" #shift="ngModel" value="Evening" [(ngModel)]="temperature.shift">
-                                        <label class="custom-control-label" for="evening">Evening</label>
-                                        <div *ngIf="shift.invalid && (shift.dirty || shift.touched)" class="text-theme-6 mt-2">Shift is required</div>
-
-                                    </div>
-                                    <br><br>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="jumbotron m-4">
-                                    <p class="lead">
-                                        <span *ngIf="options">Enter Meter Reading </span>
-                                        <span *ngI f="!options">Give declaration of temperature </span>
-                                    </p>
-                                    <hr>
-
-                                    <div class="form-group" *ngIf="options">
-                                        <input type="text" class="form-control" required placeholder="Enter Meter Reading" [(ngModel)]="temperature.reading" name="reading" #reading="ngModel">
-
-                                        <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Meter Reading is required</div>
-
-
-
-                                    </div>
-                                    <div *ngIf="!options">
+                                <div class="col-sm-6">
+                                    <div class="jumbotron m-4">
+                                        <p class="lead">Shift:
+                                            <span>Mor 8:00 - 11:59 &nbsp; &nbsp;&nbsp; Eve 12:00 - 18:00</span>
+                                        </p>
+                                        <hr>
                                         <!-- Default unchecked -->
-                                        <div class="custom-control custom-radio">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" required id="morning" name="shift" #shift="ngModel" value="Morning" [(ngModel)]="temperature.shift">
+                                            <label class="custom-control-label" for="morning">Morning</label>
 
-                                            <input type="radio" class="custom-control-input" id="below" name="noReading" #no_reading="ngModel" required value="I declare that my temperature is below 38.0 degrees centigrade" [(ngModel)]="temperature.noReading">
-                                            <label class="custom-control-label" for="below">I declare my temperature is below 38.0 degree centigrade</label>
                                         </div>
 
                                         <!-- Default checked -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="I declare that my temperature is above 38.0 degrees centigrade" [(ngModel)]="temperature.noReading">
-                                            <label class="custom-control-label" for="above">I declare my temperature is above 38.0 degree centigrade</label>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" required id="evening" name="shift" #shift="ngModel" value="Evening" [(ngModel)]="temperature.shift">
+                                            <label class="custom-control-label" for="evening">Evening</label>
+                                            <div *ngIf="shift.invalid && (shift.dirty || shift.touched)" class="text-theme-6 mt-2">Shift is required</div>
 
-                                            <div *ngIf="no_reading.invalid && (no_reading.dirty || no_reading.touched)" class="text-theme-6 mt-2">Field is required</div>
+                                        </div>
+                                        <br><br>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="jumbotron m-4">
+                                        <p class="lead">
+                                            <span *ngIf="options">Enter Meter Reading </span>
+                                            <span *ngIf="!options">Give declaration of temperature </span>
+                                        </p>
+                                        <hr>
 
+                                        <div class="form-group" *ngIf="options">
+                                            <input type="text" class="form-control" required placeholder="Enter Meter Reading" [(ngModel)]="temperature.reading" name="reading" #reading="ngModel" maxlength="4" pattern="^0[1-9]|[1-9]\d$">
+
+                                            <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Meter Reading is required</div>
+
+
+
+                                        </div>
+                                        <div *ngIf="!options">
+                                            <!-- Default unchecked -->
+                                            <div class="custom-control custom-radio">
+
+                                                <input type="radio" class="custom-control-input" id="below" name="noReading" #no_reading="ngModel" required value="I declare that my temperature is below 38.0 degrees centigrade" [(ngModel)]="temperature.noReading">
+                                                <label class="custom-control-label" for="below">I declare my temperature is below 38.0 degree centigrade</label>
+                                            </div>
+
+                                            <!-- Default checked -->
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="I declare that my temperature is above 38.0 degrees centigrade" [(ngModel)]="temperature.noReading">
+                                                <label class="custom-control-label" for="above">I declare my temperature is above 38.0 degree centigrade</label>
+
+                                                <div *ngIf="no_reading.invalid && (no_reading.dirty || no_reading.touched)" class="text-theme-6 mt-2">Field is required</div>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="jumbotron" *ngIf="currentPanel=='step3' ">
+                            <div class="row p-4 ">
+                                <div class="col-sm-7">
+                                    <h4>Work Location</h4><hr>
+                                    <p class="lead">Please choose from where you are working today</p>
+                                </div>
+                                <div class="col-sm-5 p-2" style="text-align: left;">
+                                    <!-- Default unchecked -->
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="onSite" name="workLocation" mdbInput required>
+                                        <label class="custom-control-label" for="onSite">OnSite</label>
+                                    </div>
+                                    
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="fromHome" name="workLocation" checked mdbInput required>
+                                        <label class="custom-control-label" for="fromHome">Work From Home</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="fromHospital" name="workLocation" checked mdbInput required>
+                                        <label class="custom-control-label" for="fromHospital">Hospital</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="fromDormitory" name="workLocation" checked mdbInput required>
+                                        <label class="custom-control-label" for="fromDormitory">Dormitory</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="fromHostel" name="workLocation" checked mdbInput required>
+                                        <label class="custom-control-label" for="fromHostel">In hostal assigned by MOH</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="onLeave" name="workLocation" checked mdbInput required>
+                                        <label class="custom-control-label" for="onLeave">I am at leave today</label>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                        <div class="jumbotron" *ngIf="currentPanel=='step4' ">
+                            <div class="row p-4 text-center">
+                                <p class="lead">Medical Declaration<br><hr>
+                                <small> Please Indicate if you have any of the following symptoms, leave blank if not applicable:</small></p>
+    
+    
+                                
+                                <div class="p-2 ml-md-5">
+                                    <!-- Default unchecked -->
+                                    <div class="custom-control custom-radio custom-control-inline" >
+                                        <input type="radio" class="custom-control-input" id="yes_symptoms" name="symptoms" checked/>
+                                        <label class="custom-control-label" for="yes_symptoms">Flu / Continuous dry cough / Fever / Tiredness / Difficulty breathing</label>
+                                    </div>
+    
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-radio custom-control-inline" >
+                                        <input type="radio" class="custom-control-input" id="no_symptoms" name="symptoms" required/>
+                                        <label class="custom-control-label" for="no_symptoms">None of the above</label>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="jumbotron" *ngIf="currentPanel=='step5' ">
+                            <div class="row mt-4 p-4">
+                                <div class="col-sm-6">
+                                    <h4>Leave Type</h4><hr>
+                                    <p class="lead">Please specify the type of leave you are having today, if any. Leave blank if not applicable</p>
+                                </div>
+                                <div class="col-sm-6" style="text-align: left;">
+                                    
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="mc_normal" name="leaveType"  mdbInput checked>
+                                        <label class="custom-control-label" for="mc_normal">MC - Normal Issued by GP</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="mc_swab" name="leaveType"  mdbInput required>
+                                        <label class="custom-control-label" for="mc_swab">MC - swab and awaiting result</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="Bycompany" name="leaveType"  mdbInput required>
+                                        <label class="custom-control-label" for="Bycompany">Company / MOH instruction</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="shn" name="leaveType"  mdbInput required>
+                                        <label class="custom-control-label" for="shn">Stay Home Notification (SHN)</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="quar_order" name="leaveType"  mdbInput>
+                                        <label class="custom-control-label" for="quar_order">Quarantine Order</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="homeLeave" name="leaveType"  mdbInput required>
+                                        <label class="custom-control-label" for="homeLeave">Home Leave</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="maternity" name="leaveType" mdbInput required>
+                                        <label class="custom-control-label" for="maternity">Maternity</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="jumbotron" *ngIf="currentPanel=='step6' ">
+                            <div class="row mt-3 p-3 " >
+                                <div class="" style="font-size:medium;text-align: left;line-height: 1.4rem;">
+                                    <p class="lead text-center">Self Declaration</p>
+                                    In line with MOM's New Safety Measures released on 8th may 2020, it is compulsory for you to make the 
+                                    declaration before being allowed to enter the premises.
+                                    <p>
+                                        Please take note thet under the Infectious Diseases Act, it is an offence under the law for anyone
+                                        to withhold or provide inccurate information. Singapore authority views such actions seriously and
+                                        will not hesitste to take appropriate action againest the perpetrators.
+                                    </p>
+                                </div>
+                                <div class="table-responsive" style="text-align: left;">
+                                    <table class="table">
+                                        <tr>
+                                            <td> Are you currently under a quarantine or isolation order, Stay-Home Notice, or been issued medical 
+                                                certificates for respiratory symptoms?</td>
+                                            <td>
+                                                <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec1(true)">
+                                                    <input type="radio" class="custom-control-input" id="yes" name="quarantine" mdbInput [checked]="dec1" required>
+                                                    <label class="custom-control-label" for="yes">Yes</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec1(false)">
+                                                    <input type="radio" class="custom-control-input" id="no" name="quarantine" mdbInput [checked]="!dec1" required>
+                                                    <label class="custom-control-label" for="no">No</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Have not had close contact with a confirmed COVID-19 case in past 14 days?</td>
+                                            <td>
+                                                <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(true)">
+                                                    <input type="radio" class="custom-control-input" id="yes_contact" name="contact" mdbInput [checked]="dec2" required>
+                                                    <label class="custom-control-label" for="yes_contact">Yes</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(false)">
+                                                    <input type="radio" class="custom-control-input" id="no_contact" name="contact" mdbInput [checked]="!dec2" required>
+                                                    <label class="custom-control-label" for="no_contact">No</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Have you not travelled to other countries in past 14 days.</td>
+                                            <td> 
+                                                <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(true)">
+                                                    <input type="radio" class="custom-control-input" id="yes_travel" name="travel" mdbInput [checked]="dec3" required>
+                                                    <label class="custom-control-label" for="yes_travel">Yes</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(false)">
+                                                    <input type="radio" class="custom-control-input" id="no_travel" name="travel" mdbInput [checked]="!dec3" required>
+                                                    <label class="custom-control-label" for="no_travel">No</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                
+                            </div>
+                        </div>
+
+                        <div class="jumbotron" *ngIf="currentPanel=='step7' ">
+                            <div class="row mt-4 text-center p-5" *ngIf="dec1 && dec2 && dec3">
+                                <p class="lead p-md-3">
+                                    You are required to use safeEntry before being allowed to enter premises and 
+                                    use Trace Together app to reduce disease transmission.
+                                </p>
+                                <p class="lead p-md-3">
+                                    Thank you for your cooperation in this difficult period. together we shall
+                                    overcome COVID-19.
+                                </p>
+                                <!-- Submit button -->
+                                <button class="btn btn-outline-secondary  btn-block my-5 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">SUBMIT</button>
+                            </div>
+                            
+                            <div class="row mt-4 text-center p-5" *ngIf="!dec1 || !dec2 || !dec3">
+                                <p class="lead p-md-3 text-danger" style="border: 1px dashed blue;font-family: monospace;">
+                                You are not allowed to enter the workspace from now on and you must report this situation to your
+                                immediate project supervisor immediately.
+                                </p>
+                                <p class="lead p-md-3 text-center">
+                                I will abide by the instructions above. (Order Issued).
+                                </p>
+                                
+                                <!-- Submit button -->
+                                <button class="btn btn-outline-secondary  btn-block my-5 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">AGREE & SUBMIT</button>
+                            </div>
+                        </div>
+                        <div class="jumbotron p-5 mt-2 w-100 text-center ">
+
+                            <span style="float: left; ">
+                                <button type="button" class="btn btn-outline-dark px-4 " (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>
+                            </span>
+                            <!-- <button type="submit" class="btn btn-outline-dark px-4 mr-4 " *ngIf="panelIndex+1 >= panels.length" [disabled]="!myForm.valid ">Submit</button> -->
+                            <button type="button" class="btn btn-outline-dark px-4 ">Cancel</button>
+                            <button type="button" class="btn btn-outline-dark px-4 " style="float: right; " (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length)">Next</button>
+    
+                        </div>
+                       
+
                         <!-- Submit button -->
-                        <button class="btn btn-outline-secondary  btn-block my-4 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">SUBMIT</button>
+                        <!-- <button class="btn btn-outline-secondary  btn-block my-4 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">SUBMIT</button> -->
 
                     </form>
                 </div>
