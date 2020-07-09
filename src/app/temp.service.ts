@@ -23,6 +23,7 @@ export class TempService {
     console.log(this.httpOptions);
     const url=this.baseURL+"temperature";
     return this.http.post(url,data,this.httpOptions).pipe(map((response:any)=>{
+
         return response;
      }));      
  }
@@ -30,8 +31,10 @@ export class TempService {
  loginService(data){
     const url=this.baseURL+"authenticate";
     return this.http.post(url,data,{'observe':'response'}).pipe(map((response)=>{  
+    
     return response;
   }));
+
 
  }
  
@@ -42,5 +45,13 @@ export class TempService {
     return response;
   }));
 }
+
+getUser(usernric:string){
+  const url=this.baseURL+"userdetail/"+usernric;
+  return this.http.get(url,{'observe':'response'}).pipe(map((response)=>{  
+  return response    
+
+}));
  
+}
 }

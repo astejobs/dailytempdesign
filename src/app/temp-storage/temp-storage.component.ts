@@ -25,11 +25,16 @@ dec3:boolean = true;
 panels:any = ['step1','step2','step3','step4','step5','step6', 'step7']
 currentPanel = 'step1';
 panelIndex=0;
+userdetails:any=[];
 
 maxDate= new Date();
   constructor( private tempService:TempService) { }
 
   ngOnInit(): void {
+     
+   this.tempService.getUser(localStorage.getItem('user')).subscribe((response:any)=>{
+    this.userdetails=response.body;
+   });
   }
   getDate(dt) {
     const format = 'dd-MM-yyyy';

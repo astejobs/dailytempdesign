@@ -21,13 +21,18 @@ export class LoginComponent implements OnInit {
         
   }
   onLogin( ){
-    /* this.myService.loginService(this.user).subscribe((response:any)=>{
-      if(response.status==200){     
+    
+    
+    this.myService.loginService(this.user).subscribe((response:any)=>{
+      console.log("llltokenll"+response.body['token']);
+      if(response.status==200){    
+        console.log(this.user.username+"hdhdhd"); 
         localStorage.setItem('token',response.body['token']);
         localStorage.setItem('role',response.body['role']);
+        localStorage.setItem('user',this.user.username)
         this.errorLbl="";
         this.myService.menu.next();
-        this.route.navigateByUrl('temperature');
+        this.route.navigateByUrl('temperature');       
       }else {
         this.errorLbl="Wrong Credentials";
       }
@@ -35,9 +40,9 @@ export class LoginComponent implements OnInit {
        this.errorLbl="Wrong Credentials";
       console.log(err);
      }
-     ); */
+     ); 
+    
 
-     this.route.navigateByUrl('temperature');
   }
   showLogin(selectedOption:boolean) {
     if(selectedOption==true){
