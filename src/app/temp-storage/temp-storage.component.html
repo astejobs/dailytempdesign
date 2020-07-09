@@ -112,7 +112,7 @@
                                         <hr>
 
                                         <div class="form-group" *ngIf="options">
-                                            <input type="text" class="form-control" required placeholder="Enter Meter Reading" [(ngModel)]="temperature.reading" name="reading" #reading="ngModel" maxlength="4" pattern="^0[1-9]|[1-9]\d$">
+                                            <input type="text" class="form-control" required placeholder="Enter Meter Reading" [(ngModel)]="temperature.reading" name="reading" #reading="ngModel" maxlength="4" pattern="^0[1-9]|[1-9]\d$" (input)="checkReading(reading)">
 
                                             <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Meter Reading is required</div>
 

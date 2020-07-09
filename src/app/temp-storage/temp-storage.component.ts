@@ -89,14 +89,18 @@ maxDate= new Date();
 
   onNext(index){
     this.panelIndex++;
-    this.currentPanel = this.panels[+index+1]; console.log(this.panelIndex);
+    this.currentPanel = this.panels[+index+1]; 
 }
 
 onPrevious(index){
     this.panelIndex--;
     this.currentPanel=this.panels[+index-1];
 }
-
+checkReading(reading) {
+  if(reading.value>37.5){
+    this.onNext(5);
+   }
+  }
 
 }
  
