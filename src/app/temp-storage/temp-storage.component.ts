@@ -101,6 +101,10 @@ checkReading(reading) {
     this.onNext(5);
    }
   }
+  onReset(frm) {
+    frm.reset();
+    this.onNext(0);
+  }
 
 }
  
