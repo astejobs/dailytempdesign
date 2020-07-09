@@ -97,7 +97,7 @@ onPrevious(index){
     this.currentPanel=this.panels[+index-1];
 }
 checkReading(reading) {
-  if(reading.value>37.5){
+  if(reading.value>37.4){
     this.onNext(5);
    }
   }
