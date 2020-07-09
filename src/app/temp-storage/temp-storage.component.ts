@@ -77,6 +77,7 @@ maxDate= new Date();
      else{
         this.dec2=false;
     }
+    
   }
     ToggleDec3(selectedOption:boolean){
     if(selectedOption==true){
