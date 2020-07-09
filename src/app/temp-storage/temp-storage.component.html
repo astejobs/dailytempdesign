@@ -152,29 +152,29 @@
                                 <div class="col-sm-5 p-2" style="text-align: left;">
                                     <!-- Default unchecked -->
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" #workLocation [(ngModel)]="temperature.workLocation" id="onSite" name="workLocation" mdbInput required>
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" id="onSite" value="onsite" mdbInput required>
                                         <label class="custom-control-label" for="onSite">OnSite</label>
                                     </div>
                                     
                                     <!-- Default checked -->
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" [(ngModel)]="temperature.workLocation" value="home" id="fromHome" name="workLocation" mdbInput required>
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="home" id="fromHome"  mdbInput required>
                                         <label class="custom-control-label" for="fromHome">Work From Home</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" [(ngModel)]="temperature.workLocation" value="hospital" id="fromHospital" name="workLocation"  mdbInput required>
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="hospital" id="fromHospital"   mdbInput required>
                                         <label class="custom-control-label" for="fromHospital">Hospital</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" [(ngModel)]="temperature.workLocation" value="dormitory" id="fromDormitory" name="workLocation"  mdbInput required>
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="dormitory" id="fromDormitory"   mdbInput required>
                                         <label class="custom-control-label" for="fromDormitory">Dormitory</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" [(ngModel)]="temperature.workLocation" value="hostel" id="fromHostel" name="workLocation"  mdbInput required>
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="hostel" id="fromHostel"   mdbInput required>
                                         <label class="custom-control-label" for="fromHostel">In hostal assigned by MOH</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" [(ngModel)]="temperature.workLocation" value="leave" id="onLeave" name="workLocation"  mdbInput required>
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="leave" id="onLeave"   mdbInput required>
                                         <label class="custom-control-label" for="onLeave">I am at leave today</label>
                                     </div>
                                 </div>
@@ -266,11 +266,11 @@
                                                 certificates for respiratory symptoms?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec1(true)">
-                                                    <input type="radio" class="custom-control-input" id="yes" [(ngModel)]="temperature.quarantine" value="true" name="quarantine" mdbInput [checked]="dec1" required>
+                                                    <input type="radio" class="custom-control-input" id="yes"  value="true" name="quarantine" #quar="ngModel" [(ngModel)]="temperature.quarantine" mdbInput [checked]="dec1" required>
                                                     <label class="custom-control-label" for="yes">Yes</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec1(false)">
-                                                    <input type="radio" class="custom-control-input" id="no" [(ngModel)]="temperature.leaveType" value="false" name="quarantine" mdbInput [checked]="!dec1" required>
+                                                    <input type="radio" class="custom-control-input" id="no"  value="false" name="quarantine" #quar="ngModel" [(ngModel)]="temperature.leaveType"  mdbInput [checked]="!dec1" required>
                                                     <label class="custom-control-label" for="no">No</label>
                                                 </div>
                                             </td>
@@ -279,11 +279,11 @@
                                             <td> Have not had close contact with a confirmed COVID-19 case in past 14 days?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(true)">
-                                                    <input type="radio" class="custom-control-input" id="yes_contact" value="false" [(ngModel)]="temperature.contacted" name="contact" mdbInput [checked]="dec2" required>
+                                                    <input type="radio" class="custom-control-input" id="yes_contact" value="false"  name="contact" #Contact="ngModel" [(ngModel)]="temperature.contacted" mdbInput [checked]="dec2" required>
                                                     <label class="custom-control-label" for="yes_contact">Yes</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(false)">
-                                                    <input type="radio" class="custom-control-input" id="no_contact" value="true" name="contact" [(ngModel)]="temperature.contacted"  mdbInput [checked]="!dec2" required>
+                                                    <input type="radio" class="custom-control-input" id="no_contact" value="true" name="contact" #Contact="ngModel" [(ngModel)]="temperature.contacted"  mdbInput [checked]="!dec2" required>
                                                     <label class="custom-control-label" for="no_contact">No</label>
                                                 </div>
                                             </td>
@@ -293,12 +293,12 @@
                                             <td>Have you not travelled to other countries in past 14 days.</td>
                                             <td> 
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(true)">
-                                                    <input type="radio" class="custom-control-input" id="yes_travel" value="false" [(ngModel)]="temperature.travelHistory" name="travel" mdbInput [checked]="dec3" required>
+                                                    <input type="radio" class="custom-control-input" id="yes_travel" value="false" name="travel" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput [checked]="dec3" required>
                                                     <label class="custom-control-label" for="yes_travel">Yes</label>
                                                 </div>
 
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(false)">
-                                                    <input type="radio" class="custom-control-input" id="no_travel" value="true" [(ngModel)]="temperature.travelHistory" name="travel" mdbInput [checked]="!dec3" required>
+                                                    <input type="radio" class="custom-control-input" id="no_travel" value="true" name="travel" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput [checked]="!dec3" required>
                                                     <label class="custom-control-label" for="no_travel">No</label>
                                                 </div>
                                             </td>
