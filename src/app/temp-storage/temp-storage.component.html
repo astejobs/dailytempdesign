@@ -114,7 +114,7 @@
                                         <div class="form-group" *ngIf="options"><!-- ^0[1-9]|[1-9]\d$ to accept only numbers-->
                                             <input type="number" class="form-control" required placeholder="Enter Meter Reading"
                                                     [(ngModel)]="temperature.reading" name="reading" #reading="ngModel" maxlength="4"
-                                                         pattern="" (input)="checkReading(reading)" step="0.1">
+                                                         pattern="" (input)="checkReading(reading,myForm)" step="0.1">
 
                                             <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Meter Reading is required</div>
 
@@ -125,13 +125,13 @@
                                             <!-- Default unchecked -->
                                             <div class="custom-control custom-radio">
 
-                                                <input type="radio" class="custom-control-input" id="below" name="noReading" #no_reading="ngModel" required value="I declare that my temperature is below 38.0 degrees centigrade" [(ngModel)]="temperature.noReading">
+                                                <input type="radio" class="custom-control-input" id="below" name="noReading" #no_reading="ngModel" required value="less" [(ngModel)]="temperature.noReading">
                                                 <label class="custom-control-label" for="below">I declare my temperature is below 38.0 degree centigrade</label>
                                             </div>
 
                                             <!-- Default checked -->
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="I declare that my temperature is above 38.0 degrees centigrade" [(ngModel)]="temperature.noReading">
+                                                <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="greater" [(ngModel)]="temperature.noReading" (input)="showWarning()">
                                                 <label class="custom-control-label" for="above">I declare my temperature is above 38.0 degree centigrade</label>
 
                                                 <div *ngIf="no_reading.invalid && (no_reading.dirty || no_reading.touched)" class="text-theme-6 mt-2">Field is required</div>
@@ -266,11 +266,11 @@
                                                 certificates for respiratory symptoms?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec1(true)">
-                                                    <input type="radio" class="custom-control-input" id="yes"   name="quarantine" value="yes" #quar="ngModel"  required [(ngModel)]="temperature.quarantine" (input)="ToggleDec1(true)">
+                                                    <input type="radio" class="custom-control-input" id="yes"  value="true" name="quarantine" #quar="ngModel" [(ngModel)]="temperature.quarantine" mdbInput  required (input)="ToggleDec1(true)">
                                                     <label class="custom-control-label" for="yes">Yes</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec1(false)">
-                                                    <input type="radio" class="custom-control-input" id="no"   name="quarantine" value="no" #quar="ngModel"  required [(ngModel)]="temperature.quarantine" (input)="ToggleDec1(false)">
+                                                    <input type="radio" class="custom-control-input" id="no"  value="false" name="quarantine" #quar="ngModel" [(ngModel)]="temperature.quarantine"  mdbInput  required (input)="ToggleDec1(false)">
                                                     <label class="custom-control-label" for="no">No</label>
                                                 </div>
                                             </td>
@@ -279,11 +279,11 @@
                                             <td> Have not had close contact with a confirmed COVID-19 case in past 14 days?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(true)">
-                                                    <input type="radio" class="custom-control-input" id="yes_contact"  name="contact" value="yes" #Contact="ngModel"  required [(ngModel)]="temperature.contact" (input)="ToggleDec2(true)">
+                                                    <input type="radio" class="custom-control-input" id="yes_contact" value="false"  name="contacted" #Contact="ngModel" [(ngModel)]="temperature.contacted" mdbInput  required (input)="ToggleDec2(true)">
                                                     <label class="custom-control-label" for="yes_contact">Yes</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(false)">
-                                                    <input type="radio" class="custom-control-input" id="no_contact" name="contact" value="no" #Contact="ngModel"  required [(ngModel)]="temperature.contact" (input)="ToggleDec2(false)">
+                                                    <input type="radio" class="custom-control-input" id="no_contact" value="true" name="contacted" #Contact="ngModel" [(ngModel)]="temperature.contacted"  mdbInput required (input)="ToggleDec2(false)">
                                                     <label class="custom-control-label" for="no_contact">No</label>
                                                 </div>
                                             </td>
@@ -293,12 +293,12 @@
                                             <td>Have you not travelled to other countries in past 14 days.</td>
                                             <td> 
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(true)">
-                                                    <input type="radio" class="custom-control-input" id="yes_travel" name="travel" value="yes" #Travel="ngModel" required [(ngModel)]="temperature.travel" (input)="ToggleDec3(true)">
+                                                    <input type="radio" class="custom-control-input" id="yes_travel" value="false" name="travelHistory" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput  required (input)="ToggleDec3(true)">
                                                     <label class="custom-control-label" for="yes_travel">Yes</label>
                                                 </div>
 
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(false)">
-                                                    <input type="radio" class="custom-control-input" id="no_travel" name="travel" value="no"  #Travel="ngModel" required [(ngModel)]="temperature.travel" (input)="ToggleDec3(false)">
+                                                    <input type="radio" class="custom-control-input" id="no_travel" value="true" name="travelHistory" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput required (input)="ToggleDec3(false)">
                                                     <label class="custom-control-label" for="no_travel">No</label>
                                                 </div>
                                             </td>
