@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { TempService } from '../temp.service';
 import { formatDate, DatePipe } from '@angular/common';
 import { ok } from 'assert';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -14,14 +14,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./temp-storage.component.scss']
 })
 export class TempStorageComponent implements OnInit {
-
-
+  @ViewChild('myForm')
+myForm: NgForm;
 options:boolean = true;
 check:boolean= true;
 temperature:any={};
 tempDate:any;
 message:string;
-reading:any;
+
 
 dec1:boolean = true;
 dec2:boolean = false;
@@ -30,14 +30,20 @@ panels:any = ['step1','step2','step3','step4','step5','step6', 'step7']
 currentPanel = 'step1';
 panelIndex=0;
 userdetails:any=[];
+mySubscription: any;
 
 maxDate= new Date();
-  constructor( private tempService:TempService, private route:Router) { }
+@ViewChild('msgdiv') el:ElementRef;
+  constructor( private tempService:TempService, private route:Router) {
+   
+  }
 
+   
   ngOnInit(): void {
    
    this.tempService.getUser(localStorage.getItem('user')).subscribe((response:any)=>{
     this.userdetails=response.body;
+    
    });
   }
   getDate(dt) {
@@ -47,12 +53,23 @@ maxDate= new Date();
      this.tempDate = formatDate(myDate, format, locale);
   }
 
-  onSubmitForm(){
+  onSubmitForm(frm){
     this.temperature.date=this.tempDate;
   this.tempService.save(this.temperature).subscribe((response:any)=>{
     if(response.status==200){
-    this.message="success";
-    this.route.navigateByUrl('temperature');
+    this.message="success"; 
+    this.panelIndex=0;
+   //frm.reset();
+  
+    console.log(frm.value+"form values");
+    this.currentPanel='step1';
+
+
+   // this.onNext();
+   // 
+   // this.el.nativeElement.style.display='none';
+  
+    
     }
     else{
     this.message="fail";
@@ -96,15 +113,18 @@ maxDate= new Date();
   }
 
   onNext(index){
+    console.log(index+"panelll");
     this.panelIndex++;
-    this.currentPanel = this.panels[+index+1]; 
+    this.currentPanel = this.panels[+index+1];
+    console.log(this.currentPanel); 
 }
 
 onPrevious(index){
     this.panelIndex--;
     this.currentPanel=this.panels[+index-1];
 }
-checkReading(reading, frm) {
+checkReading(reading,frm) {
+  
   if(reading.value>37.4){
     this.onNext(5);
     frm.controls['reading'].reset();
@@ -114,6 +134,8 @@ checkReading(reading, frm) {
   showWarning() {
     this.onNext(5);
   }
+
+  
 
 }
  
