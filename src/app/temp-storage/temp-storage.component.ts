@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { TempService } from '../temp.service';
 import { formatDate, DatePipe } from '@angular/common';
 import { ok } from 'assert';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,10 +29,10 @@ panelIndex=0;
 userdetails:any=[];
 
 maxDate= new Date();
-  constructor( private tempService:TempService) { }
+  constructor( private tempService:TempService, private route:Router) { }
 
   ngOnInit(): void {
-     
+   
    this.tempService.getUser(localStorage.getItem('user')).subscribe((response:any)=>{
     this.userdetails=response.body;
    });
@@ -46,10 +47,13 @@ maxDate= new Date();
   onSubmitForm(){
     this.temperature.date=this.tempDate;
   this.tempService.save(this.temperature).subscribe((response:any)=>{
-    if(response.status==200)
+    if(response.status==200){
     this.message="success";
-    else
+    this.route.navigateByUrl('temperature');
+    }
+    else{
     this.message="fail";
+    }
   }); 
   }
     public clearReading(selectedOption:boolean){
@@ -101,6 +105,10 @@ checkReading(reading) {
   if(reading.value>37.4){
     this.onNext(5);
    }
+  }
+
+  showWarning() {
+    this.onNext(5);
   }
 
 }
