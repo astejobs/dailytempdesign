@@ -58,21 +58,46 @@
 
                                 </div> 
                             </div>-->
-                            <div class="col-sm-8 offset-md-2">
-                                <p class="lead">Do you have a thermometer reading? </p>
+                            <div class="col-sm-6">
+                                <div class="jumbotron m-md-4">
+                                    <p class="lead">Shift:
+                                        <span>Mor 8:00 - 11:59 &nbsp; &nbsp;&nbsp; Eve 12:00 - 18:00</span>
+                                    </p>
+                                    <hr>
+                                    <!-- Default unchecked -->
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input" required id="morning" name="shift" #shift="ngModel" value="Morning" [(ngModel)]="temperature.shift">
+                                        <label class="custom-control-label" for="morning">Morning</label>
 
-                                <hr>
-                                <!-- Default unchecked -->
-                                <div class="custom-control custom-radio custom-control-inline" (click)="clearReading(true)">
-                                    <input type="radio" class="custom-control-input" id="yes_reading" [checked]="options" />
-                                    <label class="custom-control-label" for="yes_reading">Yes</label>
+                                    </div>
+
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input" required id="evening" name="shift" #shift="ngModel" value="Evening" [(ngModel)]="temperature.shift">
+                                        <label class="custom-control-label" for="evening">Evening</label>
+                                        <div *ngIf="shift.invalid && (shift.dirty || shift.touched)" class="text-theme-6 mt-2">Shift is required</div>
+
+                                    </div>
+                                    <br><br>
                                 </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="jumbotron m-md-4">
+                                    <p class="lead mb-4">Do you have a thermometer reading? </p>
+
+                                    <hr>
+                                    <!-- Default unchecked -->
+                                    <div class="custom-control custom-radio custom-control-inline" (click)="clearReading(true)">
+                                        <input type="radio" class="custom-control-input" id="yes_reading" [checked]="options" />
+                                        <label class="custom-control-label" for="yes_reading">Yes</label>
+                                    </div>
 
 
-                                <!-- Default checked -->
-                                <div class="custom-control custom-radio custom-control-inline" (click)="clearReading(false)">
-                                    <input type="radio" class="custom-control-input" id="no_reading" [checked]="!options" />
-                                    <label class="custom-control-label" for="no_reading">No</label>
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-radio custom-control-inline" (click)="clearReading(false)">
+                                        <input type="radio" class="custom-control-input" id="no_reading" [checked]="!options" />
+                                        <label class="custom-control-label" for="no_reading">No</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -193,14 +218,14 @@
                                 <div class="p-2 ml-md-5">
                                     <!-- Default unchecked -->
                                     <div class="custom-control custom-radio custom-control-inline" >
-                                        <input type="radio" class="custom-control-input" [(ngModel)]="temperature.symptoms" value="true" id="yes_symptoms" name="symptoms" required/>
+                                        <input type="radio" class="custom-control-input" #Symptoms="ngModel" [(ngModel)]="temperature.symptoms" value="true" id="yes_symptoms" name="symptoms" required (input)="onFlu(myForm)"/>
                                         <label class="custom-control-label" for="yes_symptoms">Flu / Continuous dry cough / Fever / Tiredness / Difficulty breathing</label>
                                     </div>
     
                                     
                                     <!-- Default checked -->
                                     <div class="custom-control custom-radio custom-control-inline" >
-                                        <input type="radio" class="custom-control-input" [(ngModel)]="temperature.symptoms" value="false" id="no_symptoms" name="symptoms" required/>
+                                        <input type="radio" class="custom-control-input" #Symptoms="ngModel" [(ngModel)]="temperature.symptoms" value="false" id="no_symptoms" name="symptoms" required/>
                                         <label class="custom-control-label" for="no_symptoms">None of the above</label>
                                     </div>
                                 </div> 
@@ -254,15 +279,15 @@
                                     In line with MOM's New Safety Measures released on 8th may 2020, it is compulsory for you to make the 
                                     declaration before being allowed to enter the premises.
                                     <p>
-                                        Please take note thet under the Infectious Diseases Act, it is an offence under the law for anyone
-                                        to withhold or provide inccurate information. Singapore authority views such actions seriously and
-                                        will not hesitste to take appropriate action againest the perpetrators.
+                                        Please take note that under the Infectious Diseases Act, it is an offence under the law for anyone
+                                        to withhold or provide inaccurate information. Singapore authority views such actions seriously and
+                                        will not hesitate to take appropriate action against the perpetrators.
                                     </p>
                                 </div>
                                 <div class="table-responsive" style="text-align: left;">
                                     <table class="table">
                                         <tr>
-                                            <td> Are you currently under a quarantine or isolation order, Stay-Home Notice, or been issued medical 
+                                            <td> Are you currently not under a quarantine or isolation order, Stay-Home Notice, or been issued medical 
                                                 certificates for respiratory symptoms?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec1(true)">
@@ -276,7 +301,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td> Have not had close contact with a confirmed COVID-19 case in past 14 days?</td>
+                                            <td> Have not had close contact with a confirmed COVID-19 case in the past 14 days?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(true)">
                                                     <input type="radio" class="custom-control-input" id="yes_contact" value="false"  name="contacted" #Contact="ngModel" [(ngModel)]="temperature.contacted" mdbInput  required (input)="ToggleDec2(true)">
@@ -290,7 +315,7 @@
                                         </tr>
                                         <tr>
 
-                                            <td>Have you not travelled to other countries in past 14 days.</td>
+                                            <td>Have you not travelled to other countries in the past 14 days.</td>
                                             <td> 
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(true)">
                                                     <input type="radio" class="custom-control-input" id="yes_travel" value="false" name="travelHistory" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput  required (input)="ToggleDec3(true)">
@@ -312,11 +337,11 @@
                         <div class="jumbotron" *ngIf="currentPanel=='step7' ">
                             <div class="row mt-4 text-center p-5" *ngIf="dec1 && dec2 && dec3">
                                 <p class="lead p-md-3" style="line-height: 1.8rem;">
-                                    You are required to use safeEntry before being allowed to enter premises and 
-                                    use Trace Together app to reduce disease transmission.
+                                    You are required to use SafeEntry before being allowed to enter premises and 
+                                    use TraceTogether app to reduce disease transmission.
                                 </p>
                                 <p class="lead p-md-3">
-                                    Thank you for your cooperation in this difficult period. together we shall
+                                    Thank you for your cooperation in this difficult period. Together we shall
                                     overcome COVID-19.
                                 </p>
                                 <!-- Submit button -->
@@ -325,7 +350,7 @@
                             
                             <div class="row mt-4 text-center p-5" *ngIf="!dec1 || !dec2 || !dec3">
                                 <p class="lead p-md-3 text-danger" style="border: 1px dashed blue;font-family: monospace;">
-                                You are not allowed to enter the workspace from now on and you must report this situation to your
+                                You are not allowed to enter the workplace from now on and you must report this situation to your
                                 immediate project supervisor immediately.
                                 </p>
                                 <p class="lead p-md-3 text-center">
@@ -343,7 +368,7 @@
                             </span>
                             <!-- <button type="submit" class="btn btn-outline-dark px-4 mr-4 " *ngIf="panelIndex+1 >= panels.length" [disabled]="!myForm.valid ">Submit</button> -->
                             <button type="button" class="btn btn-outline-dark px-4 " (click)="myForm.reset()">Cancel</button>
-                            <button type="button" class="btn btn-outline-dark px-4 " style="float: right;" [ngStyle]="{'display': Isvisible}" (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length)">Next</button>
+                            <button type="button" class="btn btn-outline-dark px-4 " #nxt style="float: right;" (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length) || (currentPanel == 'step7')">Next</button>
     
                         </div>
                        
