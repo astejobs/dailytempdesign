@@ -111,7 +111,7 @@
                                         </p>
                                         <hr>
 
-                                        <div class="form-group" *ngIf="options"><!-- ^0[1-9]|[1-9]\d$ to accept only numbers-->
+                                        <div class="form-group" *ngIf="options && shift.valid"><!-- ^0[1-9]|[1-9]\d$ to accept only numbers-->
                                             <input type="number" class="form-control" required placeholder="Enter Meter Reading"
                                                     [(ngModel)]="temperature.reading" name="reading" #reading="ngModel" maxlength="4"
                                                          pattern="" (input)="checkReading(reading,myForm)" step="0.1">
@@ -343,7 +343,7 @@
                             </span>
                             <!-- <button type="submit" class="btn btn-outline-dark px-4 mr-4 " *ngIf="panelIndex+1 >= panels.length" [disabled]="!myForm.valid ">Submit</button> -->
                             <button type="button" class="btn btn-outline-dark px-4 " (click)="myForm.reset()">Cancel</button>
-                            <button type="button" class="btn btn-outline-dark px-4 " style="float: right; " (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length)">Next</button>
+                            <button type="button" class="btn btn-outline-dark px-4 " style="float: right;" [ngStyle]="{'display': Isvisible}" (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length)">Next</button>
     
                         </div>
                        

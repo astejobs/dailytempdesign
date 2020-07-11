@@ -22,7 +22,7 @@ temperature:any={};
 tempDate:any;
 message:string;
 
-
+Isvisible="block";
 dec1:boolean = true;
 dec2:boolean = false;
 dec3:boolean = true;
@@ -63,7 +63,7 @@ maxDate= new Date();
   
     console.log(frm.value+"form values");
     this.currentPanel='step1';
-
+    this.Isvisible="block";
 
    // this.onNext();
    // 
@@ -124,15 +124,17 @@ onPrevious(index){
     this.currentPanel=this.panels[+index-1];
 }
 checkReading(reading,frm) {
-  
+  this.Isvisible="block";
   if(reading.value>37.4){
     this.onNext(5);
+    this.Isvisible="none";
     frm.controls['reading'].reset();
    }
   }
 
   showWarning() {
     this.onNext(5);
+    this.panelIndex=6;
   }
 
   
