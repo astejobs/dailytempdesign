@@ -43,6 +43,7 @@ maxDate= new Date();
    
    this.tempService.getUser(localStorage.getItem('user')).subscribe((response:any)=>{
     this.userdetails=response.body;
+    console.log(this.userdetails+"tsttt");
     
    });
   }
