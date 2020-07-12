@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 py-3 jumbotron">
+            <div class="py-3 text-center">
+                <p class="lead">Enter Employee Details</p><hr>
+            </div>
+            <form (ngSubmit)="onSubmit()" [formGroup]="addForm">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>Employee Name</mat-label>
+                            <input matInput placeholder="Employee" required formControlName="name">
+                            <mat-icon matSuffix class="app-color">account_box</mat-icon>
+                            <mat-error>This Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>Company Name</mat-label>
+                            <input matInput placeholder="Company" required formControlName="company">
+                            <mat-icon matSuffix class="app-color">business</mat-icon>
+                            <mat-error>This Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>Employee NRIC / FIN</mat-label>
+                            <input matInput placeholder="Emp NRIC/FIN" required formControlName="nric">
+                            <mat-icon matSuffix class="app-color">perm_identity</mat-icon>
+                            <mat-error>This Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>NRIC / FIN</mat-label>
+                            <input matInput placeholder="NRIC/FIN" required formControlName="nric1">
+                            <mat-icon matSuffix class="app-color">perm_identity</mat-icon>
+                            <mat-error>This Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>Combine</mat-label>
+                            <input matInput placeholder="Combine" required formControlName="combine">
+                            <mat-icon matSuffix class="app-color">group_work</mat-icon>
+                            <mat-error>This Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>Emp Termination Date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="termDate"  (input)="getDate()">
+                            <mat-datepicker-toggle matSuffix [for]="picker" class="app-color"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error>This Field is required</mat-error>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>Employee Email ID</mat-label>
+                            <input matInput placeholder="Email"  required formControlName="email">
+                            <mat-icon matSuffix class="app-color">email</mat-icon>
+                            <mat-error>This Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>Department</mat-label>
+                            <input matInput placeholder="Department" required formControlName="department">
+                            <mat-icon matSuffix class="app-color">home_work</mat-icon>
+                            <mat-error>This Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>Section</mat-label>
+                            <input matInput placeholder="Section" required formControlName="section">
+                            <mat-icon matSuffix class="app-color">compare</mat-icon>
+                            <mat-error>This Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="outline" class="form-full-width">
+                            <mat-label>Designation</mat-label>
+                            <input matInput placeholder="Designation" required formControlName="designation">
+                            <mat-icon matSuffix class="app-color">apartment</mat-icon>
+                            <mat-error>This Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button mat-raised-button color="primary" class="px-md-5 mr-md-4 mr-2">Cancel</button>
+                        <button mat-raised-button color="primary" class="px-md-5" type="submit" [disabled]="!addForm.valid">Submit</button>
+                    </div>
+                </div>
+                 
+            </form>
+        </div>
+    </div>
+</div>
