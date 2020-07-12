@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   onLogin( ){
     
     
-    this.myService.loginService(this.user).subscribe((response:any)=>{
+   /*  this.myService.loginService(this.user).subscribe((response:any)=>{
       console.log("llltokenll"+response.body['token']);
       if(response.status==200){    
         console.log(this.user.username+"hdhdhd"); 
@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
        this.errorLbl="Wrong Credentials";
       console.log(err);
      }
-     ); 
+     );  */
+     this.route.navigateByUrl('temperature'); 
     
 
   }

@@ -16,7 +16,10 @@ export class TempService {
     observe:'response'  as 'body'
   }
   //baseURL = 'http://ifarms.com.sg:8086/DailyTemperatureApp6/';
- baseURL = 'http://localhost:8082/';
+ //baseURL = 'http://localhost:8082/';
+ baseURL = 'http://192.168.21.171:8080/';
+
+
   constructor(private http:HttpClient) { }
 
   save(data){

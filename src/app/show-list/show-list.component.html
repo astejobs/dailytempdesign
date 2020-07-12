@@ -12,7 +12,7 @@
                 </div>
                 <div class="table-responsive">
 
-                    <table mdbTable #tableEl="mdbTable" class="table z-depth-1 table-striped table-responsive-md">
+                    <table mdbTable #tableEl="mdbTable" class="table z-depth-1 table-responsive-md" stickyHeader="true" hover="true" striped="true">
                         <thead>
                             <tr>
                                 <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
@@ -25,6 +25,10 @@
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.shift}}</td>
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.reading?el.reading:el.noReading}}</td>
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.date}}</td>
+                                <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                    <button mdbBtn color="warning" size="sm" mdbWavesEffect (click)="editRow(el)">Edit</button>
+                                    <button mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeRow(el)">Remove</button>
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot class="grey lighten-5 w-100">

@@ -24,6 +24,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { ShowListComponent } from './show-list/show-list.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddRecordComponent } from './add-record/add-record.component';
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ 
@@ -31,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     TempStorageComponent,
     HeaderComponent,
     ShowListComponent,
-    LoginComponent
+    LoginComponent,
+    AddRecordComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatSortModule,
     HttpClientModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
+
     ],
   providers: [],
   bootstrap: [AppComponent]

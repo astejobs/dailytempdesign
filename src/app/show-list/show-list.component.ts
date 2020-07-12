@@ -26,7 +26,7 @@ export class ShowListComponent implements OnInit{
   search:any={}; 
   startDate:any;
   endDate:any;
-  headElements = ['Employee Name', 'Shift', 'Temperature Reading', 'Date'];
+  headElements = ['Employee Name', 'Shift', 'Temperature Reading', 'Date', 'Action'];
   
   @HostListener('input') oninput() 
   { 
@@ -113,6 +113,31 @@ export class ShowListComponent implements OnInit{
       type: this.EXCEL_TYPE
     });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + this.EXCEL_EXTENSION);
+  }
+  editRow(el) {
+    console.log(el);
+    /* const elementIndex = this.elements.findIndex((elem: any) => el === elem);
+    const modalOptions = {
+      data: {
+        editableRow: el
+      }
+    };
+    this.modalRef = this.modalService.show(ModalEditComponent, modalOptions);
+    this.modalRef.content.saveButtonClicked.subscribe((newElement: any) => {
+        this.elements[elementIndex] = newElement;
+      });
+      this.mdbTable.setDataSource(this.elements);
+    } */
+  }
+  removeRow(el) {
+    console.log(el);
+   /*  const elementIndex = this.elements.findIndex((elem: any) => el === elem);
+    this.mdbTable.removeRow(elementIndex);
+    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
+        el.id = (index + 1).toString();
+      });
+      this.mdbTable.setDataSource(this.elements);
+    } */
   }
   
 }

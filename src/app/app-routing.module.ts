@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TempStorageComponent } from './temp-storage/temp-storage.component';
 import { ShowListComponent } from './show-list/show-list.component';
 import { LoginComponent } from './login/login.component';
+import { AddRecordComponent } from './add-record/add-record.component';
 
 
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'temperature', component: TempStorageComponent},
   {path: 'temperatures', component: ShowListComponent},
+  {path: 'add', component: AddRecordComponent},
  
   
 ];

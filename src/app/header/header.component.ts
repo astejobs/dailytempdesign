@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private route:Router,private tempService:TempService) { }
   isLoggedIn=false;
-  role:any='';
+  role:any='Admin';
   ngOnInit(): void {
     this.tempService.menu.subscribe(()=>{
       this.isLoggedIn=!this.isLoggedIn;
