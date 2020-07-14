@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { formatDate, DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
-
+import * as moment from 'moment'
 
 
 @Component({
@@ -31,6 +31,9 @@ export class AddRecordComponent implements OnInit {
     this.edit=true;
     this.userService.edit(this.route.snapshot.paramMap.get('id')).subscribe((response:any)=>{
     this.user=response.body;
+   /*  console.log(this.user);
+    let dt = new Date(this.user.terminationDate); console.log(dt);
+    this.user.terminationDate = dt; */
      });
     }
   }
@@ -43,18 +46,21 @@ export class AddRecordComponent implements OnInit {
               this.router.navigateByUrl('/users');
           }
             this.showSuccessMessage('User saved successfully');
-            this.myForm.reset();
+            this.myForm.resetForm();
           }
         else
           this.showErrorMessage('Something went wrong .Please try again');
       }); 
   }
-
+  /* onSubmitClick(frm) {
+    submitted = true;
+  } */
   getDate(dt) {
     const format = 'dd-MM-yyyy';
     const myDate = dt.value;
     const locale = 'en-US';
      this.tempDate = formatDate(myDate, format, locale);
+     //this.tempDate.moment().format('DD-MM-YYYY');
     console.log(this.tempDate);
   }
 
