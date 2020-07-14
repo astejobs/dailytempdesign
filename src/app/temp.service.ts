@@ -16,8 +16,8 @@ export class TempService {
     observe:'response'  as 'body'
   }
   //baseURL = 'http://ifarms.com.sg:8086/DailyTemperatureApp6/';
- //baseURL = 'http://localhost:8082/';
- baseURL = 'http://192.168.21.171:8080/';
+ baseURL = 'http://localhost:8082/';
+ //baseURL = 'http://192.168.21.171:8080/';
 
 
   constructor(private http:HttpClient) { }
@@ -52,7 +52,7 @@ export class TempService {
 getUser(usernric:string){
   const url=this.baseURL+"userdetail/"+usernric;
   return this.http.get(url,{'observe':'response'}).pipe(map((response)=>{  
-  return response    
+  return response  ;  
 
 }));
  

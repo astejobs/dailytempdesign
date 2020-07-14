@@ -28,6 +28,7 @@ import { AddRecordComponent } from './add-record/add-record.component';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [ 
@@ -36,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     ShowListComponent,
     LoginComponent,
-    AddRecordComponent
+    AddRecordComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

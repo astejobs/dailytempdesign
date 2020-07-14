@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -33,10 +34,10 @@ export class ShowListComponent implements OnInit{
     this.searchItems();
   } 
 
-  constructor(private cdRef: ChangeDetectorRef, private ts:TemperatureServiceService,private myService:TempService) { }
+  constructor(private cdRef: ChangeDetectorRef, private ts:TemperatureServiceService,private myService:TempService,private userService:UserService) { }
 
   ngOnInit() {
-
+    
   }
 
   onSubmitForm(){

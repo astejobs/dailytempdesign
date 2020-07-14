@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { formatDate, DatePipe } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../user.service';
 
 
 
@@ -23,16 +25,38 @@ export class AddRecordComponent implements OnInit {
     section: new FormControl(''),
     designation: new FormControl('')
   });
-
+  edit:boolean=false;
   tempDate:any;
-  constructor() { }
+  temp:any={};
+  
+  constructor(private route:ActivatedRoute, private userService:UserService) { 
+    
+  }
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.paramMap.get('id')+"inputttt");
+  
+   if(this.route.snapshot.paramMap.get('id')!=null){
+    this.edit=true;
+    this.userService.edit(this.route.snapshot.paramMap.get('id')).subscribe((response:any)=>{
+      console.log(response.body+"in component");
+    this.temp=response.body;
+    console.log(this.temp+"in component temp mai");
+     });
+    }
   }
 
   onSubmit() {
     console.log(this.addForm.value);
-  }
+    this.userService.updateUser(this.temp).subscribe((response:any)=>{
+      if(response.status==200){
+      
+    
+      console.log(this.temp.value+"form values");
+      }
+    }); 
+  
+    }
 
   getDate() {
     const format = 'dd-MM-yyyy';

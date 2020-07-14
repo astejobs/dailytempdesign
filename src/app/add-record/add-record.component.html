@@ -4,13 +4,16 @@
             <div class="py-3 text-center">
                 <p class="lead">Enter Employee Details</p><hr>
             </div>
+            <div>
+                <h1>llll</h1>
+             </div>
             <form (ngSubmit)="onSubmit()" [formGroup]="addForm">
 
                 <div class="row">
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Employee Name</mat-label>
-                            <input matInput placeholder="Employee" required formControlName="name">
+                            <input matInput placeholder="Employee" required formControlName="name" name="name" value="{{temp.name}}">
                             <mat-icon matSuffix class="app-color">account_box</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -18,7 +21,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Company Name</mat-label>
-                            <input matInput placeholder="Company" required formControlName="company">
+                            <input matInput placeholder="Company" required formControlName="company" name="companyName" value="{{temp.companyName}}">
                             <mat-icon matSuffix class="app-color">business</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -26,7 +29,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Employee NRIC / FIN</mat-label>
-                            <input matInput placeholder="Emp NRIC/FIN" required formControlName="nric">
+                            <input matInput placeholder="Emp NRIC/FIN" required formControlName="nric" name="empNRIC" value="{{temp.empNRIC}}">
                             <mat-icon matSuffix class="app-color">perm_identity</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -34,7 +37,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>NRIC / FIN</mat-label>
-                            <input matInput placeholder="NRIC/FIN" required formControlName="nric1">
+                            <input matInput placeholder="NRIC/FIN" required formControlName="nric1" name="NRIC" value="{{temp.NRIC}}">
                             <mat-icon matSuffix class="app-color">perm_identity</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -42,7 +45,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Combine</mat-label>
-                            <input matInput placeholder="Combine" required formControlName="combine">
+                            <input matInput placeholder="Combine" required formControlName="combine" name="combine" value="{{temp.combine}}">
                             <mat-icon matSuffix class="app-color">group_work</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -50,7 +53,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Emp Termination Date</mat-label>
-                            <input matInput [matDatepicker]="picker" formControlName="termDate"  (input)="getDate()">
+                            <input matInput [matDatepicker]="picker" formControlName="termDate"  (input)="getDate()" name="terminationDate" value="{{temp.terminationDate}}">
                             <mat-datepicker-toggle matSuffix [for]="picker" class="app-color"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                             <mat-error>This Field is required</mat-error>
@@ -59,7 +62,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Employee Email ID</mat-label>
-                            <input matInput placeholder="Email"  required formControlName="email">
+                            <input matInput placeholder="Email"  required formControlName="email" name="email" value="{{temp.email}}">
                             <mat-icon matSuffix class="app-color">email</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -67,7 +70,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Department</mat-label>
-                            <input matInput placeholder="Department" required formControlName="department">
+                            <input matInput placeholder="Department" required formControlName="department" name="department" value="{{temp.department}}">
                             <mat-icon matSuffix class="app-color">home_work</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -75,7 +78,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Section</mat-label>
-                            <input matInput placeholder="Section" required formControlName="section">
+                            <input matInput placeholder="Section" required formControlName="section" name="section" value="{{temp.section}}">
                             <mat-icon matSuffix class="app-color">compare</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -83,14 +86,15 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Designation</mat-label>
-                            <input matInput placeholder="Designation" required formControlName="designation">
+                            <input matInput placeholder="Designation" required formControlName="designation" name="designation" value="{{temp.designation}}">
                             <mat-icon matSuffix class="app-color">apartment</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12 text-center">
                         <button mat-raised-button color="primary" class="px-md-5 mr-md-4 mr-2">Cancel</button>
-                        <button mat-raised-button color="primary" class="px-md-5" type="submit" [disabled]="!addForm.valid">Submit</button>
+                        <button mat-raised-button color="primary" class="px-md-5" type="submit" [disabled]="!addForm.valid">{{edit==true?'Update':'Save'}}</button>
+                   
                     </div>
                 </div>
                  
