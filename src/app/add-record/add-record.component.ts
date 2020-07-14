@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { formatDate, DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
@@ -13,18 +13,7 @@ import { UserService } from '../user.service';
 })
 export class AddRecordComponent implements OnInit {
 
-  addForm = new FormGroup({
-    name: new FormControl(''),
-    company: new FormControl(''),
-    nric: new FormControl(''),
-    nric1: new FormControl(''),
-    combine: new FormControl(''),
-    termDate: new FormControl(''),
-    email: new FormControl(''),
-    department: new FormControl(''),
-    section: new FormControl(''),
-    designation: new FormControl('')
-  });
+  
   edit:boolean=false;
   tempDate:any;
   temp:any={};
@@ -43,8 +32,9 @@ export class AddRecordComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    console.log(this.addForm.value);
+  onSubmit(frm) {
+    console.log(frm.value);
+    this.temp.terminationDate=this.tempDate;
     if(this.edit){
     this.userService.updateUser(this.temp).subscribe((response:any)=>{
       if(response.status==200)    
@@ -57,11 +47,11 @@ export class AddRecordComponent implements OnInit {
     }
     }
 
-  getDate() {
+  getDate(dt) {
     const format = 'dd-MM-yyyy';
-    const myDate = this.addForm.controls['termDate'];
+    const myDate = dt.value;
     const locale = 'en-US';
-    this.tempDate = formatDate(myDate.value, format, locale);
+     this.tempDate = formatDate(myDate, format, locale);
     console.log(this.tempDate);
   }
 }
