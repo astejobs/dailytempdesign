@@ -5,7 +5,14 @@
                 <p class="lead">Enter Employee Details</p><hr>
             </div>
             <div>
-                <h1>llll</h1>
+                <p class="alert alert-success" *ngIf="message==='success'">
+                    <strong> User Updated Successfully!</strong>
+                    
+                </p>
+                <p class="alert alert-danger" *ngIf="message==='fail'">
+                    <strong> Enter fields correctly!</strong>
+                    
+                </p>
              </div>
             <form (ngSubmit)="onSubmit()" [formGroup]="addForm">
 
@@ -13,7 +20,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Employee Name</mat-label>
-                            <input matInput placeholder="Employee" required formControlName="name" name="name" value="{{temp.name}}">
+                            <input matInput placeholder="Employee" required formControlName="name" name="name"  [(ngModel)]="temp.name">
                             <mat-icon matSuffix class="app-color">account_box</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -21,7 +28,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Company Name</mat-label>
-                            <input matInput placeholder="Company" required formControlName="company" name="companyName" value="{{temp.companyName}}">
+                            <input matInput placeholder="Company" required formControlName="company" name="companyName"  [(ngModel)]="temp.companyName">
                             <mat-icon matSuffix class="app-color">business</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -29,7 +36,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Employee NRIC / FIN</mat-label>
-                            <input matInput placeholder="Emp NRIC/FIN" required formControlName="nric" name="empNRIC" value="{{temp.empNRIC}}">
+                            <input matInput placeholder="Emp NRIC/FIN" required formControlName="nric" name="empNRIC"  [(ngModel)]="temp.empNRIC">
                             <mat-icon matSuffix class="app-color">perm_identity</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -37,7 +44,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>NRIC / FIN</mat-label>
-                            <input matInput placeholder="NRIC/FIN" required formControlName="nric1" name="NRIC" value="{{temp.NRIC}}">
+                            <input matInput placeholder="NRIC/FIN" required formControlName="nric1" name="NRIC" [(ngModel)]="temp.nric">
                             <mat-icon matSuffix class="app-color">perm_identity</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -45,7 +52,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Combine</mat-label>
-                            <input matInput placeholder="Combine" required formControlName="combine" name="combine" value="{{temp.combine}}">
+                            <input matInput placeholder="Combine" required formControlName="combine" name="combine"  [(ngModel)]="temp.combine">
                             <mat-icon matSuffix class="app-color">group_work</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -53,7 +60,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Emp Termination Date</mat-label>
-                            <input matInput [matDatepicker]="picker" formControlName="termDate"  (input)="getDate()" name="terminationDate" value="{{temp.terminationDate}}">
+                            <input matInput [matDatepicker]="picker" formControlName="termDate"  (input)="getDate()" name="terminationDate"  [(ngModel)]="temp.terminationDate">
                             <mat-datepicker-toggle matSuffix [for]="picker" class="app-color"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                             <mat-error>This Field is required</mat-error>
@@ -62,7 +69,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Employee Email ID</mat-label>
-                            <input matInput placeholder="Email"  required formControlName="email" name="email" value="{{temp.email}}">
+                            <input matInput placeholder="Email"  required formControlName="email" name="email"  [(ngModel)]="temp.email">
                             <mat-icon matSuffix class="app-color">email</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -70,7 +77,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Department</mat-label>
-                            <input matInput placeholder="Department" required formControlName="department" name="department" value="{{temp.department}}">
+                            <input matInput placeholder="Department" required formControlName="department" name="department"  [(ngModel)]="temp.department">
                             <mat-icon matSuffix class="app-color">home_work</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -78,7 +85,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Section</mat-label>
-                            <input matInput placeholder="Section" required formControlName="section" name="section" value="{{temp.section}}">
+                            <input matInput placeholder="Section" required formControlName="section" name="section"  [(ngModel)]="temp.section">
                             <mat-icon matSuffix class="app-color">compare</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
@@ -86,7 +93,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Designation</mat-label>
-                            <input matInput placeholder="Designation" required formControlName="designation" name="designation" value="{{temp.designation}}">
+                            <input matInput placeholder="Designation" required formControlName="designation" name="designation"  [(ngModel)]="temp.designation">
                             <mat-icon matSuffix class="app-color">apartment</mat-icon>
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>

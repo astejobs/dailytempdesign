@@ -39,12 +39,9 @@ maxDate= new Date();
   }
 
    
-  ngOnInit(): void {
-   
+  ngOnInit(): void { 
    this.tempService.getUser(localStorage.getItem('user')).subscribe((response:any)=>{
-    this.userdetails=response.body;
-    console.log(this.userdetails+"tsttt");
-    
+    this.userdetails=response.body;    
    });
   }
   getDate(dt) {
@@ -60,16 +57,9 @@ maxDate= new Date();
     if(response.status==200){
     this.message="success"; 
     this.panelIndex=0;
-   //frm.reset();
   
     console.log(frm.value+"form values");
     this.currentPanel='step1';
-
-   // this.onNext();
-   // 
-   // this.el.nativeElement.style.display='none';
-  
-    
     }
     else{
     this.message="fail";

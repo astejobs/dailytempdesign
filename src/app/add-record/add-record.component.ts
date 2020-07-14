@@ -28,34 +28,33 @@ export class AddRecordComponent implements OnInit {
   edit:boolean=false;
   tempDate:any;
   temp:any={};
+  message:string;
   
   constructor(private route:ActivatedRoute, private userService:UserService) { 
     
   }
 
-  ngOnInit(): void {
-    console.log(this.route.snapshot.paramMap.get('id')+"inputttt");
-  
+  ngOnInit(): void {  
    if(this.route.snapshot.paramMap.get('id')!=null){
     this.edit=true;
     this.userService.edit(this.route.snapshot.paramMap.get('id')).subscribe((response:any)=>{
-      console.log(response.body+"in component");
     this.temp=response.body;
-    console.log(this.temp+"in component temp mai");
      });
     }
   }
 
   onSubmit() {
     console.log(this.addForm.value);
+    if(this.edit){
     this.userService.updateUser(this.temp).subscribe((response:any)=>{
-      if(response.status==200){
-      
-    
-      console.log(this.temp.value+"form values");
-      }
+      if(response.status==200)    
+    this.message="success";
+      else
+      this.message="fail";
     }); 
-  
+    }else{
+      console.log("i am in save");
+    }
     }
 
   getDate() {

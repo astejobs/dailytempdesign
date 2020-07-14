@@ -8,7 +8,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class UserService {
   baseURL = 'http://192.168.21.171:8080/';
-// baseURL = 'http://localhost:8082/';
+ //baseURL = 'http://localhost:8082/';
  temp:any=[];
  
   constructor(private http:HttpClient) { }
@@ -26,20 +26,17 @@ export class UserService {
       }));
     }
     edit(id){
-
       const url=this.baseURL+"user/"+id;
       return this.http.get(url,{'observe':'response'}).pipe(map((response)=>{  
         this.temp=response.body;
-        console.log(this.temp+"jjjjjjj");
         return response;      
       }));  
     }
 
 
       updateUser(data){
-        const url=this.baseURL+"/update";
+        const url=this.baseURL+"update";
         return this.http.put(url,data,{'observe':'response'}).pipe(map((response:any)=>{
-        console.log(response.status+"updateddddd");
         return response;
          }));      
         
