@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { formatDate, DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,11 +13,14 @@ import { UserService } from '../user.service';
 })
 export class AddRecordComponent implements OnInit {
 
-  
+  @ViewChild('myForm') myForm: NgForm;
   edit:boolean=false;
   tempDate:any;
-  temp:any={};
-  message:string;
+  user:any={};
+  successMsg:string;
+  success:boolean;
+  errorMsg:string;
+  error:boolean;
   
   constructor(private route:ActivatedRoute, private userService:UserService) { 
     
@@ -27,25 +30,25 @@ export class AddRecordComponent implements OnInit {
    if(this.route.snapshot.paramMap.get('id')!=null){
     this.edit=true;
     this.userService.edit(this.route.snapshot.paramMap.get('id')).subscribe((response:any)=>{
-    this.temp=response.body;
+    this.user=response.body;
      });
     }
   }
 
-  onSubmit(frm) {
-    console.log(frm.value);
-    this.temp.terminationDate=this.tempDate;
-    if(this.edit){
-    this.userService.updateUser(this.temp).subscribe((response:any)=>{
-      if(response.status==200)    
-    this.message="success";
-      else
-      this.message="fail";
-    }); 
-    }else{
-      console.log("i am in save");
-    }
-    }
+  onSubmit() {
+    this.user.terminationDate=this.tempDate;
+    this.userService.updateUser(this.user).subscribe((response:any)=>{
+        if(response.status==200){
+            this.showSuccessMessage('User saved successfully');
+            if(!this.edit){
+              this.user = {};
+              this.myForm.reset();
+            }
+          }
+        else
+          this.showErrorMessage('Something went wrong .Please try again');
+      }); 
+  }
 
   getDate(dt) {
     const format = 'dd-MM-yyyy';
@@ -53,5 +56,16 @@ export class AddRecordComponent implements OnInit {
     const locale = 'en-US';
      this.tempDate = formatDate(myDate, format, locale);
     console.log(this.tempDate);
+  }
+
+  showSuccessMessage(msg){
+    this.error=false;
+    this.success=true;
+    this.successMsg=msg;
+  }
+  showErrorMessage(msg){
+    this.success=false;
+    this.error=true;
+    this.errorMsg=msg;
   }
 }

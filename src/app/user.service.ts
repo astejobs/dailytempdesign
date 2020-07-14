@@ -7,8 +7,8 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  baseURL = 'http://192.168.21.171:8080/';
- //baseURL = 'http://localhost:8082/';
+ // baseURL = 'http://192.168.21.171:8080/';
+ baseURL = 'http://localhost:8082/';
  temp:any=[];
  
   constructor(private http:HttpClient) { }
