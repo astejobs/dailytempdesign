@@ -31,8 +31,8 @@ export class AddRecordComponent implements OnInit {
     this.edit=true;
     this.userService.edit(this.route.snapshot.paramMap.get('id')).subscribe((response:any)=>{
     this.user=response.body;
-   /*  console.log(this.user);
-    let dt = new Date(this.user.terminationDate); console.log(dt);
+     console.log(this.user);
+    /*let dt = new Date(this.user.terminationDate); console.log(dt);
     this.user.terminationDate = dt; */
      });
     }
