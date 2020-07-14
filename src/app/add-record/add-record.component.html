@@ -59,7 +59,6 @@
                             <input matInput [matDatepicker]="picker" readonly #date="ngModel" #dateInput class="form-full-width" name="terminationDate" [(ngModel)]="user.terminationDate" (dateInput)="getDate(dateInput)">
                             <mat-datepicker-toggle matSuffix [for]="picker" class="app-color"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
-                            <mat-error>This Field is required</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-6">
