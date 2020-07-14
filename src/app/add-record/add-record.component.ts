@@ -40,10 +40,7 @@ export class AddRecordComponent implements OnInit {
     this.userService.updateUser(this.user).subscribe((response:any)=>{
         if(response.status==200){
             this.showSuccessMessage('User saved successfully');
-            if(!this.edit){
-              this.user = {};
-              this.myForm.reset();
-            }
+            this.myForm.reset();
           }
         else
           this.showErrorMessage('Something went wrong .Please try again');
