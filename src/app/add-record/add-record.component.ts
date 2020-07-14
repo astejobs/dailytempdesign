@@ -22,7 +22,7 @@ export class AddRecordComponent implements OnInit {
   errorMsg:string;
   error:boolean;
   
-  constructor(private route:ActivatedRoute, private userService:UserService) { 
+  constructor(private route:ActivatedRoute, private userService:UserService,private router:Router) { 
     
   }
 
@@ -39,6 +39,9 @@ export class AddRecordComponent implements OnInit {
     this.user.terminationDate=this.tempDate;
     this.userService.updateUser(this.user).subscribe((response:any)=>{
         if(response.status==200){
+          if(this.edit){
+              this.router.navigateByUrl('/users');
+          }
             this.showSuccessMessage('User saved successfully');
             this.myForm.reset();
           }
