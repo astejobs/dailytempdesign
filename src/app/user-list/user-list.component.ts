@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
   search:any={}; 
   startDate:any;
   endDate:any;
-  headElements = ['Employee Name', 'Designation', 'Company Name', 'Email', 'Action'];
+  headElements = ['Employee Name', 'Designation', 'Company Name', 'Email', 'Edit', 'Delete'];
   
   message:string
   @HostListener('input') oninput() 

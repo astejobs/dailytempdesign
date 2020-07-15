@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
             <div class="container">
@@ -35,6 +35,10 @@
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.email}}</td>
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <button mdbBtn color="warning" size="sm" mdbWavesEffect (click)="editRow(el)">Edit</button>
+                                   <!--  <button mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeRow(el)">Remove</button> -->
+                                </td>
+                                <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                                    <!-- <button mdbBtn color="warning" size="sm" mdbWavesEffect (click)="editRow(el)">Edit</button> -->
                                     <button mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeRow(el)">Remove</button>
                                 </td>
                             </tr>

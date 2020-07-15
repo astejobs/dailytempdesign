@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { formatDate, DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
-import * as moment from 'moment'
 
 
 @Component({
@@ -32,14 +31,12 @@ export class AddRecordComponent implements OnInit {
     this.userService.edit(this.route.snapshot.paramMap.get('id')).subscribe((response:any)=>{
     this.user=response.body;
      console.log(this.user);
-    /*let dt = new Date(this.user.terminationDate); console.log(dt);
-    this.user.terminationDate = dt; */
      });
     }
   }
 
   onSubmit() {
-    this.user.terminationDate=this.tempDate;
+    this.user.terminationDate=this.tempDate; console.log(this.user);
     this.userService.updateUser(this.user).subscribe((response:any)=>{
         if(response.status==200){
           if(this.edit){
@@ -52,15 +49,13 @@ export class AddRecordComponent implements OnInit {
           this.showErrorMessage('Something went wrong .Please try again');
       }); 
   }
-  /* onSubmitClick(frm) {
-    submitted = true;
-  } */
+  
   getDate(dt) {
     const format = 'dd-MM-yyyy';
-    const myDate = dt.value;
+    const myDate = dt;
     const locale = 'en-US';
      this.tempDate = formatDate(myDate, format, locale);
-     //this.tempDate.moment().format('DD-MM-YYYY');
+     this.user.terminationDate = this.tempDate;
     console.log(this.tempDate);
   }
 
@@ -74,4 +69,6 @@ export class AddRecordComponent implements OnInit {
     this.error=true;
     this.errorMsg=msg;
   }
+
+
 }
