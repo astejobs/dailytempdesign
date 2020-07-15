@@ -27,6 +27,8 @@ export class ShowListComponent implements OnInit{
   search:any={}; 
   startDate:any;
   endDate:any;
+  companyName:any;
+  department:any;
   headElements = ['Employee Name', 'Shift', 'Temperature Reading', 'Date', 'Action'];
   
   @HostListener('input') oninput() 

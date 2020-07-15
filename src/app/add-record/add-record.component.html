@@ -21,8 +21,8 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Employee Name</mat-label>
-                            <input matInput placeholder="Employee" required name="name" [(ngModel)]="user.name">
-                            <mat-error>This Field is required</mat-error>
+                            <input matInput #name placeholder="Employee" required name="name" [(ngModel)]="user.name">
+                            <mat-error *ngIf="!name.valid && !name.dirty">This Field is required</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-6">
@@ -91,7 +91,7 @@
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12 text-center">
-                        <button mat-raised-button color="primary" class="px-md-5 mr-md-4 mr-2">Cancel</button>
+                        <button mat-raised-button color="primary" type="button" class="px-md-5 mr-md-4 mr-2" (click)="myForm.resetForm()">Cancel</button>
                         <button mat-raised-button color="primary" class="px-md-5" type="submit" [disabled]="!myForm.valid">{{edit==true?'Update':'Save'}}</button>
 
                     </div>

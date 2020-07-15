@@ -95,7 +95,17 @@
                             <input type="date" id="endDate" required class="form-control " [(ngModel)]="search.endDate" name="endDate" #endDate (change)="setEndDate(endDate)" />
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="form-group col-sm-6 ">
+                            <label for="exampleFormControlSelect1 ">Label</label>
+                            <input type="text" id="company" required class="form-control " [(ngModel)]="search.companyName" name="companyName" #companyName />
+                        </div>
+                        <div class="form-group col-sm-6 ">
+                            <label for="exampleFormControlSelect1 ">Label</label>
+                            <input type="text" id="department" required class="form-control " [(ngModel)]="search.department" name="department" #department />
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
