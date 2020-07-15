@@ -15,10 +15,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.tempService.menu.subscribe(()=>{
       this.isLoggedIn=!this.isLoggedIn;
-      console.log(this.isLoggedIn);
     });
     this.role=localStorage.getItem('role');
-    console.log(this.role);
+    if(this.role)
+      this.isLoggedIn =true; 
   }
 
   goToLogin() {

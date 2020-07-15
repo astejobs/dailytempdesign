@@ -93,7 +93,9 @@ export class ShowListComponent implements OnInit{
         'Employee Name':element.appUser?.name,
         'Shift':element.shift,
         'Temperature Reading':element.reading?element.reading:element.noReading,
-        'Date':element.date
+        'Date':element.date,
+        'Company Name':element.appUser?.companyName,
+        'Department':element.appUser?.department
        }
       excelData.push(obj);
      }); 
