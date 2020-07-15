@@ -31,6 +31,7 @@ currentPanel = 'step1';
 panelIndex=0;
 userdetails:any=[];
 mySubscription: any;
+tempReading:any;
 
 maxDate= new Date();
 @ViewChild('msgdiv') el:ElementRef;
@@ -53,6 +54,7 @@ maxDate= new Date();
 
   onSubmitForm(frm){
     this.temperature.date=this.tempDate;
+    this.temperature.reading=this.tempReading;
   this.tempService.save(this.temperature).subscribe((response:any)=>{
     if(response.status==200){
     this.message="success"; 
@@ -65,6 +67,7 @@ maxDate= new Date();
     this.message="fail";
     }
   }); 
+  
   }
     public clearReading(selectedOption:boolean){
     if(selectedOption==true){
@@ -114,6 +117,7 @@ onPrevious(index){
     this.currentPanel=this.panels[+index-1];
 }
 checkReading(reading,frm) {
+  this.tempReading=reading.value;
   if(reading.value>37.4){
     this.onNext(5);
     frm.controls['reading'].reset();

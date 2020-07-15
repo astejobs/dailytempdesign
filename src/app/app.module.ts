@@ -29,6 +29,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './user-list/user-list.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [ 
@@ -61,7 +62,7 @@ import { UserListComponent } from './user-list/user-list.component';
     ReactiveFormsModule
 
     ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
