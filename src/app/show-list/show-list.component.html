@@ -25,10 +25,6 @@
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.shift}}</td>
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.reading?el.reading:el.noReading}}</td>
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.date}}</td>
-                                <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                                    <button mdbBtn color="warning" size="sm" mdbWavesEffect (click)="editRow(el)">Edit</button>
-                                    <button mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeRow(el)">Remove</button>
-                                </td>
                             </tr>
                         </tbody>
 

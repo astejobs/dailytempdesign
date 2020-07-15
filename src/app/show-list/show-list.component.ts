@@ -29,7 +29,7 @@ export class ShowListComponent implements OnInit{
   endDate:any;
   companyName:any;
   department:any;
-  headElements = ['Employee Name', 'Shift', 'Temperature Reading', 'Date', 'Action'];
+  headElements = ['Employee Name', 'Shift', 'Temperature Reading', 'Date'];
   
   @HostListener('input') oninput() 
   { 
