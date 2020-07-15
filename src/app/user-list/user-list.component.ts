@@ -68,6 +68,7 @@ export class UserListComponent implements OnInit {
     const myDate = dt.value;
     const locale = 'en-US';
      this.startDate = formatDate(myDate, format, locale);
+     console.log(this.startDate);
   }
 
   setEndDate(dt) {
