@@ -10,7 +10,12 @@
     background: linear-gradient(to bottom right, #5e0caa 0%, #4013bb 100%);
     color: #fff;
 }
-
+::ng-deep .sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
 button:focus {
     outline: none;
     border: 0;

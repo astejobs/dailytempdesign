@@ -14,7 +14,7 @@
 </header>
 <!--Main Navigation-->
 <!-- dropdown menu for user account -->
-<mat-menu #userMenu="matMenu">
+<mat-menu #userMenu="matMenu" >
     <button mat-menu-item (click)="goToLogin()" *ngIf="!isLoggedIn">
         <mat-icon style="color: #ebe3e3;">account_circle</mat-icon>
         <span>Login</span>

@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
    user:any={};
    errorLbl:string;
    isAdmin:boolean = false;
+   adminLoginEnable = "block";
   constructor( private myService: TempService,private route:Router) {
   
    }

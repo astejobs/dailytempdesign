@@ -4,7 +4,7 @@
             <div class="mat-elevation-z8 col-md-6 offset-md-3">
 
                 <!-- Default form login -->
-                <form class="text-center border border-light p--md-5 my-3" #myForm="ngForm" (ngSubmit)="onLogin()">
+                <form class="text-center p-md-3 my-3" #myForm="ngForm" (ngSubmit)="onLogin()">
 
                     <p class="h4 mb-4 mt-3">Login</p>
                     <div class="m-md-5">
@@ -15,16 +15,16 @@
                           <hr>
                           
                           <!-- Default checked -->
-                          <div class="custom-control custom-radio custom-control-inline" (click)="showLogin(false)">
+                          <!-- <div class="custom-control custom-radio custom-control-inline" (click)="showLogin(false)">
                               <input type="radio" class="custom-control-input" id="no_admin" name="role" [checked]="!isAdmin"/>
                               <label class="custom-control-label" for="no_admin">User</label>
-                          </div>
+                          </div> -->
 
                         <!-- Default unchecked -->
-                        <div class="custom-control custom-radio custom-control-inline" (click)="showLogin(true)">
+                        <!-- <div class="custom-control custom-radio custom-control-inline" (click)="showLogin(true)">
                             <input type="radio" class="custom-control-input" id="yes_admin" name="role" [checked]="isAdmin"/>
                             <label class="custom-control-label" for="yes_admin">Admin</label>
-                        </div>
+                        </div> -->
 
 
                         <!-- User Login -->
@@ -83,6 +83,7 @@
 
                         <!-- Sign in button -->
                         <button color="info" class="btn btn-outline-info  btn-block my-4 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">Sign in</button>
+                        <button color="info" class="btn btn-outline-info  btn-block my-4 waves-effect z-depth-0" type="button" (click)="isAdmin = true;adminLoginEnable = 'none' " [ngStyle]="{'display': adminLoginEnable}">Login As Admin</button>
 
                         <!-- Register -->
                         <!-- <p>Not a member?
