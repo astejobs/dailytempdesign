@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('role',response.body['role']);
         localStorage.setItem('user',this.user.username)
         this.errorLbl="";
-        this.myService.menu.next();
+        this.myService.menu.next(); 
         this.route.navigateByUrl('temperature');       
       }else {
         this.errorLbl="Wrong Credentials";
@@ -46,13 +46,13 @@ export class LoginComponent implements OnInit {
     
 
   }
-  showLogin(selectedOption:boolean) {
+ /*  showLogin(selectedOption:boolean) {
     if(selectedOption==true){
       this.isAdmin = true   
   }
    else{
       this.isAdmin=false;
   }
-  }
+  } */
 
 }

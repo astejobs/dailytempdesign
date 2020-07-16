@@ -52,6 +52,10 @@ export class ShowListComponent implements OnInit{
      })
   }
 
+  onSubmitForm2() {
+    console.log('Form submitted Successfully!');
+  }
+
   setStartDate(dt) {
     const format = 'dd-MM-yyyy';
     const myDate = dt.value;

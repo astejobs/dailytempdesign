@@ -23,22 +23,22 @@
                     <!-- Form -->
                     <form class="text-center" style="color: #757575;" #myForm="ngForm" (ngSubmit)="onSubmitForm(myForm)">
                         <div class="p-2 row">
-                            <div class="form-group col-sm-5">
+                            <div class="form-group col-sm-6">
                                 <label for="exampleFormControlSelect1">Name</label>
                                 <input type="text" class="form-control"  name="username" readonly value="{{userdetails.name}}">
 
                             </div>
-                            <div class="form-group col-sm-5">
+                            <div class="form-group col-sm-6">
                                 <label for="exampleFormControlSelect1">Company</label>
                                 <input type="text" class="form-control"  name="companyname" readonly value="{{userdetails.companyName}}">
 
                             </div>
-                            <div class="form-group col-sm-5">
+                            <div class="form-group col-sm-6">
                                 <label for="exampleFormControlSelect1">Project</label>
                                 <input type="text" class="form-control"  name="companyname" readonly value="{{userdetails.department}}">
 
                             </div>
-                            <div class="form-group col-sm-5">
+                            <div class="form-group col-sm-6">
                                 <label for="exampleFormControlSelect1">Date</label>
                                 <!--<div class="md-form">  -->
                                     <input type="date" [max]="maxDate | date:'yyyy-MM-dd'" required #date="ngModel" #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">

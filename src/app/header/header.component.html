@@ -20,15 +20,15 @@
         <span>Login</span>
     </button>
     <!-- *ngIf="role=='Admin'" -->
-    <button mat-menu-item *ngIf="role=='Admin'" routerLink="/temperatures">
+    <button mat-menu-item *ngIf="getRole()=='Admin'" routerLink="/temperatures">
         <mat-icon style="color: #ebe3e3;">assignment</mat-icon>
         <span>View Readings</span>
     </button>
-    <button mat-menu-item *ngIf="role=='Admin'" routerLink="/users">
+    <button mat-menu-item *ngIf="getRole()=='Admin'" routerLink="/users">
         <mat-icon style="color: #ebe3e3;">people</mat-icon>
         <span>View Employees</span>
     </button>
-    <button mat-menu-item *ngIf="role=='Admin'" routerLink="/add">
+    <button mat-menu-item *ngIf="getRole()=='Admin'" routerLink="/add">
         <mat-icon style="color: #ebe3e3;">add_circle</mat-icon>
         <span>Add Employee</span>
     </button>

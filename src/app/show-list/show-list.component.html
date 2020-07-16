@@ -46,7 +46,7 @@
 <button type="button " class="btn btn-download" style="margin-bottom: 3rem; " *ngIf="elements.length>0" (click)="excel()">
     <i class="fa fa-download " style="font-size: 24px; " aria-hidden="true "></i>
 </button>
-<button type="button" class="btn btn-modl" data-toggle="modal" data-target="#myModal2" (click)="basicModal2.show()">
+<button type="button" class="btn btn-modl" data-toggle="modal" data-target="#myModal2" (click)="basicModal2.show()" style="padding-left: 40px;">
     <i class=" fa fa-file " style="font-size: 24px; " aria-hidden="true "></i>
 </button>
 <button type="button" class="btn btn-modl2" data-toggle="modal" data-target="#myModal" (click)="basicModal.show()">
@@ -123,7 +123,7 @@
         </button>
                 <h4 class="modal-title w-100" id="myModalLabel">Search</h4>
             </div>
-            <form #myForm2="ngForm" (ngSubmit)="onSubmitForm()">
+            <form #myForm2="ngForm" (ngSubmit)="onSubmitForm2()">
                 <div class="modal-body">
 
                     <div class="row">

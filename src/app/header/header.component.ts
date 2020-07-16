@@ -16,10 +16,13 @@ export class HeaderComponent implements OnInit {
     this.tempService.menu.subscribe(()=>{
       this.isLoggedIn=!this.isLoggedIn;
     });
-    this.role=localStorage.getItem('role');
-    if(this.role)
+    //this.role=localStorage.getItem('role');
+    if(this.getRole())
       this.isLoggedIn =true; 
   }
+getRole() {
+  return localStorage.getItem('role');
+} 
 
   goToLogin() {
     this.route.navigateByUrl('');
