@@ -6,6 +6,7 @@ import { TempService } from '../temp.service';
 import { formatDate, DatePipe } from '@angular/common';
 import { ok } from 'assert';
 import { Router, NavigationEnd } from '@angular/router';
+import { ToastService } from '../toast.service';
 
 
 @Component({
@@ -35,7 +36,7 @@ tempReading:any;
 
 maxDate= new Date();
 @ViewChild('msgdiv') el:ElementRef;
-  constructor( private tempService:TempService, private route:Router) {
+  constructor( private tempService:TempService, private route:Router, private toastService: ToastService) {
    
   }
 
@@ -58,6 +59,7 @@ maxDate= new Date();
   this.tempService.save(this.temperature).subscribe((response:any)=>{
     if(response.status==200){
     this.message="success"; 
+    this.toastService.showSuccess('Data Saved Successfully','Success')
     this.panelIndex=0;
   
     console.log(frm.value+"form values");
@@ -65,6 +67,7 @@ maxDate= new Date();
     }
     else{
     this.message="fail";
+    this.toastService.showError('Data Not Saved','Error');
     }
   }); 
   
@@ -131,7 +134,6 @@ checkReading(reading,frm) {
   showWarning() {
     this.onNext(5);
   }
-
   
 
 }

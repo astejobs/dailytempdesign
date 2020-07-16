@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { formatDate, DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
+import { ToastService } from '../toast.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class AddRecordComponent implements OnInit {
   errorMsg:string;
   error:boolean;
   
-  constructor(private route:ActivatedRoute, private userService:UserService,private router:Router) { 
+  constructor(private route:ActivatedRoute, private userService:UserService,private router:Router,
+              private toastService:ToastService) { 
     
   }
 
@@ -36,17 +38,20 @@ export class AddRecordComponent implements OnInit {
   }
 
   onSubmit() {
-    this.user.terminationDate=this.tempDate; console.log(this.user);
+    //this.user.terminationDate=this.tempDate; 
+    console.log(this.user);
     this.userService.updateUser(this.user).subscribe((response:any)=>{
         if(response.status==200){
           if(this.edit){
               this.router.navigateByUrl('/users');
           }
             this.showSuccessMessage('User saved successfully');
-            this.myForm.resetForm();
+            this.toastService.showSuccess('User saved successfully!', 'Seccess');
+            //this.myForm.resetForm();
           }
         else
           this.showErrorMessage('Something went wrong .Please try again');
+          this.toastService.showError('Something went wrong .Please try again', 'Error');
       }); 
   }
   

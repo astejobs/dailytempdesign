@@ -7,6 +7,7 @@ import { formatDate } from '@angular/common';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { UserService } from '../user.service';
+import { ToastService } from '../toast.service';
 
 
 @Component({
@@ -36,7 +37,8 @@ export class ShowListComponent implements OnInit{
     this.searchItems();
   } 
 
-  constructor(private cdRef: ChangeDetectorRef, private ts:TemperatureServiceService,private myService:TempService,private userService:UserService) { }
+  constructor(private cdRef: ChangeDetectorRef, private ts:TemperatureServiceService,private myService:TempService,
+              private userService:UserService, private toastService: ToastService) { }
 
   ngOnInit() {
     
@@ -49,11 +51,13 @@ export class ShowListComponent implements OnInit{
       this.elements= response.body;
       this.mdbTable.setDataSource(this.elements);
       this.previous = this.mdbTable.getDataSource();
+      this.toastService.showInfo('Data fetched successfully!', 'Seccess');
      })
   }
 
   onSubmitForm2() {
     console.log('Form submitted Successfully!');
+    this.toastService.showSuccess('Form submitted Successfully!', 'Seccess');
   }
 
   setStartDate(dt) {
