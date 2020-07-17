@@ -26,14 +26,19 @@ export class LoginComponent implements OnInit {
     
     this.myService.loginService(this.user).subscribe((response:any)=>{
       console.log("llltokenll"+response.body['token']);
-      if(response.status==200){    
-        console.log(this.user.username+"hdhdhd"); 
+      if(response.status==200){  
+        if(response.body['role']=="Admin" && this.isAdmin==false)  {
+          this.errorLbl="Wrong Credentials";
+        }else{
+
+        console.log(this.user.username+"hdhdhd");       
         localStorage.setItem('token',response.body['token']);
         localStorage.setItem('role',response.body['role']);
         localStorage.setItem('user',this.user.username)
         this.errorLbl="";
         this.myService.menu.next(); 
-        this.route.navigateByUrl('temperature');       
+        this.route.navigateByUrl('temperature');   
+      }    
       }else {
         this.errorLbl="Wrong Credentials";
       }
