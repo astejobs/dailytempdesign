@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { ToastService } from '../toast.service';
 
+import {BehaviorSubject} from 'rxjs'; 
+
 
 @Component({
   selector: 'app-add-record',
@@ -21,6 +23,7 @@ export class AddRecordComponent implements OnInit {
   success:boolean;
   errorMsg:string;
   error:boolean;
+ 
   
   constructor(private route:ActivatedRoute, private userService:UserService,private router:Router,
               private toastService:ToastService) { 
@@ -28,11 +31,19 @@ export class AddRecordComponent implements OnInit {
   }
 
   ngOnInit(): void {  
+
    if(this.route.snapshot.paramMap.get('id')!=null){
     this.edit=true;
     this.userService.edit(this.route.snapshot.paramMap.get('id')).subscribe((response:any)=>{
-    this.user=response.body;
+      if(response.body==null){
+        this.router.navigate(['/users'],{ state: { message:"notFound"} });
+
+
+    }
+      else{
+     this.user=response.body;     
      console.log(this.user);
+      }
      });
     }
   }
@@ -43,15 +54,17 @@ export class AddRecordComponent implements OnInit {
     this.userService.updateUser(this.user).subscribe((response:any)=>{
         if(response.status==200){
           if(this.edit){
-              this.router.navigateByUrl('/users');
-          }
-            this.showSuccessMessage('User saved successfully');
+              this.router.navigate(['/users'],{ state: { message:"updateSuccess"} });
+          }else{
+           // this.showSuccessMessage('User saved successfully');
             this.toastService.showSuccess('User saved successfully!', 'Seccess');
-            //this.myForm.resetForm();
+            this.myForm.resetForm();
           }
-        else
-          this.showErrorMessage('Something went wrong .Please try again');
+          }
+        else{
+          //this.showErrorMessage('Something went wrong .Please try again');
           this.toastService.showError('Something went wrong .Please try again', 'Error');
+        }
       }); 
   }
   
