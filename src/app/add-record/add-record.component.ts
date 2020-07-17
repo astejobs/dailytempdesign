@@ -57,7 +57,7 @@ export class AddRecordComponent implements OnInit {
               this.router.navigate(['/users'],{ state: { message:"updateSuccess"} });
           }else{
            // this.showSuccessMessage('User saved successfully');
-            this.toastService.showSuccess('User saved successfully!', 'Seccess');
+            this.toastService.showSuccess('User saved successfully!', 'Success');
             this.myForm.resetForm();
           }
           }
