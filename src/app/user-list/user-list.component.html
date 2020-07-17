@@ -11,14 +11,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <p class="alert alert-success" *ngIf="message==='success'">
-                        <strong> User Deleted Successfully!</strong>
-                        
-                    </p>
-                    <p class="alert alert-danger" *ngIf="message==='fail'">
-                        <strong> Deletion Failed</strong>
-                        
-                    </p>
+                   
                     <table mdbTable #tableEl="mdbTable" class="table z-depth-1 table-responsive-md" stickyHeader="true" hover="true" striped="true">
                         <thead>
                             <tr>
@@ -45,7 +38,7 @@
                         </tbody>
                         <tfoot class="grey lighten-5 w-100">
                             <tr>
-                                <td colspan="4">
+                                <td colspan="6">
                                     <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
                                 </td>
                             </tr>

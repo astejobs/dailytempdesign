@@ -7,9 +7,10 @@ import { formatDate } from '@angular/common';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { UserService } from '../user.service';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { AddRecordComponent } from '../add-record/add-record.component';
 import { EventEmitter } from 'protractor';
+import { ToastService } from '../toast.service';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -32,28 +33,37 @@ export class UserListComponent implements OnInit {
   endDate:any;
   headElements = ['Employee Name', 'Designation', 'Company Name', 'Email', 'Edit', 'Delete'];
   
-  message:string
+  
+
+
   @HostListener('input') oninput() 
   { 
     this.searchItems();
   } 
 
-  constructor(private cdRef: ChangeDetectorRef, private ts:TemperatureServiceService,private myService:TempService,private userService:UserService,
-    private route:Router ) { }
+  constructor(private cdRef: ChangeDetectorRef,private routeAc:ActivatedRoute, private ts:TemperatureServiceService,private myService:TempService,private userService:UserService,
+    private route:Router,private toastService:ToastService ) { }
 
   ngOnInit() {
   
+    if(history.state.message=="updateSuccess")
+    this.toastService.showSuccess('User Updated successfully!', 'Seccess');
+
+    if(history.state.message=="notFound")
+    this.toastService.showError('User not Found !', 'Error');
+
+    console.log(history.state.message+"kkkkkkkkkkkk");
+    
     this.userService.getuserList().subscribe((response:any)=>{
       this.elements= response.body;
       this.mdbTable.setDataSource(this.elements);
       this.previous = this.mdbTable.getDataSource();
       });
-      this.message="";
      
   }
 
   onSubmitForm(){
-    this.message="";
+    
     this.search.startDate=this.startDate;
     this.search.endDate=this.endDate;
      this.myService.fetchTemperaturesOnSearch(this.search).subscribe((response:any)=>{
@@ -68,7 +78,6 @@ export class UserListComponent implements OnInit {
     const myDate = dt.value;
     const locale = 'en-US';
      this.startDate = formatDate(myDate, format, locale);
-     console.log(this.startDate);
   }
 
   setEndDate(dt) {
@@ -79,7 +88,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.message="";
+  
     this.mdbTablePagination.setMaxVisibleItemsNumberTo(10);
 
     this.mdbTablePagination.calculateLastItemIndex();
@@ -88,7 +97,7 @@ export class UserListComponent implements OnInit {
   }
 
   searchItems() { 
-    this.message="";
+   
     const prev = this.mdbTable.getDataSource(); 
     if (!this.searchText) {
   this.mdbTable.setDataSource(this.previous); 
@@ -133,29 +142,16 @@ export class UserListComponent implements OnInit {
   }
   editRow(el) {
    
-   // console.log(el);
-    
      this.route.navigate(["/edit",el.id]);
-    /* const elementIndex = this.elements.findIndex((elem: any) => el === elem);
-    const modalOptions = {
-      data: {
-        editableRow: el
-      }
-    };
-    this.modalRef = this.modalService.show(ModalEditComponent, modalOptions);
-    this.modalRef.content.saveButtonClicked.subscribe((newElement: any) => {
-        this.elements[elementIndex] = newElement;
-      });
-      this.mdbTable.setDataSource(this.elements);
-    } */
+    
   }
   removeRow(el) {
     this.userService.remove(el.id).subscribe((response:any)=>{
       if(response.status==200){
-      this.message="success";
+        this.toastService.showSuccess('User Deleted Successfully', 'Success');
       }
       else
-      this.message="fail";
+      this.toastService.showError('Something went wrong .Please try again', 'Error');
      });
      const elementIndex = this.elements.findIndex((elem: any) => el === elem);
      this.mdbTable.removeRow(elementIndex);
@@ -163,13 +159,7 @@ export class UserListComponent implements OnInit {
          el.id = (index + 1).toString();
        });
        this.mdbTable.setDataSource(this.elements); console.log(el);
-    this.userService.remove(el.id).subscribe((response:any)=>{
-      if(response.status==200){
-      this.message="success";
-      }
-      else
-      this.message="fail";
-     });
+   
     }
   
 }
