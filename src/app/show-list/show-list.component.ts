@@ -26,6 +26,7 @@ export class ShowListComponent implements OnInit{
   previous: any = [];
   searchText: string = ''; 
   search:any={}; 
+  searchForUnreported:any={};
   startDate:any;
   endDate:any;
   companyName:any;
@@ -51,13 +52,24 @@ export class ShowListComponent implements OnInit{
       this.elements= response.body;
       this.mdbTable.setDataSource(this.elements);
       this.previous = this.mdbTable.getDataSource();
-      this.toastService.showInfo('Data fetched successfully!', 'Seccess');
+      this.toastService.showInfo('Data fetched successfully!', 'Success');
      })
   }
 
   onSubmitForm2() {
-    console.log('Form submitted Successfully!');
-    this.toastService.showSuccess('Form submitted Successfully!', 'Seccess');
+    console.log(this.searchForUnreported);
+    this.searchForUnreported.startDate=this.startDate;
+    this.searchForUnreported.endDate=this.endDate;
+    this.myService.fetchUnreportedEmployees(this.searchForUnreported).subscribe((data:Blob)=>{
+      var blob = new Blob([data], {type: 'application/pdf'});
+
+      var downloadURL = window.URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = "Unreported_Employees from "+this.searchForUnreported.startDate+" to "+this.searchForUnreported.endDate +".pdf";
+      link.click();
+    });
+    this.toastService.showSuccess('Form submitted Successfully!', 'Success');
   }
 
   setStartDate(dt) {
@@ -73,6 +85,8 @@ export class ShowListComponent implements OnInit{
     const locale = 'en-US';
      this.endDate = formatDate(myDate, format, locale);
   }
+
+  
 
   ngAfterViewInit() {
     this.mdbTablePagination.setMaxVisibleItemsNumberTo(10);

@@ -129,14 +129,24 @@
                     <div class="row">
                         <div class="form-group col-sm-6 ">
                             <label for="exampleFormControlSelect1 ">Start Date</label>
-                            <input type="date" id="reportStartDate" required class="form-control " [(ngModel)]="search.reportStartDate" name="reportStartDate" #reportStartDate (change)="setStartDate(reportStartDate)" />
+                            <input type="date" id="reportStartDate" required class="form-control " [(ngModel)]="searchForUnreported.startDate" name="reportStartDate" #reportStartDate (change)="setStartDate(reportStartDate)" />
                         </div>
                         <div class="form-group col-sm-6 ">
                             <label for="exampleFormControlSelect1 ">End Date</label>
-                            <input type="date" id="reportEndDate" required class="form-control " [(ngModel)]="search.reportEndDate" name="reportEndDate" #reportEndDate (change)="setEndDate(reportEndDate)" />
+                            <input type="date" id="reportEndDate" required class="form-control " [(ngModel)]="searchForUnreported.endDate" name="reportEndDate" #reportEndDate (change)="setEndDate(reportEndDate)" />
                         </div>
                     </div>
-                    
+                    <div class="row">
+                        <div class="form-group col-sm-6 ">
+                            <label for="exampleFormControlSelect1 ">Company Name</label>
+                            <input type="text" id="company" class="form-control " [(ngModel)]="searchForUnreported.companyName" name="companyName" #companyName />
+                        </div>
+                        <div class="form-group col-sm-6 ">
+                            <label for="exampleFormControlSelect1 ">Department</label>
+                            <input type="text" id="department" class="form-control " [(ngModel)]="searchForUnreported.department" name="department" #department />
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal2.hide()" mdbWavesEffect>Close</button>
