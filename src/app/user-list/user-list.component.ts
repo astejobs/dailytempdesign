@@ -47,7 +47,7 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
   
     if(history.state.message=="updateSuccess")
-    this.toastService.showSuccess('User Updated successfully!', 'Seccess');
+    this.toastService.showSuccess('User Updated successfully!', 'Success');
 
     if(history.state.message=="notFound")
     this.toastService.showError('User not Found !', 'Error');

@@ -34,8 +34,9 @@ export class UserService {
     }
 
 
-      updateUser(data){
-        const url=this.baseURL+"update";
+      updateUser(data,edit:boolean){
+        console.log('bbbbbbbbbbbb'+edit);
+        const url=this.baseURL+"update/"+edit;
         return this.http.put(url,data,{'observe':'response'}).pipe(map((response:any)=>{
         return response;
          }));      

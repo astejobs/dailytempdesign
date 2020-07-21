@@ -48,21 +48,19 @@ export class AddRecordComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit() {    
     //this.user.terminationDate=this.tempDate; 
     console.log(this.user);
-    this.userService.updateUser(this.user).subscribe((response:any)=>{
+    this.userService.updateUser(this.user,this.edit).subscribe((response:any)=>{
         if(response.status==200){
           if(this.edit){
               this.router.navigate(['/users'],{ state: { message:"updateSuccess"} });
           }else{
-           // this.showSuccessMessage('User saved successfully');
             this.toastService.showSuccess('User saved successfully!', 'Success');
             this.myForm.resetForm();
           }
           }
         else{
-          //this.showErrorMessage('Something went wrong .Please try again');
           this.toastService.showError('Something went wrong .Please try again', 'Error');
         }
       }); 

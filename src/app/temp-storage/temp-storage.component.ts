@@ -56,9 +56,9 @@ maxDate= new Date();
   onSubmitForm(frm){
     this.temperature.date=this.tempDate;
     this.temperature.reading=this.tempReading;
+
   this.tempService.save(this.temperature).subscribe((response:any)=>{
     if(response.status==200){
-    this.message="success"; 
     this.toastService.showSuccess('Data Saved Successfully','Success')
     this.panelIndex=0;
   
@@ -66,11 +66,11 @@ maxDate= new Date();
     this.currentPanel='step1';
     }
     else{
-    this.message="fail";
     this.toastService.showError('Data Not Saved','Error');
     }
   }); 
-  
+   frm.resetForm();
+   this.temperature.reading='';
   }
     public clearReading(selectedOption:boolean){
     if(selectedOption==true){
@@ -113,6 +113,7 @@ maxDate= new Date();
     this.panelIndex++;
     this.currentPanel = this.panels[+index+1];
     console.log(this.currentPanel); 
+
 }
 
 onPrevious(index){
