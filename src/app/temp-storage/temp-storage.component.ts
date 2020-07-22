@@ -22,6 +22,8 @@ check:boolean= true;
 temperature:any={};
 tempDate:any;
 message:string;
+onLeave:boolean = false;
+hasFlu:boolean = false;
 
 
 dec1:boolean = true;
@@ -110,12 +112,20 @@ minDate=new Date();
     }
   }
 
-  onNext(index){
-    console.log(index+"panelll");
-    this.panelIndex++;
+  onNext(index){ 
+    console.log(index+"panelll"); 
+    this.panelIndex++; console.log(this.panelIndex)
     this.currentPanel = this.panels[+index+1];
     console.log(this.currentPanel); 
 
+}
+
+showLeaveType(val:boolean) {
+  this.onLeave = val; //console.log(this.onLeave);
+  if(this.onLeave == false && this.panels[3]=='step4')
+  {this.panels.splice(3, 1);  }//console.log(this.panels);
+  if(this.onLeave == true && this.panels[3]!='step4')
+  {this.panels.splice(3, 0, 'step4'); }//console.log(this.panels);
 }
 
 onPrevious(index){
@@ -125,17 +135,27 @@ onPrevious(index){
 checkReading(reading,frm) {
   this.tempReading=reading.value;
   if(reading.value>37.4){
-    this.onNext(5);
+    this.onNext(this.panels.length -2);
     frm.controls['reading'].reset();
    }
   }
   onFlu(frm) {
-    this.onNext(5);
+    this.hasFlu = true; this.reset_filter();
+    this.onNext(this.panels.length -2);
     frm.controls['Symptoms'].reset();
   }
+  onNoFlu() {
+    this.hasFlu = false;
+  }
+  reset_filter() {
+    this.temperature.symptoms = null;
+    this.temperature.travelHistory = null;
+    this.temperature.contacted = null;
+    this.temperature.quarantine = null;
+   }
 
   showWarning() {
-    this.onNext(5);
+    this.onNext(this.panels.length -2);
   }
   
 

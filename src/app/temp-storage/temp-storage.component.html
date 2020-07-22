@@ -169,29 +169,29 @@
                                 </div>
                                 <div class="col-sm-5 p-2" style="text-align: left;">
                                     <!-- Default unchecked -->
-                                    <div class="custom-control custom-radio">
+                                    <div class="custom-control custom-radio" (change)="showLeaveType(false)">
                                         <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" id="onSite" value="onsite" mdbInput required>
                                         <label class="custom-control-label" for="onSite">OnSite</label>
                                     </div>
                                     
                                     <!-- Default checked -->
-                                    <div class="custom-control custom-radio">
+                                    <div class="custom-control custom-radio" (change)="showLeaveType(false)">
                                         <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="home" id="fromHome"  mdbInput required>
                                         <label class="custom-control-label" for="fromHome">Work From Home</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
+                                    <div class="custom-control custom-radio" (change)="showLeaveType(true)">
                                         <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="hospital" id="fromHospital"   mdbInput required>
                                         <label class="custom-control-label" for="fromHospital">In Hospital</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
+                                    <div class="custom-control custom-radio" (change)="showLeaveType(false)">
                                         <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="dormitory" id="fromDormitory"   mdbInput required>
                                         <label class="custom-control-label" for="fromDormitory">Dormitory</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
+                                    <div class="custom-control custom-radio" (change)="showLeaveType(true)">
                                         <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="hostel" id="fromHostel"   mdbInput required>
                                         <label class="custom-control-label" for="fromHostel">In Hotel assigned by MOH</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
+                                    <div class="custom-control custom-radio" (change)="showLeaveType(true)">
                                         <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="leave" id="onLeave"   mdbInput required>
                                         <label class="custom-control-label" for="onLeave">I am at leave today</label>
                                     </div>
@@ -201,30 +201,8 @@
                             </div>
                         </div>
 
-                        <div class="jumbotron" *ngIf="currentPanel=='step4' ">
-                            <div class="row p-4 text-center">
-                                <p class="lead">Medical Declaration<br><hr>
-                                <small> Please Indicate if you have any of the following symptoms, leave blank if not applicable:</small></p>
-    
-    
-                                
-                                <div class="p-2 ml-md-5">
-                                    <!-- Default unchecked -->
-                                    <div class="custom-control custom-radio custom-control-inline" >
-                                        <input type="radio" class="custom-control-input" #Symptoms="ngModel" [(ngModel)]="temperature.symptoms" value="true" id="yes_symptoms" name="symptoms" required (input)="onFlu(myForm)"/>
-                                        <label class="custom-control-label" for="yes_symptoms">Flu / Continuous dry cough / Fever / Tiredness / Difficulty breathing</label>
-                                    </div>
-    
-                                    
-                                    <!-- Default checked -->
-                                    <div class="custom-control custom-radio custom-control-inline" >
-                                        <input type="radio" class="custom-control-input" #Symptoms="ngModel" [(ngModel)]="temperature.symptoms" value="false" id="no_symptoms" name="symptoms" required/>
-                                        <label class="custom-control-label" for="no_symptoms">None of the above</label>
-                                    </div>
-                                </div> 
-                            </div>
-                        </div>
-                        <div class="jumbotron" *ngIf="currentPanel=='step5' ">
+                        
+                        <div class="jumbotron" *ngIf="currentPanel=='step4' && onLeave==true ">
                             <div class="row mt-4 p-4">
                                 <div class="col-sm-6">
                                     <h4>Leave Type</h4><hr>
@@ -264,7 +242,29 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="jumbotron" *ngIf="currentPanel=='step5' ">
+                            <div class="row p-4 text-center">
+                                <p class="lead">Medical Declaration<br><hr>
+                                <small> Please Indicate if you have any of the following symptoms, leave blank if not applicable:</small></p>
+    
+    
+                                
+                                <div class="p-2 ml-md-5">
+                                    <!-- Default unchecked -->
+                                    <div class="custom-control custom-radio custom-control-inline" >
+                                        <input type="radio" class="custom-control-input" #Symptoms="ngModel" [(ngModel)]="temperature.symptoms" value="true" id="yes_symptoms" name="symptoms" required (input)="onFlu(myForm)"/>
+                                        <label class="custom-control-label" for="yes_symptoms">Flu / Continuous dry cough / Fever / Tiredness / Difficulty breathing</label>
+                                    </div>
+    
+                                    
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-radio custom-control-inline"  >
+                                        <input type="radio" class="custom-control-input" #Symptoms="ngModel" [(ngModel)]="temperature.symptoms" value="false" id="no_symptoms" name="symptoms" required (input)="onNoFlu()"/>
+                                        <label class="custom-control-label" for="no_symptoms">None of the above</label>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
                         <div class="jumbotron" *ngIf="currentPanel=='step6' ">
                             <div class="row mt-3 p-3 " >
                                 <div class="" style="font-size:medium;text-align: left;line-height: 1.4rem;">
@@ -328,7 +328,7 @@
                         </div>
 
                         <div class="jumbotron" *ngIf="currentPanel=='step7' ">
-                            <div class="row mt-4 text-center p-5" *ngIf="dec1 && dec2 && dec3">
+                            <div class="row mt-4 text-center p-5" *ngIf="dec1 && dec2 && dec3 && !hasFlu">
                                 <p class="lead p-md-3" style="line-height: 1.8rem;">
                                     You are required to use SafeEntry before being allowed to enter premises and 
                                     use TraceTogether app to reduce disease transmission.
@@ -341,8 +341,8 @@
                                 <button class="btn btn-outline-secondary  btn-block my-5 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">SUBMIT</button>
                             </div>
                             
-                            <div class="row mt-4 text-center p-5" *ngIf="!dec1 || !dec2 || !dec3">
-                                <p class="lead p-md-3 text-danger" style="border: 1px dashed blue;font-family: monospace;">
+                            <div class="row mt-4 text-center p-md-5 p-1" *ngIf="!dec1 || !dec2 || !dec3 || hasFlu">
+                                <p class="lead p-md-5 p-3 text-white bg-danger mat-elevation-z8" style="font-family: monospace;line-height: 2.3rem;">
                                 You are not allowed to enter the workplace from now on and you must report this situation to your
                                 immediate project supervisor immediately.
                                 </p>
@@ -354,7 +354,7 @@
                                 <button class="btn btn-outline-secondary  btn-block my-5 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">AGREE & SUBMIT</button>
                             </div>
                         </div>
-                        <div class="jumbotron p-5 mt-2 w-100 text-center ">
+                        <div class="jumbotron p-md-5 mt-2 w-100 text-center ">
 
                             <span style="float: left; ">
                                 <button type="button" class="btn btn-outline-dark px-4 " (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>
