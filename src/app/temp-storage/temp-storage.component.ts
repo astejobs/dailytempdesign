@@ -37,28 +37,32 @@ mySubscription: any;
 tempReading:any;
 
 maxDate= new Date();
-minDate=new Date();
+
 @ViewChild('msgdiv') el:ElementRef;
-  constructor( private tempService:TempService, private route:Router, private toastService: ToastService) {
-   
+  constructor( private tempService:TempService, private route:Router, private toastService: ToastService,private datePipe:DatePipe) {
+    
   }
 
    
   ngOnInit(): void { 
+    this.temperature.date= new Date().toISOString().substring(0, 10);
+    console.log("in init"+this.temperature.date);
    this.tempService.getUser(localStorage.getItem('user')).subscribe((response:any)=>{
-    this.userdetails=response.body;    
+    this.userdetails=response.body;  
+    
    });
   }
   getDate(dt) {
     const format = 'dd-MM-yyyy';
   const myDate = dt.value;
-
     const locale = 'en-US';
      this.tempDate = formatDate(myDate, format, locale);
   }
+ 
 
   onSubmitForm(frm){
-    this.temperature.date=this.tempDate;
+ 
+    this.temperature.date=this.datePipe.transform(this.temperature.date,"dd-MM-yyyy");
     this.temperature.reading=this.tempReading;
 
   this.tempService.save(this.temperature).subscribe((response:any)=>{
@@ -73,8 +77,10 @@ minDate=new Date();
     this.toastService.showError('Data Not Saved','Error');
     }
   }); 
+  
    frm.resetForm();
    this.temperature.reading='';
+   window.location.reload();
   }
     public clearReading(selectedOption:boolean){
     if(selectedOption==true){
