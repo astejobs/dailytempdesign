@@ -34,7 +34,7 @@
                             <div class="form-group col-sm-6">
                                 <label for="exampleFormControlSelect1">Date</label>
                                 <!--<div class="md-form">  -->
-                                    <input type="date" [max]="maxDate | date:'yyyy-MM-dd'" required #date="ngModel" #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">
+                                    <input type="date" [max]="maxDate | date:'yyyy-MM-dd'" [min]="minDate | date:'yyyy-MM-dd'" required #date="ngModel" #dateInput class="form-control" name="date" [(ngModel)]="temperature.date" (change)="getDate(dateInput)">
                                     <div *ngIf="date.invalid && (date.dirty || date.touched)" class="text-theme-6 mt-2">Date is required</div>
 
                                 <!-- </div> -->

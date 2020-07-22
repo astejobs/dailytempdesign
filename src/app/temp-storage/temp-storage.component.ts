@@ -35,6 +35,7 @@ mySubscription: any;
 tempReading:any;
 
 maxDate= new Date();
+minDate=new Date();
 @ViewChild('msgdiv') el:ElementRef;
   constructor( private tempService:TempService, private route:Router, private toastService: ToastService) {
    
@@ -48,7 +49,8 @@ maxDate= new Date();
   }
   getDate(dt) {
     const format = 'dd-MM-yyyy';
-    const myDate = dt.value;
+  const myDate = dt.value;
+
     const locale = 'en-US';
      this.tempDate = formatDate(myDate, format, locale);
   }
