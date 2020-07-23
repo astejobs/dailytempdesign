@@ -57,7 +57,7 @@
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Emp Termination Date</mat-label><!--  -->
                             <input [matDatepicker]="picker" #dat type="hidden" (dateInput)="getDate(dat.value)">
-                            <input matInput name="terminationDate" [(ngModel)]="user.terminationDate" >
+                            <input matInput name="terminationDate" [(ngModel)]="user.terminationDate" readonly="{{ edit }}" >
                             <mat-datepicker-toggle matSuffix [for]="picker" class="app-color"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
