@@ -21,35 +21,35 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Employee Name</mat-label>
-                            <input matInput #name placeholder="Employee" required name="name" [(ngModel)]="user.name">
+                            <input matInput #name placeholder="Employee" required name="name" [(ngModel)]="user.name" readonly="{{ edit }}">
                             <mat-error *ngIf="!name.valid && !name.dirty">This Field is required</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Company Name</mat-label>
-                            <input matInput placeholder="Company" required name="companyName" [(ngModel)]="user.companyName">
+                            <input matInput placeholder="Company" required name="companyName" [(ngModel)]="user.companyName" readonly="{{ edit }}">
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Employee NRIC / FIN</mat-label>
-                            <input matInput placeholder="Emp NRIC/FIN" required name="empNRIC" [(ngModel)]="user.empNRIC">
+                            <input matInput placeholder="Emp NRIC/FIN" required name="empNRIC" [(ngModel)]="user.empNRIC" readonly="{{ edit }}">
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>NRIC / FIN</mat-label>
-                            <input matInput placeholder="NRIC/FIN" required name="NRIC" [(ngModel)]="user.nric">
+                            <input matInput placeholder="NRIC/FIN" required name="NRIC" [(ngModel)]="user.nric" readonly="{{ edit }}">
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Combine</mat-label>
-                            <input matInput placeholder="Combine" required name="combine" [(ngModel)]="user.combine">
+                            <input matInput placeholder="Combine" required name="combine" [(ngModel)]="user.combine" readonly="{{ edit }}">
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
                     </div>
@@ -78,7 +78,7 @@
                     <div class="col-sm-6">
                         <mat-form-field appearance="outline" class="form-full-width">
                             <mat-label>Section</mat-label>
-                            <input matInput placeholder="Section" required name="section" [(ngModel)]="user.section">
+                            <input matInput placeholder="Section" required name="section" [(ngModel)]="user.section" readonly="{{ edit }}">
                             <mat-error>This Field is required</mat-error>
                         </mat-form-field>
                     </div>
