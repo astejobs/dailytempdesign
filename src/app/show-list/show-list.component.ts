@@ -32,7 +32,8 @@ export class ShowListComponent implements OnInit{
   companyName:any;
   department:any;
   headElements = ['Employee Name', 'Shift', 'Temperature Reading', 'Date'];
-  
+  companies=[];
+  departments=[];
   @HostListener('input') oninput() 
   { 
     this.searchItems();
@@ -42,7 +43,14 @@ export class ShowListComponent implements OnInit{
               private userService:UserService, private toastService: ToastService) { }
 
   ngOnInit() {
-    
+    this.userService.getCompanies().subscribe((response:any)=>{
+      this.companies= response.body;
+      
+    });
+    this.userService.getDepts().subscribe((response:any)=>{
+      this.departments= response.body;
+      
+    });
   }
 
   onSubmitForm(){

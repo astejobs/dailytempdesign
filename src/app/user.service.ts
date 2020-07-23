@@ -42,4 +42,17 @@ export class UserService {
         
     }
 
+    getCompanies(){
+      const url=this.baseURL+"companies";
+      return this.http.get(url,{'observe':'response'}).pipe(map((response)=>{    
+      return response;
+    }));
+    }
+
+    getDepts(){
+      const url=this.baseURL+"departments";
+      return this.http.get(url,{'observe':'response'}).pipe(map((response)=>{    
+      return response;
+    }));
+    }
 }

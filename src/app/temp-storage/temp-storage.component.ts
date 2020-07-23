@@ -81,6 +81,8 @@ maxDate= new Date();
    frm.resetForm();
    this.temperature.reading='';
    window.location.reload();
+   
+
   }
     public clearReading(selectedOption:boolean){
     if(selectedOption==true){
