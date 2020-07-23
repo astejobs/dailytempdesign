@@ -27,12 +27,12 @@
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.companyName}}</td>
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.email}}</td>
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                                    <button mdbBtn color="warning" size="sm" mdbWavesEffect (click)="editRow(el)">Edit</button>
+                                    <button mdbBtn class="btn purple-gradient" size="sm" mdbWavesEffect (click)="editRow(el)">Edit</button>
                                    <!--  <button mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeRow(el)">Remove</button> -->
                                 </td>
                                 <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
                                     <!-- <button mdbBtn color="warning" size="sm" mdbWavesEffect (click)="editRow(el)">Edit</button> -->
-                                    <button mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeRow(el)">Remove</button>
+                                    <button mdbBtn class="btn peach-gradient" size="sm" mdbWavesEffect (click)="openDialog(el)">Remove</button>
                                 </td>
                             </tr>
                         </tbody>

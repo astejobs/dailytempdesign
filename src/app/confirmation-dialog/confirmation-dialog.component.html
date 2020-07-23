@@ -1,0 +1,12 @@
+<mat-dialog-content>
+	<div class="lead px-md-5 py-md-2 font-weight-bold">
+        <div class="text-center">
+            <mat-icon color="accent" style="font-size:40px;">delete_forever</mat-icon>
+        </div>
+		{{message}}
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+	<button class="btn peach-gradient" (click)="onConfirmClick()" tabindex="1">{{confirmButtonText}}</button>
+	<button class="btn purple-gradient" mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
+</mat-dialog-actions>

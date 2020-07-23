@@ -28,12 +28,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddRecordComponent } from './add-record/add-record.component';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './user-list/user-list.component';
 import { DatePipe } from '@angular/common';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadingService } from './loading.service';
 import { CustomFormsModule } from 'ng2-validation';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [ 
@@ -43,7 +45,8 @@ import { CustomFormsModule } from 'ng2-validation';
     ShowListComponent,
     LoginComponent,
     AddRecordComponent,
-    UserListComponent
+    UserListComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -66,10 +69,12 @@ import { CustomFormsModule } from 'ng2-validation';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    CustomFormsModule
+    CustomFormsModule,
+    MatDialogModule
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    entryComponents: [ConfirmationDialogComponent],
   providers: [DatePipe, LoadingService],
   bootstrap: [AppComponent]
 })

@@ -12,6 +12,8 @@ import { AddRecordComponent } from '../add-record/add-record.component';
 import { EventEmitter } from 'protractor';
 import { ToastService } from '../toast.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-user-list',
@@ -44,7 +46,7 @@ export class UserListComponent implements OnInit {
   } 
 
   constructor(private cdRef: ChangeDetectorRef,private routeAc:ActivatedRoute, private ts:TemperatureServiceService,private myService:TempService,private userService:UserService,
-    private route:Router,private toastService:ToastService,private spinner: NgxSpinnerService ) {
+    private route:Router,private toastService:ToastService,private spinner: NgxSpinnerService,private dialog: MatDialog ) {
       this.spinner.show();
      }
 
@@ -164,5 +166,23 @@ export class UserListComponent implements OnInit {
        this.mdbTable.setDataSource(this.elements); console.log(el);
    
     }
+    openDialog(el) {
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+        data:{
+          message: 'Are you sure want to delete?',
+          buttonText: {
+            ok: 'Yes',
+            cancel: 'No'
+          }
+        }
+      });
+     
   
+      dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+        if (confirmed) {
+          console.log('deleted');
+          this.removeRow(el);
+        }
+      });
+    }
 }
