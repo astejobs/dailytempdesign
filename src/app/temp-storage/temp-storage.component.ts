@@ -85,8 +85,10 @@ maxDate= new Date();
   
    frm.resetForm();
    this.temperature.reading='';
-   window.location.reload();
-   
+   //window.location.reload();
+   this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.route.navigate(['temperature']);
+}); 
 
   }
     public clearReading(selectedOption:boolean){
