@@ -1,6 +1,6 @@
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -31,6 +31,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './user-list/user-list.component';
 import { DatePipe } from '@angular/common';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LoadingService } from './loading.service';
+import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   declarations: [ 
@@ -62,9 +65,12 @@ import { DatePipe } from '@angular/common';
     MatNativeDateModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    NgxSpinnerModule,
+    CustomFormsModule
 
     ],
-  providers: [DatePipe],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [DatePipe, LoadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

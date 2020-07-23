@@ -1,3 +1,5 @@
+<!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > Loading... </p>
+</ngx-spinner> --><!-- type = "square-jelly-box" -->
 <div class="container" style="font-family: roboto;">
     <div class="row">
         <div class="col-sm-12">
@@ -131,7 +133,7 @@
 
                                         <div class="form-group" *ngIf="options && shift.valid"><!-- ^0[1-9]|[1-9]\d$ to accept only numbers-->
                                             <input type="number" class="form-control" required placeholder="Enter Meter Reading"
-                                                    [(ngModel)]="temperature.reading" name="reading" #reading="ngModel" maxlength="4"
+                                                    [(ngModel)]="temperature.reading" name="reading" #reading="ngModel" [min]="35.0" [max]="38.0"
                                                          pattern="" (input)="checkReading(reading,myForm)" step="0.1">
 
                                             <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Meter Reading is required</div>
@@ -359,9 +361,9 @@
                             <span style="float: left; ">
                                 <button type="button" class="btn btn-outline-dark px-4 " (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>
                             </span>
-                            <!-- <button type="submit" class="btn btn-outline-dark px-4 mr-4 " *ngIf="panelIndex+1 >= panels.length" [disabled]="!myForm.valid ">Submit</button> -->
+                            <!-- <button type="submit" class="btn btn-outline-dark px-4 mr-4 " *ngIf="panelIndex+1 >= panels.length" [disabled]="!myForm.valid ">Submit</button> --><!-- || temperature.reading<35 -->
                             <button type="button" class="btn btn-outline-dark px-4 " (click)="myForm.reset()">Cancel</button>
-                            <button type="button" class="btn btn-outline-dark px-4 " #nxt style="float: right;" (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length) || (currentPanel == 'step7')">Next</button>
+                            <button type="button" class="btn btn-outline-dark px-4 " #nxt style="float: right;" (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length) || (currentPanel == 'step7') ">Next</button>
     
                         </div>
                        

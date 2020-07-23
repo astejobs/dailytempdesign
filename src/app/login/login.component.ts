@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TempService } from '../temp.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
    errorLbl:string;
    isAdmin:boolean = false;
    adminLoginEnable = "block";
-  constructor( private myService: TempService,private route:Router) {
+  constructor( private myService: TempService,private route:Router, private spinner: NgxSpinnerService) {
   
    }
    
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
   onLogin( ){
     
-    
+    this.spinner.show();
     this.myService.loginService(this.user).subscribe((response:any)=>{
       console.log("llltokenll"+response.body['token']);
       if(response.status==200){  
@@ -36,13 +37,15 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('role',response.body['role']);
         localStorage.setItem('user',this.user.username)
         this.errorLbl="";
-        this.myService.menu.next(); 
+        this.myService.menu.next(); this.spinner.hide();
         this.route.navigateByUrl('temperature');   
       }    
       }else {
+        this.spinner.hide();
         this.errorLbl="Wrong Credentials";
       }
      },(err:any)=>{
+      this.spinner.hide();
        this.errorLbl="Wrong Credentials";
       console.log(err);
      }

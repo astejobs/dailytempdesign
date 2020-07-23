@@ -8,6 +8,7 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { UserService } from '../user.service';
 import { ToastService } from '../toast.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class ShowListComponent implements OnInit{
   } 
 
   constructor(private cdRef: ChangeDetectorRef, private ts:TemperatureServiceService,private myService:TempService,
-              private userService:UserService, private toastService: ToastService) { }
+              private userService:UserService, private toastService: ToastService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.userService.getCompanies().subscribe((response:any)=>{
@@ -54,6 +56,7 @@ export class ShowListComponent implements OnInit{
   }
 
   onSubmitForm(){
+    this.spinner.show();
     this.search.startDate=this.startDate;
     this.search.endDate=this.endDate;
      this.myService.fetchTemperaturesOnSearch(this.search).subscribe((response:any)=>{
@@ -61,6 +64,7 @@ export class ShowListComponent implements OnInit{
       this.mdbTable.setDataSource(this.elements);
       this.previous = this.mdbTable.getDataSource();
       this.toastService.showInfo('Data fetched successfully!', 'Success');
+      this.spinner.hide();
      })
   }
 

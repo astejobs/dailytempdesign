@@ -7,6 +7,7 @@ import { formatDate, DatePipe } from '@angular/common';
 import { ok } from 'assert';
 import { Router, NavigationEnd } from '@angular/router';
 import { ToastService } from '../toast.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -39,24 +40,28 @@ tempReading:any;
 maxDate= new Date();
 
 @ViewChild('msgdiv') el:ElementRef;
-  constructor( private tempService:TempService, private route:Router, private toastService: ToastService,private datePipe:DatePipe) {
+  constructor( private tempService:TempService, private route:Router, 
+               private toastService: ToastService,private datePipe: DatePipe,
+               private spinner: NgxSpinnerService) {
     
   }
 
    
   ngOnInit(): void { 
+    this.spinner.show();
     this.temperature.date= new Date().toISOString().substring(0, 10);
     console.log("in init"+this.temperature.date);
-   this.tempService.getUser(localStorage.getItem('user')).subscribe((response:any)=>{
+    this.tempService.getUser(localStorage.getItem('user')).subscribe((response:any)=>{
     this.userdetails=response.body;  
-    
-   });
+    this.spinner.hide();
+   }); 
+
   }
   getDate(dt) {
     const format = 'dd-MM-yyyy';
-  const myDate = dt.value;
+    const myDate = dt.value;
     const locale = 'en-US';
-     this.tempDate = formatDate(myDate, format, locale);
+    this.tempDate = formatDate(myDate, format, locale);
   }
  
 
@@ -142,7 +147,7 @@ onPrevious(index){
 }
 checkReading(reading,frm) {
   this.tempReading=reading.value;
-  if(reading.value>37.4){
+  if((reading.value>37.4 && reading.value<=38.0)|| reading.value==35.01){
     this.onNext(this.panels.length -2);
     frm.controls['reading'].reset();
    }

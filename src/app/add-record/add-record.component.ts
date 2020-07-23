@@ -6,6 +6,7 @@ import { UserService } from '../user.service';
 import { ToastService } from '../toast.service';
 
 import {BehaviorSubject} from 'rxjs'; 
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -26,41 +27,46 @@ export class AddRecordComponent implements OnInit {
  
   
   constructor(private route:ActivatedRoute, private userService:UserService,private router:Router,
-              private toastService:ToastService) { 
+              private toastService:ToastService, private spinner: NgxSpinnerService) { 
     
   }
 
   ngOnInit(): void {  
-
+    this.spinner.show();
    if(this.route.snapshot.paramMap.get('id')!=null){
     this.edit=true;
     this.userService.edit(this.route.snapshot.paramMap.get('id')).subscribe((response:any)=>{
       if(response.body==null){
+        this.spinner.hide();
         this.router.navigate(['/users'],{ state: { message:"notFound"} });
-
-
-    }
+      }
       else{
-     this.user=response.body;     
+     this.user=response.body; 
+     this.spinner.hide();    
      console.log(this.user);
       }
      });
     }
+    this.spinner.hide();
   }
 
   onSubmit() {    
     //this.user.terminationDate=this.tempDate; 
+    this.spinner.show();
     console.log(this.user);
     this.userService.updateUser(this.user,this.edit).subscribe((response:any)=>{
         if(response.status==200){
-          if(this.edit){
-              this.router.navigate(['/users'],{ state: { message:"updateSuccess"} });
+          if(this.edit){ 
+            this.spinner.hide();
+            this.router.navigate(['/users'],{ state: { message:"updateSuccess"} });
           }else{
+            this.spinner.hide();
             this.toastService.showSuccess('User saved successfully!', 'Success');
             this.myForm.resetForm();
           }
           }
         else{
+          this.spinner.hide();
           this.toastService.showError('Something went wrong .Please try again', 'Error');
         }
       }); 

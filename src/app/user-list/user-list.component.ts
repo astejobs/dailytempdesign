@@ -11,6 +11,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { AddRecordComponent } from '../add-record/add-record.component';
 import { EventEmitter } from 'protractor';
 import { ToastService } from '../toast.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -24,7 +26,7 @@ export class UserListComponent implements OnInit {
 
    EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
    EXCEL_EXTENSION = '.xlsx';
-
+  
   elements:any=[];
   previous: any = [];
   searchText: string = ''; 
@@ -42,10 +44,11 @@ export class UserListComponent implements OnInit {
   } 
 
   constructor(private cdRef: ChangeDetectorRef,private routeAc:ActivatedRoute, private ts:TemperatureServiceService,private myService:TempService,private userService:UserService,
-    private route:Router,private toastService:ToastService ) { }
+    private route:Router,private toastService:ToastService,private spinner: NgxSpinnerService ) {
+      this.spinner.show();
+     }
 
   ngOnInit() {
-  
     if(history.state.message=="updateSuccess")
     this.toastService.showSuccess('User Updated successfully!', 'Success');
 
@@ -58,8 +61,8 @@ export class UserListComponent implements OnInit {
       this.elements= response.body;
       this.mdbTable.setDataSource(this.elements);
       this.previous = this.mdbTable.getDataSource();
+      this.spinner.hide();
       });
-     
   }
 
   onSubmitForm(){
