@@ -184,10 +184,6 @@ showLeaveType(e, onleave) {
 }
 
 checkLeaveType() {
-  if(this.inHotel) {
-    this.reset_filter();
-    this.onNext(this.panels.length -2);
-  }
   if(this.leaveToday) {
     this.reset_filter();
     this.onNext(this.panels.length -2);
