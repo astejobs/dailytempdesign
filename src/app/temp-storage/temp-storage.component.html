@@ -171,30 +171,30 @@
                                 </div>
                                 <div class="col-sm-5 p-2" style="text-align: left;">
                                     <!-- Default unchecked -->
-                                    <div class="custom-control custom-radio" (change)="showLeaveType(false)">
-                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" id="onSite" value="onsite" mdbInput required>
+                                    <div class="custom-control custom-radio" ><!-- (change)="showLeaveType(false, false, false)" -->
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" id="onSite" value="onsite" mdbInput required (input)="showLeaveType($event,false)">
                                         <label class="custom-control-label" for="onSite">OnSite</label>
                                     </div>
                                     
                                     <!-- Default checked -->
-                                    <div class="custom-control custom-radio" (change)="showLeaveType(false)">
-                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="home" id="fromHome"  mdbInput required>
+                                    <div class="custom-control custom-radio" >
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="home" id="fromHome"  mdbInput required (input)="showLeaveType($event,false)">
                                         <label class="custom-control-label" for="fromHome">Work From Home</label>
                                     </div>
-                                    <div class="custom-control custom-radio" (change)="showLeaveType(true)">
-                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="hospital" id="fromHospital"   mdbInput required>
+                                    <div class="custom-control custom-radio" >
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="hospital" id="fromHospital"   mdbInput required (input)="showLeaveType($event,true)">
                                         <label class="custom-control-label" for="fromHospital">In Hospital</label>
                                     </div>
-                                    <div class="custom-control custom-radio" (change)="showLeaveType(false)">
-                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="dormitory" id="fromDormitory"   mdbInput required>
+                                    <div class="custom-control custom-radio" >
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="dormitory" id="fromDormitory"   mdbInput required (input)="showLeaveType($event,false)">
                                         <label class="custom-control-label" for="fromDormitory">Dormitory</label>
                                     </div>
-                                    <div class="custom-control custom-radio" (change)="showLeaveType(true)">
-                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="hostel" id="fromHostel"   mdbInput required>
+                                    <div class="custom-control custom-radio" >
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="hotel" id="fromHostel"   mdbInput required (input)="showLeaveType($event,true)">
                                         <label class="custom-control-label" for="fromHostel">In Hotel assigned by MOH</label>
                                     </div>
-                                    <div class="custom-control custom-radio" (change)="showLeaveType(true)">
-                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="leave" id="onLeave"   mdbInput required>
+                                    <div class="custom-control custom-radio" >
+                                        <input type="radio" class="custom-control-input" #work_location="ngModel" name="workLocation" [(ngModel)]="temperature.workLocation" value="leave" id="onLeave"   mdbInput required (input)="showLeaveType($event,true)">
                                         <label class="custom-control-label" for="onLeave">I am at leave today</label>
                                     </div>
                                 </div>
@@ -214,37 +214,37 @@
                                     
                                     <!-- Default checked -->
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="normal" [(ngModel)]="temperature.leaveType"   id="mc_normal" name="leaveType"  mdbInput required>
+                                        <input type="radio" class="custom-control-input" value="normal" [(ngModel)]="temperature.leaveType"   id="mc_normal" name="leaveType"  mdbInput required (input)="checkLeaveType()">
                                         <label class="custom-control-label" for="mc_normal">MC - Normal Issued by GP</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="awaitingresult" [(ngModel)]="temperature.leaveType" id="mc_swab" name="leaveType"   mdbInput required>
+                                        <input type="radio" class="custom-control-input" value="awaitingresult" [(ngModel)]="temperature.leaveType" id="mc_swab" name="leaveType"   mdbInput required (input)="checkLeaveType()">
                                         <label class="custom-control-label" for="mc_swab">MC - swab and awaiting result</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="company" [(ngModel)]="temperature.leaveType" id="Bycompany" name="leaveType"  mdbInput required>
+                                        <input type="radio" class="custom-control-input" value="company" [(ngModel)]="temperature.leaveType" id="Bycompany" name="leaveType"  mdbInput required (input)="checkLeaveType()">
                                         <label class="custom-control-label" for="Bycompany">Company / MOH instruction</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="stayhomenotification" [(ngModel)]="temperature.leaveType" id="shn" name="leaveType"  mdbInput required>
+                                        <input type="radio" class="custom-control-input" value="stayhomenotification" [(ngModel)]="temperature.leaveType" id="shn" name="leaveType"  mdbInput required (input)="checkLeaveType()">
                                         <label class="custom-control-label" for="shn">Stay Home Notification (SHN)</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="quarantine" [(ngModel)]="temperature.leaveType" id="quar_order" name="leaveType" required mdbInput>
+                                        <input type="radio" class="custom-control-input" value="quarantine" [(ngModel)]="temperature.leaveType" id="quar_order" name="leaveType" required mdbInput (input)="checkLeaveType()">
                                         <label class="custom-control-label" for="quar_order">Quarantine Order</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="home" [(ngModel)]="temperature.leaveType" id="homeLeave" name="leaveType"  mdbInput required>
+                                        <input type="radio" class="custom-control-input" value="home" [(ngModel)]="temperature.leaveType" id="homeLeave" name="leaveType"  mdbInput required (input)="checkLeaveType()">
                                         <label class="custom-control-label" for="homeLeave">Home Leave</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="maternity" [(ngModel)]="temperature.leaveType" id="maternity" name="leaveType" mdbInput required>
+                                        <input type="radio" class="custom-control-input" value="maternity" [(ngModel)]="temperature.leaveType" id="maternity" name="leaveType" mdbInput required (input)="checkLeaveType()">
                                         <label class="custom-control-label" for="maternity">Maternity</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="jumbotron" *ngIf="currentPanel=='step5' ">
+                        <div class="jumbotron" *ngIf="currentPanel=='step5' && inHospital == false">
                             <div class="row p-4 text-center">
                                 <p class="lead">Medical Declaration<br><hr>
                                 <small> Please Indicate if you have any of the following symptoms, leave blank if not applicable:</small></p>
@@ -267,7 +267,7 @@
                                 </div> 
                             </div>
                         </div>
-                        <div class="jumbotron" *ngIf="currentPanel=='step6' ">
+                        <div class="jumbotron" *ngIf="currentPanel=='step6' && inHospital == false">
                             <div class="row mt-3 p-3 " >
                                 <div class="" style="font-size:medium;text-align: left;line-height: 1.4rem;">
                                     <p class="lead text-center">Self Declaration</p>
@@ -330,10 +330,14 @@
                         </div>
 
                         <div class="jumbotron" *ngIf="currentPanel=='step7' ">
-                            <div class="row mt-4 text-center p-5" *ngIf="dec1 && dec2 && dec3 && !hasFlu">
-                                <p class="lead p-md-3" style="line-height: 1.8rem;">
+                            <div class="row mt-4 text-center p-5" *ngIf="(dec1 && dec2 && dec3 && !hasFlu && !inHospital) || inHotel">
+                                <p class="lead p-md-3" style="line-height: 1.8rem;" *ngIf="!isDormitory && !inHotel">
                                     You are required to use SafeEntry before being allowed to enter premises and 
                                     use TraceTogether app to reduce disease transmission.
+                                </p>
+                                <p class="lead p-md-3" style="line-height: 1.8rem;" *ngIf="isDormitory || inHotel">
+                                    Use TraceTogether app to reduce disease transmission. <br>
+                                    Maintain Social distance and use Mask
                                 </p>
                                 <p class="lead p-md-3">
                                     Thank you for your cooperation in this difficult period. Together we shall
@@ -343,9 +347,10 @@
                                 <button class="btn btn-outline-secondary  btn-block my-5 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">SUBMIT</button>
                             </div>
                             
-                            <div class="row mt-4 text-center p-md-5 p-1" *ngIf="!dec1 || !dec2 || !dec3 || hasFlu">
+                            <div class="row mt-4 text-center p-md-5 p-1" *ngIf="(!dec1 || !dec2 || !dec3 || hasFlu || inHospital) && !inHotel">
                                 <p class="lead p-md-5 p-3 text-white bg-danger mat-elevation-z8" style="font-family: monospace;line-height: 2.3rem;">
-                                You are not allowed to enter the workplace from now on and you must report this situation to your
+                                <span *ngIf="!inHospital && !leaveToday">You are not allowed to enter the workplace from now on and </span>
+                                you must report this situation to your
                                 immediate project supervisor immediately.
                                 </p>
                                 <p class="lead p-md-3 text-center">
@@ -359,11 +364,11 @@
                         <div class="jumbotron p-md-5 mt-2 w-100 text-center ">
 
                             <span style="float: left; ">
-                                <button type="button" class="btn btn-outline-dark px-4 " (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>
+                                <button type="button" class="btn btn-outline-dark px-md-4 px-3" (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>
                             </span>
                             <!-- <button type="submit" class="btn btn-outline-dark px-4 mr-4 " *ngIf="panelIndex+1 >= panels.length" [disabled]="!myForm.valid ">Submit</button> --><!-- || temperature.reading<35 -->
-                            <button type="button" class="btn btn-outline-dark px-4 " (click)="myForm.reset()">Cancel</button>
-                            <button type="button" class="btn btn-outline-dark px-4 " #nxt style="float: right;" (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length) || (currentPanel == 'step7') ">Next</button>
+                            <button type="button" class="btn btn-outline-dark px-md-4 px-3" (click)="myForm.reset()">Cancel</button>
+                            <button type="button" class="btn btn-outline-dark px-md-4 px-3" #nxt style="float: right;" (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length) || (currentPanel == 'step7') ">Next</button>
     
                         </div>
                        

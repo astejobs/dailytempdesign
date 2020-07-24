@@ -25,7 +25,10 @@ tempDate:any;
 message:string;
 onLeave:boolean = false;
 hasFlu:boolean = false;
-
+inHospital:boolean = false;
+isDormitory:boolean = false;
+inHotel:boolean = false;
+leaveToday:boolean= false;
 
 dec1:boolean = true;
 dec2:boolean = false;
@@ -59,7 +62,7 @@ maxDate= new Date();
   }
   getDate(dt) {
     const format = 'dd-MM-yyyy';
-    const myDate = dt.value;
+    const myDate = dt.onleaveue;
     const locale = 'en-US';
     this.tempDate = formatDate(myDate, format, locale);
   }
@@ -75,7 +78,7 @@ maxDate= new Date();
     this.toastService.showSuccess('Data Saved Successfully','Success')
     this.panelIndex=0;
   
-    console.log(frm.value+"form values");
+    console.log(frm.onleaveue+"form onleaveues");
     this.currentPanel='step1';
     }
     else{
@@ -135,27 +138,75 @@ maxDate= new Date();
 
 }
 
-showLeaveType(val:boolean) {
-  this.onLeave = val; //console.log(this.onLeave);
-  if(this.onLeave == false && this.panels[3]=='step4')
-  {this.panels.splice(3, 1);  }//console.log(this.panels);
-  if(this.onLeave == true && this.panels[3]!='step4')
-  {this.panels.splice(3, 0, 'step4'); }//console.log(this.panels);
+showLeaveType(e, onleave) {
+  console.log(e.target.value)
+  let inhospital = false;
+  let dormitory = false;
+  let hotel = false;
+  let leave = false;
+  if(e.target.value == 'hospital') {inhospital=true;}
+  if(e.target.value == 'dormitory') {dormitory=true;}
+  if(e.target.value == 'hotel') {hotel=true;}
+  if(e.target.value == 'leave') {leave=true;}
+  this.inHospital = inhospital;
+  this.isDormitory = dormitory;
+  this.inHotel = hotel;
+  this.leaveToday = leave;
+  this.onLeave = onleave; 
+  //console.log(inhospital);console.log(onleave);
+  //console.log(this.panels.length);console.log(this.panels);
+  if(inhospital && this.panels.length == 7) {
+    this.inHospital=true;
+    this.panels.splice(4, 2); //console.log('in Hospital del 3'+this.panels);
+  }
+  else if(inhospital && this.panels.length == 6) {
+    this.inHospital=true;
+    this.panels.splice(3, 2); //console.log('in Hospital del 2'+this.panels);
+    this.panels.splice(3, 0, 'step4');
+  }
+  else if(!inhospital && this.panels[3]!='step4' && onleave && this.panels.length<5) {
+    this.panels.splice(3, 0, 'step4');
+    this.panels.splice(4, 0, 'step5');
+    this.panels.splice(5, 0, 'step6'); //console.log('Not in Hospital add 3'+this.panels);
+  }
+  else if(!inhospital && !onleave && this.panels.length == 5) {
+    if(this.panels[3]=='step4') { this.panels.splice(3, 1); }
+    this.panels.splice(3, 0, 'step5');
+    this.panels.splice(4, 0, 'step6'); //console.log('Not in Hospital add 2'+this.panels);
+  }
+  else {
+    this.inHospital=false;
+    if(!onleave && this.panels[3]=='step4')
+    {this.panels.splice(3, 1);  }//console.log(this.panels);
+    if(onleave && this.panels[3]!='step4')
+    {this.panels.splice(3, 0, 'step4'); }//console.log(this.panels);
+  }console.log(this.panels);
 }
 
+checkLeaveType() {
+  if(this.inHotel) {
+    this.reset_filter();
+    this.onNext(this.panels.length -2);
+  }
+  if(this.leaveToday) {
+    this.reset_filter();
+    this.onNext(this.panels.length -2);
+  }
+}
 onPrevious(index){
     this.panelIndex--;
     this.currentPanel=this.panels[+index-1];
 }
 checkReading(reading,frm) {
   this.tempReading=reading.value;
-  if((reading.value>37.4 && reading.value<=38.0)|| reading.value==35.01){
+  if((reading.value>37.4 || reading.value<=34.9) && (this.tempReading.toString().length >=2) ){
     this.onNext(this.panels.length -2);
     frm.controls['reading'].reset();
    }
   }
   onFlu(frm) {
-    this.hasFlu = true; this.reset_filter();
+    this.hasFlu = true; 
+    this.reset_filter();
     this.onNext(this.panels.length -2);
     frm.controls['Symptoms'].reset();
   }
