@@ -135,6 +135,7 @@ maxDate= new Date();
     this.panelIndex++; console.log(this.panelIndex)
     this.currentPanel = this.panels[+index+1];
     console.log(this.currentPanel); 
+    window.scrollTo(0, 300);
 
 }
 
