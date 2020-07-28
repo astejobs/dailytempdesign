@@ -62,7 +62,7 @@ maxDate= new Date();
   }
   getDate(dt) {
     const format = 'dd-MM-yyyy';
-    const myDate = dt.onleaveue;
+    const myDate = dt.value;
     const locale = 'en-US';
     this.tempDate = formatDate(myDate, format, locale);
   }
@@ -78,7 +78,7 @@ maxDate= new Date();
     this.toastService.showSuccess('Data Saved Successfully','Success')
     this.panelIndex=0;
   
-    console.log(frm.onleaveue+"form onleaveues");
+    console.log(frm.value+"form value");
     this.currentPanel='step1';
     }
     else{
