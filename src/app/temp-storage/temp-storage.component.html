@@ -282,7 +282,7 @@
                                 <div class="table-responsive" style="text-align: left;">
                                     <table class="table">
                                         <tr>
-                                            <td> Are you currently not under a quarantine or isolation order, Stay-Home Notice, or been issued medical 
+                                            <td> Are you currently under a quarantine or isolation order, Stay-Home Notice, or been issued medical 
                                                 certificates for respiratory symptoms?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec1(true)">
@@ -296,7 +296,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td> Have not had close contact with a confirmed COVID-19 case in the past 14 days?</td>
+                                            <td> Are you had close contact with a confirmed COVID-19 case in the past 14 days?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(true)">
                                                     <input type="radio" class="custom-control-input" id="yes_contact" value="false"  name="contacted" #Contact="ngModel" [(ngModel)]="temperature.contacted" mdbInput  required (input)="ToggleDec2(true)">
@@ -310,7 +310,7 @@
                                         </tr>
                                         <tr>
 
-                                            <td>Have you not travelled to other countries in the past 14 days.</td>
+                                            <td>Are you have travelled to other countries in the past 14 days.</td>
                                             <td> 
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(true)">
                                                     <input type="radio" class="custom-control-input" id="yes_travel" value="false" name="travelHistory" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput  required (input)="ToggleDec3(true)">
@@ -330,7 +330,7 @@
                         </div>
 
                         <div class="jumbotron" *ngIf="currentPanel=='step7' ">
-                            <div class="row mt-4 text-center p-md-5 p-1" *ngIf="(dec1 && dec2 && dec3 && !hasFlu && !inHospital && !leaveToday)">
+                            <div class="row mt-4 text-center p-md-5 p-1" *ngIf="(!dec1 && !dec2 && !dec3 && !hasFlu && !inHospital && !leaveToday)">
                                 <p class="lead p-md-3" style="line-height: 1.8rem;" *ngIf="!isDormitory && !inHotel">
                                     You are required to use SafeEntry before being allowed to enter premises and 
                                     use TraceTogether app to reduce disease transmission.
@@ -347,7 +347,7 @@
                                 <button class="btn btn-outline-secondary  btn-block my-5 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">SUBMIT</button>
                             </div>
                             
-                            <div class="row mt-4 text-center p-md-5 p-1" *ngIf="!dec1 || !dec2 || !dec3 || hasFlu || inHospital || leaveToday">
+                            <div class="row mt-4 text-center p-md-5 p-1" *ngIf="dec1 || dec2 || dec3 || hasFlu || inHospital || leaveToday">
                                 <div class="lead p-md-5 p-3 text-white bg-danger mat-elevation-z8" style="font-family: monospace;line-height: 2.3rem;">
                                     <p *ngIf="!inHospital && !leaveToday">You are not allowed to enter the workplace from now on and
                                     you must report this situation to your
