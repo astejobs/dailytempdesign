@@ -69,8 +69,10 @@ maxDate= new Date();
  
 
   onSubmitForm(frm){
+ console.log(this.temperature.date+"befrrrr");
  
-    this.temperature.date=this.datePipe.transform(this.temperature.date,"dd-MM-yyyy");
+    //this.temperature.date=this.datePipe.transform(this.temperature.date,"dd-MM-yyyy");
+    console.log(this.temperature.date+"afterrrrr")
     this.temperature.reading=this.tempReading;
 
   this.tempService.save(this.temperature).subscribe((response:any)=>{
