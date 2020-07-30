@@ -151,7 +151,7 @@
 
                                             <!-- Default checked -->
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="greater" [(ngModel)]="temperature.noReading" (input)="showWarning()">
+                                                <input type="radio" class="custom-control-input" id="above" name="noReading" #no_reading="ngModel" required value="greater" [(ngModel)]="temperature.noReading" (input)="showWarning($event)">
                                                 <label class="custom-control-label" for="above">I declare my temperature is above 38.0 degree centigrade</label>
 
                                                 <div *ngIf="no_reading.invalid && (no_reading.dirty || no_reading.touched)" class="text-theme-6 mt-2">Field is required</div>
@@ -214,31 +214,31 @@
                                     
                                     <!-- Default checked -->
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="MC-normal" [(ngModel)]="temperature.leaveType"   id="mc_normal" name="leaveType"  mdbInput required (input)="checkLeaveType()">
+                                        <input type="radio" class="custom-control-input" value="mc-normal" [(ngModel)]="temperature.leaveType"   id="mc_normal" name="leaveType"  mdbInput required (input)="checkLeaveType($event)">
                                         <label class="custom-control-label" for="mc_normal">MC - Normal Issued by GP</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="MC-swab" [(ngModel)]="temperature.leaveType" id="mc_swab" name="leaveType"   mdbInput required (input)="checkLeaveType()">
+                                        <input type="radio" class="custom-control-input" value="mc-swab" [(ngModel)]="temperature.leaveType" id="mc_swab" name="leaveType"   mdbInput required (input)="checkLeaveType($event)">
                                         <label class="custom-control-label" for="mc_swab">MC - swab and awaiting result</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="company" [(ngModel)]="temperature.leaveType" id="Bycompany" name="leaveType"  mdbInput required (input)="checkLeaveType()">
+                                        <input type="radio" class="custom-control-input" value="company" [(ngModel)]="temperature.leaveType" id="Bycompany" name="leaveType"  mdbInput required (input)="checkLeaveType($event)">
                                         <label class="custom-control-label" for="Bycompany">Company / MOH instruction</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="stayhomenotification" [(ngModel)]="temperature.leaveType" id="shn" name="leaveType"  mdbInput required (input)="checkLeaveType()">
+                                        <input type="radio" class="custom-control-input" value="stayhomenotification" [(ngModel)]="temperature.leaveType" id="shn" name="leaveType"  mdbInput required (input)="checkLeaveType($event)">
                                         <label class="custom-control-label" for="shn">Stay Home Notification (SHN)</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="quarantine" [(ngModel)]="temperature.leaveType" id="quar_order" name="leaveType" required mdbInput (input)="checkLeaveType()">
+                                        <input type="radio" class="custom-control-input" value="quarantine" [(ngModel)]="temperature.leaveType" id="quar_order" name="leaveType" required mdbInput (input)="checkLeaveType($event)">
                                         <label class="custom-control-label" for="quar_order">Quarantine Order</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="home" [(ngModel)]="temperature.leaveType" id="homeLeave" name="leaveType"  mdbInput required (input)="checkLeaveType()">
+                                        <input type="radio" class="custom-control-input" value="home" [(ngModel)]="temperature.leaveType" id="homeLeave" name="leaveType"  mdbInput required (input)="checkLeaveType($event)">
                                         <label class="custom-control-label" for="homeLeave">Home Leave</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" value="maternity" [(ngModel)]="temperature.leaveType" id="maternity" name="leaveType" mdbInput required (input)="checkLeaveType()">
+                                        <input type="radio" class="custom-control-input" value="maternity" [(ngModel)]="temperature.leaveType" id="maternity" name="leaveType" mdbInput required (input)="checkLeaveType($event)">
                                         <label class="custom-control-label" for="maternity">Maternity</label>
                                     </div>
                                 </div>

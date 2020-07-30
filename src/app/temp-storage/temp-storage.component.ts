@@ -69,10 +69,11 @@ maxDate= new Date();
  
 
   onSubmitForm(frm){
- //console.log(this.temperature.date+"befrrrr");
+console.log(this.temperature.date+"befrrrr");
  
     this.temperature.date=this.datePipe.transform(this.temperature.date,"dd-MM-yyyy");
-  //  console.log(this.temperature.date+"ghdfsdfg")
+
+ console.log(this.temperature.leaveType+"ghdfsdfg")
     this.temperature.reading=this.tempReading;
 
   this.tempService.save(this.temperature).subscribe((response:any)=>{
@@ -133,6 +134,7 @@ maxDate= new Date();
   }
 
   onNext(index){ 
+    console.log(this.temperature.noReading+"lllllllllllllj")
     console.log(index+"panelll"); 
     this.panelIndex++; console.log(this.panelIndex)
     this.currentPanel = this.panels[+index+1];
@@ -186,7 +188,8 @@ showLeaveType(e, onleave) {
   }console.log(this.panels);
 }
 
-checkLeaveType() {
+checkLeaveType(e) {
+  this.temperature.leaveType=e.target.value;
   if(this.leaveToday) {
     this.reset_filter();
     this.onNext(this.panels.length -2);
@@ -204,6 +207,7 @@ checkReading(reading,frm) {
    }
   }
   onFlu(frm) {
+    this.temperature.symptoms=frm.target.value;
     this.hasFlu = true; 
     this.reset_filter();
     this.onNext(this.panels.length -2);
@@ -219,7 +223,9 @@ checkReading(reading,frm) {
     this.temperature.quarantine = null;
    }
 
-  showWarning() {
+  showWarning(e) {
+
+    this.temperature.noReading=e.target.value;
     this.onNext(this.panels.length -2);
   }
   
