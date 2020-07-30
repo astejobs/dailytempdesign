@@ -56,6 +56,13 @@ fetchUnreportedEmployees(search){
   }));
 }
 
+fetchReportedEmployees(search){
+  const url=this.baseURL+"reportedEmployees";
+    return this.http.post(url,search,{'responseType':'blob' as 'json'}).pipe(map((response)=>{  
+    return response;
+  }));
+}
+
 getUser(usernric:string){
   const url=this.baseURL+"userdetail/"+usernric;
   return this.http.get(url,{'observe':'response'}).pipe(map((response)=>{  

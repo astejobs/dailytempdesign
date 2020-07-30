@@ -126,6 +126,20 @@ export class ShowListComponent implements OnInit{
   } 
   }
   excel() {
+    this.search.startDate=this.startDate;
+    this.search.endDate=this.endDate;
+    this.myService.fetchReportedEmployees(this.search).subscribe((data:Blob)=>{
+      var blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+
+      var downloadURL = window.URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = "Reported_Employees of "+this.search.startDate+"/"+this.search.endDate+".xls";
+      link.click();
+    });
+    this.toastService.showSuccess('Form submitted Successfully!', 'Success');
+
+    /*
      const name='Temperature_Data from '+this.startDate+" to "+this.endDate;
      const excelData:any=[];
      this.elements.forEach(element => {
@@ -139,7 +153,7 @@ export class ShowListComponent implements OnInit{
        }
       excelData.push(obj);
      }); 
-     this.exportAsExcelFile(excelData,name)
+     this.exportAsExcelFile(excelData,name)*/
   }
  
   
