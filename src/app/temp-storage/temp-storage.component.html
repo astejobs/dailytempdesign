@@ -299,11 +299,11 @@
                                             <td> Are you had close contact with a confirmed COVID-19 case in the past 14 days?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(true)">
-                                                    <input type="radio" class="custom-control-input" id="yes_contact" value="false"  name="contacted" #Contact="ngModel" [(ngModel)]="temperature.contacted" mdbInput  required (input)="ToggleDec2(true)">
+                                                    <input type="radio" class="custom-control-input" id="yes_contact" value="true"  name="contacted" #Contact="ngModel" [(ngModel)]="temperature.contacted" mdbInput  required (input)="ToggleDec2(true)">
                                                     <label class="custom-control-label" for="yes_contact">Yes</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(false)">
-                                                    <input type="radio" class="custom-control-input" id="no_contact" value="true" name="contacted" #Contact="ngModel" [(ngModel)]="temperature.contacted"  mdbInput required (input)="ToggleDec2(false)">
+                                                    <input type="radio" class="custom-control-input" id="no_contact" value="false" name="contacted" #Contact="ngModel" [(ngModel)]="temperature.contacted"  mdbInput required (input)="ToggleDec2(false)">
                                                     <label class="custom-control-label" for="no_contact">No</label>
                                                 </div>
                                             </td>
@@ -313,12 +313,12 @@
                                             <td>Are you have travelled to other countries in the past 14 days.</td>
                                             <td> 
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(true)">
-                                                    <input type="radio" class="custom-control-input" id="yes_travel" value="false" name="travelHistory" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput  required (input)="ToggleDec3(true)">
+                                                    <input type="radio" class="custom-control-input" id="yes_travel" value="true" name="travelHistory" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput  required (input)="ToggleDec3(true)">
                                                     <label class="custom-control-label" for="yes_travel">Yes</label>
                                                 </div>
 
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(false)">
-                                                    <input type="radio" class="custom-control-input" id="no_travel" value="true" name="travelHistory" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput required (input)="ToggleDec3(false)">
+                                                    <input type="radio" class="custom-control-input" id="no_travel" value="false" name="travelHistory" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput required (input)="ToggleDec3(false)">
                                                     <label class="custom-control-label" for="no_travel">No</label>
                                                 </div>
                                             </td>
