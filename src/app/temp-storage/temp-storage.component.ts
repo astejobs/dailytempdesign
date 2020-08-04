@@ -206,12 +206,11 @@ checkReading(reading,frm) {
     frm.controls['reading'].reset();
    }
   }
-  onFlu(frm) {
-    this.temperature.symptoms=frm.target.value;
+  onFlu(evt) {
+    this.temperature.symptoms=evt.target.value; 
     this.hasFlu = true; 
     this.reset_filter();
     this.onNext(this.panels.length -2);
-    frm.controls['Symptoms'].reset();
   }
   onNoFlu() {
     this.hasFlu = false;

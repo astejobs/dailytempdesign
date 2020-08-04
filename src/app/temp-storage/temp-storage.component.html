@@ -254,7 +254,7 @@
                                 <div class="p-md-2 ml-md-5">
                                     <!-- Default unchecked -->
                                     <div class="custom-control custom-radio custom-control-inline" >
-                                        <input type="radio" class="custom-control-input" #Symptoms="ngModel" [(ngModel)]="temperature.symptoms" value="true" id="yes_symptoms" name="symptoms" required (input)="onFlu(myForm)"/>
+                                        <input type="radio" class="custom-control-input" #Symptoms="ngModel" [(ngModel)]="temperature.symptoms" value="true" id="yes_symptoms" name="symptoms" required (input)="onFlu($event)"/>
                                         <label class="custom-control-label" for="yes_symptoms">Flu / Continuous dry cough / Fever / Tiredness / Difficulty breathing</label>
                                     </div>
     
@@ -347,13 +347,13 @@
                                 <button class="btn btn-outline-secondary  btn-block my-5 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">SUBMIT</button>
                             </div>
                             
-                            <div class="row mt-4 text-center p-md-5 p-1" *ngIf="dec1 || dec2 || dec3 || hasFlu || inHospital || leaveToday">
+                            <div class="row mt-4 text-center p-md-5 p-1" *ngIf="dec1 || dec2 || dec3 || inHospital || leaveToday">
                                 <div class="lead p-md-5 p-3 text-white bg-danger mat-elevation-z8" style="font-family: monospace;line-height: 2.3rem;">
-                                    <p *ngIf="!inHospital && !leaveToday">You are not allowed to enter the workplace from now on and
+                                    <p *ngIf="!inHospital && !leaveToday  && !hasFlu">You are not allowed to enter the workplace from now on and
                                     you must report this situation to your
                                     project supervisor immediately.
                                     </p>
-                                    <p *ngIf="inHospital || leaveToday">
+                                    <p *ngIf="inHospital || leaveToday || hasFlu">
                                     You must report this situation to your
                                     project supervisor immediately.
                                     </p>
