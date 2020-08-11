@@ -75,4 +75,10 @@ getUser(usernric:string){
 getData() {
   console.log('Fetching Data');
 }
+public isAuthenticated(): boolean {
+  const token = localStorage.getItem('token');
+  // true or false
+  if(token=='Admin') return true;
+  return false
+ }
 }

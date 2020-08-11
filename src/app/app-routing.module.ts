@@ -7,6 +7,7 @@ import { AddRecordComponent } from './add-record/add-record.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { LoadingService } from './loading.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuardService as AuthGuard } from './auth-guard.service';
 
 
 
@@ -19,18 +20,22 @@ const routes: Routes = [
 
   {path: 'temperature', component: TempStorageComponent},
   
-  {path: 'temperatures', component: ShowListComponent, resolve:{         
-    temperatures:LoadingService  
-  }},
-  {path: 'users', component: UserListComponent, resolve:{         
-    users:LoadingService  
-  }},
-  {path: 'add', component: AddRecordComponent, resolve:{         
-    add:LoadingService  
-  }},
-  {path: 'edit/:id', component: AddRecordComponent, resolve:{         
-    edit:LoadingService  
-  }}
+  {path: 'temperatures', component: ShowListComponent, 
+    resolve:{ temperatures:LoadingService },
+    canActivate: [AuthGuard] 
+  },
+  {path: 'users', component: UserListComponent, 
+    resolve:{ users:LoadingService },
+    canActivate: [AuthGuard] 
+},
+  {path: 'add', component: AddRecordComponent,
+    resolve:{  add:LoadingService },
+    canActivate: [AuthGuard] 
+},
+  {path: 'edit/:id', component: AddRecordComponent, 
+    resolve:{ edit:LoadingService },
+    canActivate: [AuthGuard] 
+}
  
   
 ];
