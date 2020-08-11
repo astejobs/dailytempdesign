@@ -1,0 +1,61 @@
+
+<div id="intro" class="view intro-2" style="font-family: roboto;margin-top: -10px;">
+
+    <div class="full-bg-img mask ">
+
+      <div class="mask  flex-center">
+          <!-- <div class="container-fluid bg"> -->
+        <div class="container text-center wow fadeInUp">
+            <div class="heading">
+                <p class="lead font-weight-bold">Dashboard</p>
+                <small class=" mt-2 ml-5">{{updated | date:'medium' }}</small>
+                <button mat-icon-button (click)="onRefresh()" class="ml-3"><mat-icon >refresh</mat-icon></button>
+            </div><br>
+          <!-- <hr class="hr-light"> -->
+            <div class="container-fluid  text-center ">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card element normal jumbotron">
+                            <span style="float: left !important;">
+                                <mat-icon style="font-size: 30px;color:#2ea124;">check_circle</mat-icon>
+                            </span>
+                            <code>136357689</code>
+                            <p>Normal</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card element high jumbotron">
+                            <span>
+                                <mat-icon style="font-size: 30px;color:#a82651;">warning</mat-icon>
+                            </span>
+                            <code>136357689</code>
+                            <p>High</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card element reported jumbotron">
+                            <span>
+                                <mat-icon style="font-size: 30px;color:#6820b9;">check_circle_outline</mat-icon>
+                            </span>
+                            <code>136357689</code>
+                            <p>Reported</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card element unreported jumbotron">
+                            <span>
+                                <mat-icon style="font-size: 30px;color:#881b76;">info</mat-icon>
+                            </span>
+                            <code>136357689</code>
+                            <p>Unreported</p>
+                        </div>
+                    </div>
+               </div>
+            </div>
+         
+           
+        </div>
+    </div>
+      <!-- </div> -->
+    </div>
+  </div> 

@@ -1,0 +1,53 @@
+
+
+.view {
+    /* background: url("http://www.cashadvance6online.com/data/archive/img/1749298111.png")no-repeat center center fixed; */
+    background: url("http://localhost:4200/assets/images/bg1.jpg")no-repeat center center fixed;
+    /* background: url("http://localhost:4200/assets/images/img (40).jpg")no-repeat center center; */
+    background-size: cover;
+    height: 100vh;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+
+}
+.heading {
+    color: #4d0b8a;
+}
+.bg {
+    background: url("http://localhost:4200/assets/images/bg1.jpg") fixed;
+    height: 100vh;
+}
+::ng-deep .card {
+    border: none;
+    margin-bottom: 10px;
+}
+.element {
+    background-color: #dedee2;
+    padding: 20px;
+    font-family: Roboto Condensed, sans-serif;
+    line-height: 2rem;
+}
+.element p {
+    font-size: 14px;
+    color: #524e4e;
+}
+.element code {
+    font-size: 20px;
+}
+.normal code {
+    color: #2ea124;
+}
+.high code {
+    color: #a82651;
+}
+.reported code {
+    color: #6820b9;
+}
+.unreported code {
+    color: #881b76;
+}
+
+::ng-deep .jumbotron {
+    font-family:  Montserrat;
+    font-weight: 600;
+}

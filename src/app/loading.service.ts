@@ -11,6 +11,9 @@ export class LoadingService implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot): Observable<any> {  
     return this.userService.getuserList();  
   }  
+ /*  resolveDashboard(route: ActivatedRouteSnapshot): Observable<any> {  
+    return this.tempService.getData();  
+  }   */
   resolveAdd(route: ActivatedRouteSnapshot): Observable<any> {  
     return this.userService.updateUser('',true );  
   }  

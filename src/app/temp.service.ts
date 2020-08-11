@@ -15,9 +15,9 @@ export class TempService {
     }),
     observe:'response'  as 'body'
   }
-  //baseURL = 'http://ifarms.com.sg:8086/DailyTemperatureApp6/';
+  //baseURL = 'https://ifarms.com.sg:8085/DailyTemperatureApp/';
  baseURL = 'http://localhost:8082/';
- //baseURL = 'http://192.168.21.171:8080/';
+ //baseURL = 'http://192.168.21.117:8080/';
 
 
   constructor(private http:HttpClient) { }
@@ -70,5 +70,9 @@ getUser(usernric:string){
 
 }));
  
+}
+
+getData() {
+  console.log('Fetching Data');
 }
 }

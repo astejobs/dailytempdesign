@@ -36,6 +36,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadingService } from './loading.service';
 import { CustomFormsModule } from 'ng2-validation';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [ 
@@ -46,7 +47,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     LoginComponent,
     AddRecordComponent,
     UserListComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -38,7 +38,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user',this.user.username)
         this.errorLbl="";
         this.myService.menu.next(); this.spinner.hide();
-        this.route.navigateByUrl('temperature');   
+        console.log(localStorage.getItem('role'));
+        if(localStorage.getItem('role')=='Admin') {
+          this.route.navigateByUrl('dashboard');
+        }
+        else { this.route.navigateByUrl('temperature'); }  
+       
       }    
       }else {
         this.spinner.hide();
