@@ -20,7 +20,10 @@ export class DashboardComponent implements OnInit {
     this.tempService.getData();
   }
   onRefresh() {
-    this.tempService.getData();
     alert('Data Fetched');
+    this.tempService.getData().subscribe((response:any)=>{
+      this.readingCounts= response.body;;
+      
+    });
   }
 }
