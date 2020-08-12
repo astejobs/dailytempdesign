@@ -59,7 +59,7 @@ export class ShowListComponent implements OnInit{
   onSubmitForm(){
     this.spinner.show();
     this.search.startDate=this.startDate;
-    this.search.endDate=this.endDate;
+    this.search.date=this.endDate;
      this.myService.fetchTemperaturesOnSearch(this.search).subscribe((response:any)=>{
       this.elements= response.body;
       this.mdbTable.setDataSource(this.elements);
@@ -108,7 +108,6 @@ export class ShowListComponent implements OnInit{
 
   ngAfterViewInit() {
     this.mdbTablePagination.setMaxVisibleItemsNumberTo(10);
-
     this.mdbTablePagination.calculateLastItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
@@ -127,14 +126,14 @@ export class ShowListComponent implements OnInit{
   }
   excel() {
     this.search.startDate=this.startDate;
-    this.search.endDate=this.endDate;
+    this.search.date=this.endDate;
     this.myService.fetchReportedEmployees(this.search).subscribe((data:Blob)=>{
       var blob = new Blob([data], {type: 'application/vnd.ms-excel'});
 
       var downloadURL = window.URL.createObjectURL(blob);
       var link = document.createElement('a');
       link.href = downloadURL;
-      link.download = "Reported_Employees of "+this.search.startDate+"/"+this.search.endDate+".xls";
+      link.download = "Reported_Employees of "+"/"+this.search.date+".xls";
       link.click();
     });
     this.toastService.showSuccess('Form submitted Successfully!', 'Success');
