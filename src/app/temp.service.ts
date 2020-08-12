@@ -76,7 +76,7 @@ getData() {
   console.log('Fetching Data');
 }
 public isAuthenticated(): boolean {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('role');
   // true or false
   if(token=='Admin') return true;
   return false
