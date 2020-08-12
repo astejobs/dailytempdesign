@@ -73,7 +73,10 @@ getUser(usernric:string){
 }
 
 getData() {
-  console.log('Fetching Data');
+  const url=this.baseURL+"readingcounts";
+  return this.http.get(url,{'observe':'response'}).pipe(map((response)=>{    
+  return response;
+}));
 }
 public isAuthenticated(): boolean {
   const token = localStorage.getItem('role');

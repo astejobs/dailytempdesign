@@ -8,9 +8,15 @@ import { TempService } from '../temp.service';
 })
 export class DashboardComponent implements OnInit {
   updated = Date();
+  readingCounts:any=[];
   constructor(private tempService: TempService) { }
 
   ngOnInit(): void {
+    console.log('testing before')
+    this.tempService.getData().subscribe((response:any)=>{
+      this.readingCounts= response.body;
+     console.log('testing')
+      });
     this.tempService.getData();
   }
   onRefresh() {
