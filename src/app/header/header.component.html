@@ -20,6 +20,10 @@
         <span>Login</span>
     </button>
     <!-- *ngIf="role=='Admin'" -->
+    <button mat-menu-item *ngIf="getRole()=='Admin'" routerLink="/temperature">
+        <mat-icon style="color: #ebe3e3;">playlist_add</mat-icon>
+        <span>Add Reading</span>
+    </button>
     <button mat-menu-item *ngIf="getRole()=='Admin'" routerLink="/temperatures">
         <mat-icon style="color: #ebe3e3;">assignment</mat-icon>
         <span>View Readings</span>
