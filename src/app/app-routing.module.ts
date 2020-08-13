@@ -16,9 +16,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, resolve:{         
     login:LoadingService  
   }},
-  {path: 'dashboard', component: DashboardComponent },
+  {path: 'dashboard', component: DashboardComponent,
+    canActivate: [AuthGuard]  
+  },
 
-  {path: 'temperature', component: TempStorageComponent},
+  {path: 'temperature', component: TempStorageComponent,},
   
   {path: 'temperatures', component: ShowListComponent, 
     resolve:{ temperatures:LoadingService },
