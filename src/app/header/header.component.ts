@@ -19,9 +19,13 @@ export class HeaderComponent implements OnInit {
     //this.role=localStorage.getItem('role');
     if(this.getRole())
       this.isLoggedIn =true; 
+
   }
 getRole() {
   return localStorage.getItem('role');
+} 
+getUrl() {
+  return localStorage.getItem('url');
 } 
 
   goToLogin() {
@@ -30,6 +34,7 @@ getRole() {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('url');
     this.role='';
     this.route.navigateByUrl('');
     this.isLoggedIn=false;

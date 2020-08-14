@@ -51,6 +51,7 @@ maxDate= new Date();
 
    
   ngOnInit(): void { 
+    localStorage.setItem('url','temperature');
     this.spinner.show();
     this.temperature.date= new Date().toISOString().substring(0, 10);
     console.log("in init"+this.temperature.date);

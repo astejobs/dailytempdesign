@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   constructor(private tempService: TempService) { }
 
   ngOnInit(): void {
+    localStorage.setItem('url','dashboard');
     console.log('testing before')
     this.tempService.getData().subscribe((response:any)=>{
       this.readingCounts= response.body;
