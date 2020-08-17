@@ -95,6 +95,7 @@ console.log(this.temperature.date+"befrrrr");
   
   frm.resetForm();
    this.temperature.reading='';
+   this.temperature.date= new Date().toISOString().substring(0, 10);
    //window.location.reload();
   /* this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
     this.route.navigate(['temperature']);
