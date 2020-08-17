@@ -83,7 +83,6 @@ console.log(this.temperature.date+"befrrrr");
     this.toastService.showSuccess('Your Health details have been submitted successfully','Success')
     this.panelIndex=0;
     this.submitted = true;
-  
     console.log(frm.value+"form value");
 
     this.currentPanel='step7';
