@@ -32,9 +32,11 @@ getUrl() {
     this.route.navigateByUrl('');
   }
   logout(){
+    localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('url');
+  
     this.role='';
     this.route.navigateByUrl('');
     this.isLoggedIn=false;
