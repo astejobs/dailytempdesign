@@ -8,6 +8,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { LoadingService } from './loading.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { SuccessComponent } from './success/success.component';
 
 
 
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'edit/:id', component: AddRecordComponent, 
     resolve:{ edit:LoadingService },
     canActivate: [AuthGuard] 
-}
+},
+  {path: 'success', component: SuccessComponent}
  
   
 ];

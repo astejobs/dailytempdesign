@@ -39,7 +39,6 @@ panelIndex=0;
 userdetails:any=[];
 mySubscription: any;
 tempReading:any;
-submitted:boolean = false;
 
 maxDate= new Date();
 
@@ -71,21 +70,20 @@ maxDate= new Date();
  
 
   onSubmitForm(frm){
-console.log(this.temperature.date+"befrrrr");
+//console.log(this.temperature.date+"befrrrr");
  
     this.temperature.date=this.datePipe.transform(this.temperature.date,"dd-MM-yyyy");
 
- console.log(this.temperature.leaveType+"ghdfsdfg")
+ //console.log(this.temperature.leaveType+"ghdfsdfg")
     this.temperature.reading=this.tempReading;
 
   this.tempService.save(this.temperature).subscribe((response:any)=>{
     if(response.status==200){
-    this.toastService.showSuccess('Your Health details have been submitted successfully','Success')
-    this.panelIndex=0;
-    this.submitted = true;
-    console.log(frm.value+"form value");
+    //this.toastService.showSuccess('Your Health details have been submitted successfully','Success')
+    //this.panelIndex=0;
+    console.log(frm.value);
 
-    this.currentPanel='step7';
+    //this.currentPanel='step7';
     
 
     }
@@ -98,9 +96,9 @@ console.log(this.temperature.date+"befrrrr");
    this.temperature.reading='';
    this.temperature.date= new Date().toISOString().substring(0, 10);
    //window.location.reload();
-  /* this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-    this.route.navigate(['temperature']);
-}); */
+  this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.route.navigate(['success']);
+});
 
   }
     public clearReading(selectedOption:boolean){
@@ -140,11 +138,11 @@ console.log(this.temperature.date+"befrrrr");
   }
 
   onNext(index){ 
-    console.log(this.temperature.noReading+"lllllllllllllj")
-    console.log(index+"panelll"); 
+    //console.log(this.temperature.noReading+"lllllllllllllj")
+    //console.log(index+"panelll"); 
     this.panelIndex++; console.log(this.panelIndex)
     this.currentPanel = this.panels[+index+1];
-    console.log(this.currentPanel); 
+    //console.log(this.currentPanel); 
     window.scrollTo(0, 300);
 
 }
