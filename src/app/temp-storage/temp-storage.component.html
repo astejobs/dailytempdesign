@@ -366,7 +366,7 @@
                                 <button class="btn btn-outline-secondary  btn-block my-5 waves-effect z-depth-0" type="submit" [disabled]="!myForm.valid">AGREE & SUBMIT</button>
                             </div>
                         </div>
-                        <div class="jumbotron p-md-5 mt-2 w-100 text-center ">
+                        <div class="jumbotron p-md-5 mt-2 w-100 text-center" *ngIf="!submitted">
 
                             <span style="float: left; ">
                                 <button type="button" class="btn btn-outline-dark px-md-4 px-3" (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>

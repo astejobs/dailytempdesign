@@ -39,6 +39,7 @@ panelIndex=0;
 userdetails:any=[];
 mySubscription: any;
 tempReading:any;
+submitted:boolean = false;
 
 maxDate= new Date();
 
@@ -81,6 +82,7 @@ console.log(this.temperature.date+"befrrrr");
     if(response.status==200){
     this.toastService.showSuccess('Your Health details have been submitted successfully','Success')
     this.panelIndex=0;
+    this.submitted = true;
   
     console.log(frm.value+"form value");
 
