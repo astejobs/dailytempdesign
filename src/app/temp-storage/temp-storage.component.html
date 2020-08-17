@@ -136,7 +136,7 @@
                                                     [(ngModel)]="temperature.reading" name="reading" #reading="ngModel" [min]="35.0" [max]="38.0"
                                                          pattern="" (input)="checkReading(reading,myForm)" step="0.1">
 
-                                            <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Meter Reading is required</div>
+                                            <div *ngIf="reading.invalid && (reading.dirty || reading.touched)" class="text-theme-6 mt-2">Thermometer Reading is required</div>
 
 
 
