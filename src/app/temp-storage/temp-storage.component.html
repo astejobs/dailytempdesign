@@ -132,7 +132,7 @@
                                         <hr>
 
                                         <div class="form-group" *ngIf="options && shift.valid"><!-- ^0[1-9]|[1-9]\d$ to accept only numbers-->
-                                            <input type="number" class="form-control" required placeholder="Enter Meter Reading"
+                                            <input type="number" class="form-control" required placeholder="Enter Thermometer reading"
                                                     [(ngModel)]="temperature.reading" name="reading" #reading="ngModel" [min]="35.0" [max]="38.0"
                                                          pattern="" (input)="checkReading(reading,myForm)" step="0.1">
 
