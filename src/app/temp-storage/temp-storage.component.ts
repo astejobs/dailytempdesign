@@ -79,23 +79,26 @@ console.log(this.temperature.date+"befrrrr");
 
   this.tempService.save(this.temperature).subscribe((response:any)=>{
     if(response.status==200){
-    this.toastService.showSuccess('Data Saved Successfully','Success')
+    this.toastService.showSuccess('Your Health details have been submitted successfully','Success')
     this.panelIndex=0;
   
     console.log(frm.value+"form value");
-    this.currentPanel='step1';
+
+    this.currentPanel='step7';
+    
+
     }
     else{
     this.toastService.showError('Data Not Saved','Error');
     }
   }); 
   
-   frm.resetForm();
+  frm.resetForm();
    this.temperature.reading='';
    //window.location.reload();
-   this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  /* this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
     this.route.navigate(['temperature']);
-}); 
+}); */
 
   }
     public clearReading(selectedOption:boolean){

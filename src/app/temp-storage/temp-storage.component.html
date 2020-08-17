@@ -126,7 +126,7 @@
                                 <div class="col-sm-6">
                                     <div class="jumbotron m-md-4">
                                         <p class="lead">
-                                            <span *ngIf="options">Enter Meter Reading </span>
+                                            <span *ngIf="options">Enter Thermometer Reading </span>
                                             <span *ngIf="!options">Give declaration of temperature </span>
                                         </p>
                                         <hr>
@@ -296,7 +296,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td> Are you had close contact with a confirmed COVID-19 case in the past 14 days?</td>
+                                            <td> Have you been in close contact with a confirmed COVID-19 case in the past 14 days?</td>
                                             <td>
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec2(true)">
                                                     <input type="radio" class="custom-control-input" id="yes_contact" value="true"  name="contacted" #Contact="ngModel" [(ngModel)]="temperature.contacted" mdbInput  required (input)="ToggleDec2(true)">
@@ -310,7 +310,7 @@
                                         </tr>
                                         <tr>
 
-                                            <td>Are you have travelled to other countries in the past 14 days.</td>
+                                            <td>Have you been travelling to other countries in the past 14 days?</td>
                                             <td> 
                                                 <div class="custom-control custom-radio custom-control-inline" (click)="ToggleDec3(true)">
                                                     <input type="radio" class="custom-control-input" id="yes_travel" value="true" name="travelHistory" #Travel="ngModel" [(ngModel)]="temperature.travelHistory"  mdbInput  required (input)="ToggleDec3(true)">
