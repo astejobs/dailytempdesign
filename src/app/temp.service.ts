@@ -22,9 +22,9 @@ export class TempService {
 
   constructor(private http:HttpClient) { }
 
-  save(data){
+  save(data,username:string){
     console.log(this.httpOptions);
-    const url=this.baseURL+"temperature";
+    const url=this.baseURL+"temperature/"+username;;
     return this.http.post(url,data,this.httpOptions).pipe(map((response:any)=>{
 
         return response;

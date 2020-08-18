@@ -76,8 +76,8 @@ maxDate= new Date();
 
  //console.log(this.temperature.leaveType+"ghdfsdfg")
     this.temperature.reading=this.tempReading;
-
-  this.tempService.save(this.temperature).subscribe((response:any)=>{
+  
+  this.tempService.save(this.temperature,localStorage.getItem('user')).subscribe((response:any)=>{
     if(response.status==200){
     //this.toastService.showSuccess('Your Health details have been submitted successfully','Success')
     //this.panelIndex=0;
